@@ -1,0 +1,509 @@
+id,instruction,response,test_list
+1,প্রথম n সংখ্যার ক্ষুদ্রতম গুণিতক খুঁজে বের করার জন্য একটি ফাংশন লিখুন।,"def smallest_multiple(n):
+    if (n<=2):
+      return n
+    i = n * 2
+    factors = [number  for number in range(n, 1, -1) if number * 2 > n]
+    while True:
+        for a in factors:
+            if i % a != 0:
+                i += n
+                break
+            if (a == factors[-1] and i % a == 0):
+                return i","""['assert smallest_multiple(13)==360360', 'assert smallest_multiple(2)==2', 'assert smallest_multiple(1)==1']"""
+2,সাধারণ কীগুলির জন্য মান যোগ করে দুটি অভিধানকে একত্রিত করার জন্য একটি ফাংশন লিখুন।,"from collections import Counter
+def add_dict(d1,d2):
+   add_dict = Counter(d1) + Counter(d2)
+   return add_dict","""[\""assert add_dict({'a': 100, 'b': 200, 'c':300},{'a': 300, 'b': 200, 'd':400})==({'b': 400, 'd': 400, 'a': 400, 'c': 300}) \"", \""assert add_dict({'a': 500, 'b': 700, 'c':900},{'a': 500, 'b': 600, 'd':900})==({'b': 1300, 'd': 900, 'a': 1000, 'c': 900}) \"", \""assert add_dict({'a':900,'b':900,'d':900},{'a':900,'b':900,'d':900})==({'b': 1800, 'd': 1800, 'a': 1800})\""]"""
+3,১ থেকে এন পর্যন্ত মোট আনসেট বিট গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।,"def count_Unset_Bits(n) :  
+    cnt = 0;  
+    for i in range(1,n + 1) : 
+        temp = i;  
+        while (temp) :  
+            if (temp % 2 == 0) : 
+                cnt += 1;  
+            temp = temp // 2;  
+    return cnt;  ","""['assert count_Unset_Bits(2) == 1', 'assert count_Unset_Bits(5) == 4', 'assert count_Unset_Bits(14) == 17']"""
+4,একটি ফাংশন লিখুন যা প্রদত্ত সংখ্যাটি এমনকি হলে সত্য ফেরত দেয় অন্যথায় মিথ্যা ফেরত দেয়।,"def even_num(x):
+  if x%2==0:
+     return True
+  else:
+    return False","""['assert even_num(13.5)==False', 'assert even_num(0)==True', 'assert even_num(-9)==False']"""
+5,দ্বিপদী সহগগুলির বর্গক্ষেত্রের যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।,"def factorial(start,end): 
+    res = 1 
+    for i in range(start,end + 1): 
+        res *= i      
+    return res 
+def sum_of_square(n): 
+   return int(factorial(n + 1, 2 * n)  /factorial(1, n)) ","""['assert sum_of_square(4) == 70', 'assert sum_of_square(5) == 252', 'assert sum_of_square(2) == 6']"""
+6,"রেজেক্স ব্যবহার করে একটি ইউআরএল থেকে বছর, মাস এবং তারিখ বের করার জন্য একটি ফাংশন লিখুন।","import re
+def extract_date(url):
+        return re.findall(r'/(\d{4})/(\d{1,2})/(\d{1,2})/', url)","""['assert extract_date(\""https://www.washingtonpost.com/news/football-insider/wp/2016/09/02/odell-beckhams-fame-rests-on-one-stupid-little-ball-josh-norman-tells-author/\"") == [(\\'2016\\', \\'09\\', \\'02\\')]', 'assert extract_date(\""https://www.indiatoday.in/movies/celebrities/story/wp/2020/11/03/odeof-sushant-singh-rajput-s-death-his-brother-in-law-shares-advice-for-fans-1749646/\"") == [(\\'2020\\', \\'11\\', \\'03\\')]', 'assert extract_date(\""https://economictimes.indiatimes.com/news/economy/2020/12/29/finance/pension-assets-under-pfrda-touch-rs-5-32-lakh-crore/articleshow/79736619.cms\"") == [(\\'2020\\', \\'12\\', \\'29\\')]']"""
+7,প্রথম n টি ভাগ্যবান সংখ্যা প্রিন্ট করার জন্য একটি ফাংশন লিখুন।,"def lucky_num(n):
+ List=range(-1,n*n+9,2)
+ i=2
+ while List[i:]:List=sorted(set(List)-set(List[List[i]::List[i]]));i+=1
+ return List[1:n+1]","""['assert lucky_num(10)==[1, 3, 7, 9, 13, 15, 21, 25, 31, 33] ', 'assert lucky_num(5)==[1, 3, 7, 9, 13]', 'assert lucky_num(8)==[1, 3, 7, 9, 13, 15, 21, 25]']"""
+8,প্রদত্ত অ্যারেতে স্থির বিন্দু খুঁজে পেতে একটি ফাংশন লিখুন।,"def find_fixed_point(arr, n): 
+	for i in range(n): 
+		if arr[i] is i: 
+			return i 
+	return -1","""['assert find_fixed_point([-10, -1, 0, 3, 10, 11, 30, 50, 100],9) == 3', 'assert find_fixed_point([1, 2, 3, 4, 5, 6, 7, 8],8) == -1', 'assert find_fixed_point([0, 2, 5, 8, 17],5) == 0']"""
+9,একটি নির্দিষ্ট সংখ্যার পূর্ববর্তী প্যালিনড্রোম খুঁজে পেতে একটি ফাংশন লিখুন।,"def previous_palindrome(num):
+    for x in range(num-1,0,-1):
+        if str(x) == str(x)[::-1]:
+            return x","""['assert previous_palindrome(99)==88', 'assert previous_palindrome(1221)==1111', 'assert previous_palindrome(120)==111']"""
+10,একটি গ্রেগরিয়ান তারিখ বৈধ করার জন্য একটি ফাংশন লিখুন।,"import datetime
+def check_date(m, d, y):
+    try:
+        m, d, y = map(int, (m, d, y))
+        datetime.date(y, m, d)
+        return True
+    except ValueError:
+        return False","""['assert check_date(11,11,2002)==True', 'assert check_date(13,11,2002)==False', \""assert check_date('11','11','2002')==True\""]"""
+11,হিপ ক্যু অ্যালগরিদম ব্যবহার করে পূর্ণসংখ্যার একটি অ্যারের তিনটি সংখ্যার সর্বোচ্চ উৎপাদনের জন্য একটি ফাংশন লিখুন।,"def maximum_product(nums):
+    import heapq
+    a, b = heapq.nlargest(3, nums), heapq.nsmallest(2, nums)
+    return max(a[0] * a[1] * a[2], a[0] * b[0] * b[1])","""['assert maximum_product( [12, 74, 9, 50, 61, 41])==225700', 'assert maximum_product([25, 35, 22, 85, 14, 65, 75, 25, 58])==414375', 'assert maximum_product([18, 14, 10, 9, 8, 7, 9, 3, 2, 4, 1])==2520']"""
+12,"ln, m lobb সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।","def binomial_coeff(n, k): 
+	C = [[0 for j in range(k + 1)] 
+			for i in range(n + 1)] 
+	for i in range(0, n + 1): 
+		for j in range(0, min(i, k) + 1): 
+			if (j == 0 or j == i): 
+				C[i][j] = 1
+			else: 
+				C[i][j] = (C[i - 1][j - 1] 
+							+ C[i - 1][j]) 
+	return C[n][k] 
+def lobb_num(n, m): 
+	return (((2 * m + 1) *
+		binomial_coeff(2 * n, m + n)) 
+					/ (m + n + 1))","""['assert int(lobb_num(5, 3)) == 35', 'assert int(lobb_num(3, 2)) == 5', 'assert int(lobb_num(4, 2)) == 20']"""
+13,একটি স্ট্রিংয়ের শেষে একটি সংখ্যা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।,"import re
+def end_num(string):
+    text = re.compile(r"".*[0-9]$"")
+    if text.match(string):
+        return True
+    else:
+        return False","""[\""assert end_num('abcdef')==False\"", \""assert end_num('abcdef7')==True\"", \""assert end_num('abc')==False\""]"""
+14,প্রদত্ত স্ট্রিং দুটি বিকল্প অক্ষর দিয়ে তৈরি কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।,"def is_Two_Alter(s):  
+    for i in range (len( s) - 2) : 
+        if (s[i] != s[i + 2]) : 
+            return False
+    if (s[0] == s[1]): 
+        return False
+    return True","""['assert is_Two_Alter(\""abab\"") == True', 'assert is_Two_Alter(\""aaaa\"") == False', 'assert is_Two_Alter(\""xyz\"") == False']"""
+15,ল্যাম্বদা ফাংশন ব্যবহার করে একটি প্রদত্ত অ্যারেতে ধনাত্মক এবং নেতিবাচক সংখ্যাগুলি পুনরায় সাজানোর জন্য একটি ফাংশন লিখুন।,"def rearrange_numbs(array_nums):
+  result = sorted(array_nums, key = lambda i: 0 if i == 0 else -1 / i)
+  return result ","""['assert rearrange_numbs([-1, 2, -3, 5, 7, 8, 9, -10])==[2, 5, 7, 8, 9, -10, -3, -1]', 'assert rearrange_numbs([10,15,14,13,-18,12,-20])==[10, 12, 13, 14, 15, -20, -18]', 'assert rearrange_numbs([-20,20,-10,10,-30,30])==[10, 20, 30, -30, -20, -10]']"""
+16,একটি ফাংশন লিখুন যাতে আপনি খুঁজে পান যে অ্যারেতে একটি ট্রিপলেট আছে যার যোগফল একটি প্রদত্ত মানের সমান।,"def find_triplet_array(A, arr_size, sum): 
+	for i in range( 0, arr_size-2): 
+		for j in range(i + 1, arr_size-1): 
+			for k in range(j + 1, arr_size): 
+				if A[i] + A[j] + A[k] == sum: 
+					return  A[i],A[j],A[k] 
+					return True
+	return False","""['assert find_triplet_array([1, 4, 45, 6, 10, 8], 6, 22) == (4, 10, 8)', 'assert find_triplet_array([12, 3, 5, 2, 6, 9], 6, 24) == (12, 3, 9)', 'assert find_triplet_array([1, 2, 3, 4, 5], 5, 9) == (1, 3, 5)']"""
+17,একটি বড় হাতের অক্ষর এবং তারপরে ছোট হাতের অক্ষরের ক্রম খুঁজে বের করার জন্য একটি ফাংশন লিখুন।,"import re
+def text_uppercase_lowercase(text):
+        patterns = '[A-Z]+[a-z]+$'
+        if re.search(patterns, text):
+                return 'Found a match!'
+        else:
+                return ('Not matched!')","""['assert text_uppercase_lowercase(\""AaBbGg\"")==(\\'Found a match!\\')', 'assert text_uppercase_lowercase(\""aA\"")==(\\'Not matched!\\')', 'assert text_uppercase_lowercase(\""PYTHON\"")==(\\'Not matched!\\')']"""
+18,মুদ্রা পরিবর্তনের জন্য একটি ফাংশন লিখুন।,"def coin_change(S, m, n): 
+    table = [[0 for x in range(m)] for x in range(n+1)] 
+    for i in range(m): 
+        table[0][i] = 1
+    for i in range(1, n+1): 
+        for j in range(m): 
+            x = table[i - S[j]][j] if i-S[j] >= 0 else 0
+            y = table[i][j-1] if j >= 1 else 0 
+            table[i][j] = x + y   
+    return table[n][m-1] ","""['assert coin_change([1, 2, 3],3,4)==4', 'assert coin_change([4,5,6,7,8,9],6,9)==2', 'assert coin_change([4,5,6,7,8,9],6,4)==1']"""
+19,একটি পাইথন ফাংশন লিখুন যাতে তালিকার সব আইটেমকে গুণ করা যায়।,"def multiply_list(items):
+    tot = 1
+    for x in items:
+        tot *= x
+    return tot","""['assert multiply_list([1,-2,3]) == -6', 'assert multiply_list([1,2,3,4]) == 24', 'assert multiply_list([3,1,2,3]) == 18']"""
+20,একটি ফাংশন লিখুন যাতে প্রদত্ত টিপল তালিকায় সমস্ত শূন্য মান সহ সমস্ত টিপলগুলি সরিয়ে ফেলা যায়।,"def remove_tuple(test_list):
+  res = [sub for sub in test_list if not all(ele == None for ele in sub)]
+  return (str(res)) ","""[\""assert remove_tuple([(None, 2), (None, None), (3, 4), (12, 3), (None, )] ) == '[(None, 2), (3, 4), (12, 3)]'\"", \""assert remove_tuple([(None, None), (None, None), (3, 6), (17, 3), (None,1 )] ) == '[(3, 6), (17, 3), (None, 1)]'\"", \""assert remove_tuple([(1, 2), (2, None), (3, None), (24, 3), (None, None )] ) == '[(1, 2), (2, None), (3, None), (24, 3)]'\""]"""
+21,একটি ফাংশন লিখুন যাতে n আকারের প্রতিটি টুপলকে চুনক করা যায়।,"def chunk_tuples(test_tup, N):
+  res = [test_tup[i : i + N] for i in range(0, len(test_tup), N)]
+  return (res) ","""['assert chunk_tuples((10, 4, 5, 6, 7, 6, 8, 3, 4), 3) == [(10, 4, 5), (6, 7, 6), (8, 3, 4)]', 'assert chunk_tuples((1, 2, 3, 4, 5, 6, 7, 8, 9), 2) == [(1, 2), (3, 4), (5, 6), (7, 8), (9,)]', 'assert chunk_tuples((11, 14, 16, 17, 19, 21, 22, 25), 4) == [(11, 14, 16, 17), (19, 21, 22, 25)]']"""
+22,একটি প্রদত্ত পূর্ণসংখ্যা অ্যারে থেকে সর্বোচ্চ উৎপাদনের সাথে একটি জোড়া খুঁজে পেতে একটি ফাংশন লিখুন।,"def max_product(arr): 
+    arr_len = len(arr) 
+    if (arr_len < 2): 
+        return None     
+    x = arr[0]; y = arr[1]    
+    for i in range(0, arr_len): 
+        for j in range(i + 1, arr_len): 
+            if (arr[i] * arr[j] > x * y): 
+                x = arr[i]; y = arr[j] 
+    return x,y   ","""['assert max_product([1, 2, 3, 4, 7, 0, 8, 4])==(7, 8)', 'assert max_product([0, -1, -2, -4, 5, 0, -6])==(-4, -6)', 'assert max_product([1, 3, 5, 6, 8, 9])==(8,9)']"""
+23,একটি ফাংশন লিখুন যাতে সবচেয়ে ছোট স্ট্রিং এর দৈর্ঘ্য খুঁজে পাওয়া যায় যার মধ্যে str1 এবং str2 উভয়ই সাবসেকভেন্স হিসাবে থাকে।,"def super_seq(X, Y, m, n):
+	if (not m):
+		return n
+	if (not n):
+		return m
+	if (X[m - 1] == Y[n - 1]):
+		return 1 + super_seq(X, Y, m - 1, n - 1)
+	return 1 + min(super_seq(X, Y, m - 1, n),	super_seq(X, Y, m, n - 1))","""['assert super_seq(\""AGGTAB\"", \""GXTXAYB\"", 6, 7) == 9', 'assert super_seq(\""feek\"", \""eke\"", 4, 3) == 5', 'assert super_seq(\""PARRT\"", \""RTA\"", 5, 3) == 6']"""
+24,একটি ফাংশন লিখুন যাতে দুইটি সংখ্যার সর্বোচ্চ সংখ্যা পাওয়া যায়।,"def max_of_two( x, y ):
+    if x > y:
+        return x
+    return y","""['assert max_of_two(10,20)==20', 'assert max_of_two(19,15)==19', 'assert max_of_two(-10,-20)==-10']"""
+25,একটি প্রদত্ত টুপলের সমস্ত সংখ্যার গুণফল গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।,"def mutiple_tuple(nums):
+    temp = list(nums)
+    product = 1 
+    for x in temp:
+        product *= x
+    return product","""['assert mutiple_tuple((4, 3, 2, 2, -1, 18)) == -864', 'assert mutiple_tuple((1,2,3)) == 6', 'assert mutiple_tuple((-2,-4,-6)) == -48']"""
+26,n-তম rencontres সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।,"def binomial_coeffi(n, k): 
+	if (k == 0 or k == n): 
+		return 1
+	return (binomial_coeffi(n - 1, k - 1) 
+		+ binomial_coeffi(n - 1, k)) 
+def rencontres_number(n, m): 
+	if (n == 0 and m == 0): 
+		return 1
+	if (n == 1 and m == 0): 
+		return 0
+	if (m == 0): 
+		return ((n - 1) * (rencontres_number(n - 1, 0)+ rencontres_number(n - 2, 0))) 
+	return (binomial_coeffi(n, m) * rencontres_number(n - m, 0))","""['assert rencontres_number(7, 2) == 924', 'assert rencontres_number(3, 0) == 2', 'assert rencontres_number(3, 1) == 3']"""
+27,প্রদত্ত বাইনারি গাছের উচ্চতা গণনা করার জন্য একটি ফাংশন লিখুন।,"class Node: 
+	def __init__(self, data): 
+		self.data = data 
+		self.left = None
+		self.right = None
+def max_height(node): 
+	if node is None: 
+		return 0 ; 
+	else : 
+		left_height = max_height(node.left) 
+		right_height = max_height(node.right) 
+		if (left_height > right_height): 
+			return left_height+1
+		else: 
+			return right_height+1","""['assert (max_height(root)) == 3', 'assert (max_height(root1)) == 5 ', 'assert (max_height(root2)) == 4']"""
+28,একটি ফাংশন লিখুন যাতে yyyy-mm-dd ফরম্যাটের একটি তারিখ dd-mm-yyyy ফরম্যাটে রূপান্তর করা যায়।,"import re
+def change_date_format(dt):
+        return re.sub(r'(\d{4})-(\d{1,2})-(\d{1,2})', '\\3-\\2-\\1', dt)
+        return change_date_format(dt)","""[\""assert change_date_format('2026-01-02')=='02-01-2026'\"", \""assert change_date_format('2021-01-04')=='04-01-2021'\"", \""assert change_date_format('2030-06-06')=='06-06-2030'\""]"""
+29,একটি টুপলের পুনরাবৃত্ত আইটেম গণনা করার জন্য একটি ফাংশন লিখুন।,"def count_tuplex(tuplex,value):  
+  count = tuplex.count(value)
+  return count","""['assert count_tuplex((2, 4, 5, 6, 2, 3, 4, 4, 7),4)==3', 'assert count_tuplex((2, 4, 5, 6, 2, 3, 4, 4, 7),2)==2', 'assert count_tuplex((2, 4, 7, 7, 7, 3, 4, 4, 7),7)==4']"""
+30,একটি ফাংশন লিখুন যা একটি স্ট্রিং এর সাথে মিলবে যার মধ্যে একটি a আছে যার পরে শূন্য বা আরও b আছে regex ব্যবহার করে।,"import re
+def text_match(text):
+        patterns = 'ab*?'
+        if re.search(patterns,  text):
+                return ('Found a match!')
+        else:
+                return ('Not matched!')","""['assert text_match(\""msb\"") == \\'Not matched!\\'', 'assert text_match(\""a0c\"") == \\'Found a match!\\'', 'assert text_match(\""abbc\"") == \\'Found a match!\\'']"""
+31,13+23+33+....+n3 সিরিজের যোগফল গণনা করার জন্য একটি ফাংশন লিখুন।,"import math 
+def sum_series(number):
+ total = 0
+ total = math.pow((number * (number + 1)) /2, 2)
+ return total","""['assert sum_series(7)==784', 'assert sum_series(5)==225', 'assert sum_series(15)==14400']"""
+32,একটি প্রদত্ত স্ট্রিং তালিকা থেকে ডুপ্লিকেট শব্দ অপসারণের জন্য একটি ফাংশন লিখুন।,"def remove_duplic_list(l):
+    temp = []
+    for x in l:
+        if x not in temp:
+            temp.append(x)
+    return temp","""['assert remove_duplic_list([\""Python\"", \""Exercises\"", \""Practice\"", \""Solution\"", \""Exercises\""])==[\\'Python\\', \\'Exercises\\', \\'Practice\\', \\'Solution\\']', 'assert remove_duplic_list([\""Python\"", \""Exercises\"", \""Practice\"", \""Solution\"", \""Exercises\"",\""Java\""])==[\\'Python\\', \\'Exercises\\', \\'Practice\\', \\'Solution\\', \\'Java\\']', 'assert remove_duplic_list([\""Python\"", \""Exercises\"", \""Practice\"", \""Solution\"", \""Exercises\"",\""C++\"",\""C\"",\""C++\""])==[\\'Python\\', \\'Exercises\\', \\'Practice\\', \\'Solution\\',\\'C++\\',\\'C\\']']"""
+33,একটি ফাংশন লিখুন যা রেজেক্স ব্যবহার করে উট কেস স্ট্রিংকে সাপ কেস স্ট্রিংয়ে রূপান্তর করে।,"import re
+def camel_to_snake(text):
+  str1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', text)
+  return re.sub('([a-z0-9])([A-Z])', r'\1_\2', str1).lower()","""[\""assert camel_to_snake('GoogleAssistant') == 'google_assistant'\"", \""assert camel_to_snake('ChromeCast') == 'chrome_cast'\"", \""assert camel_to_snake('QuadCore') == 'quad_core'\""]"""
+34,nth ডেলানয় সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।,"def dealnnoy_num(n, m): 
+	if (m == 0 or n == 0) : 
+		return 1
+	return dealnnoy_num(m - 1, n) + dealnnoy_num(m - 1, n - 1) + dealnnoy_num(m, n - 1)","""['assert dealnnoy_num(3, 4) == 129', 'assert dealnnoy_num(3, 3) == 63', 'assert dealnnoy_num(4, 5) == 681']"""
+35,সিরিজ 12+22+32+....+n2 এর যোগফল গণনা করার জন্য একটি ফাংশন লিখুন।,"def series_sum(number):
+ total = 0
+ total = (number * (number + 1) * (2 * number + 1)) / 6
+ return total","""['assert series_sum(6)==91', 'assert series_sum(7)==140', 'assert series_sum(12)==650']"""
+36,প্রদত্ত ক্রমিক তালিকার উপর ভিত্তি করে প্রদত্ত টুপলগুলিকে পুনরায় সাজানোর জন্য একটি ফাংশন লিখুন।,"def re_arrange_tuples(test_list, ord_list):
+  temp = dict(test_list)
+  res = [(key, temp[key]) for key in ord_list]
+  return (res) ","""['assert re_arrange_tuples([(4, 3), (1, 9), (2, 10), (3, 2)],  [1, 4, 2, 3]) == [(1, 9), (4, 3), (2, 10), (3, 2)]', 'assert re_arrange_tuples([(5, 4), (2, 10), (3, 11), (4, 3)],  [3, 4, 2, 3]) == [(3, 11), (4, 3), (2, 10), (3, 11)]', 'assert re_arrange_tuples([(6, 3), (3, 8), (5, 7), (2, 4)],  [2, 5, 3, 6]) == [(2, 4), (5, 7), (3, 8), (6, 3)]']"""
+37,একটি প্রদত্ত স্ট্রিংয়ের সবচেয়ে সাধারণ অক্ষর গণনা করার জন্য একটি ফাংশন লিখুন।,"from collections import Counter 
+def max_char(str1):
+    temp = Counter(str1) 
+    max_char = max(temp, key = temp.get)
+    return max_char","""['assert max_char(\""hello world\"")==(\\'l\\')', 'assert max_char(\""hello \"")==(\\'l\\')', 'assert max_char(\""python pr\"")==(\\'p\\')']"""
+38,তিনটি সাজানো অ্যারে থেকে তিনটি নিকটতম উপাদান খুঁজে পেতে একটি ফাংশন লিখুন।,"import sys 
+
+def find_closet(A, B, C, p, q, r): 
+	diff = sys.maxsize 
+	res_i = 0
+	res_j = 0
+	res_k = 0
+	i = 0
+	j = 0
+	k = 0
+	while(i < p and j < q and k < r): 
+		minimum = min(A[i], min(B[j], C[k])) 
+		maximum = max(A[i], max(B[j], C[k])); 
+		if maximum-minimum < diff: 
+			res_i = i 
+			res_j = j 
+			res_k = k 
+			diff = maximum - minimum; 
+		if diff == 0: 
+			break
+		if A[i] == minimum: 
+			i = i+1
+		elif B[j] == minimum: 
+			j = j+1
+		else: 
+			k = k+1
+	return A[res_i],B[res_j],C[res_k]","""['assert find_closet([1, 4, 10],[2, 15, 20],[10, 12],3,3,2) == (10, 15, 10)', 'assert find_closet([20, 24, 100],[2, 19, 22, 79, 800],[10, 12, 23, 24, 119],3,5,5) == (24, 22, 23)', 'assert find_closet([2, 5, 11],[3, 16, 21],[11, 13],3,3,2) == (11, 16, 11)']"""
+39,ল্যাম্বদা ফাংশন ব্যবহার করে অভিধানের তালিকা সাজানোর জন্য একটি ফাংশন লিখুন।,"def sorted_models(models):
+ sorted_models = sorted(models, key = lambda x: x['color'])
+ return sorted_models","""[\""assert sorted_models([{'make':'Nokia', 'model':216, 'color':'Black'}, {'make':'Mi Max', 'model':2, 'color':'Gold'}, {'make':'Samsung', 'model': 7, 'color':'Blue'}])==[{'make': 'Nokia', 'model': 216, 'color': 'Black'}, {'make': 'Samsung', 'model': 7, 'color': 'Blue'}, {'make': 'Mi Max', 'model': 2, 'color': 'Gold'}]\"", \""assert sorted_models([{'make':'Vivo', 'model':20,'color':'Blue'},{'make': 'oppo','model':17,'color':'Gold'},{'make':'Apple','model':11,'color':'red'}])==([{'make':'Vivo', 'model':20,'color':'Blue'},{'make': 'oppo','model':17,'color':'Gold'},{'make':'Apple','model':11,'color':'red'}])\"", \""assert sorted_models([{'make':'micromax','model':40,'color':'grey'},{'make':'poco','model':60,'color':'blue'}])==([{'make':'poco','model':60,'color':'blue'},{'make':'micromax','model':40,'color':'grey'}])\""]"""
+40,একটি ফাংশন লিখুন যা হিপ সোর্ট ব্যবহার করে প্রদত্ত অ্যারে বাছাই করে।,"def heap_sort(arr):
+    heapify(arr)  
+    end = len(arr) - 1
+    while end > 0:
+        arr[end], arr[0] = arr[0], arr[end]
+        shift_down(arr, 0, end - 1)
+        end -= 1
+    return arr
+
+def heapify(arr):
+    start = len(arr) // 2
+    while start >= 0:
+        shift_down(arr, start, len(arr) - 1)
+        start -= 1
+def shift_down(arr, start, end):
+    root = start
+    while root * 2 + 1 <= end:
+        child = root * 2 + 1
+        if child + 1 <= end and arr[child] < arr[child + 1]:
+            child += 1
+        if child <= end and arr[root] < arr[child]:
+            arr[root], arr[child] = arr[child], arr[root]
+            root = child
+        else:
+            return
+","""['assert heap_sort([12, 2, 4, 5, 2, 3]) == [2, 2, 3, 4, 5, 12]', 'assert heap_sort([32, 14, 5, 6, 7, 19]) == [5, 6, 7, 14, 19, 32]', 'assert heap_sort([21, 15, 29, 78, 65]) == [15, 21, 29, 65, 78]']"""
+41,একটি ফাংশন লিখুন যাতে একটি তালিকার উপাদানগুলি গণনা করা যায় যতক্ষণ না একটি উপাদান একটি টুপল হয়।,"def count_elim(num):
+  count_elim = 0
+  for n in num:
+    if isinstance(n, tuple):
+        break
+    count_elim += 1
+  return count_elim","""['assert count_elim([10,20,30,(10,20),40])==3', 'assert count_elim([10,(20,30),(10,20),40])==1', 'assert count_elim([(10,(20,30,(10,20),40))])==0']"""
+42,প্রদত্ত তালিকায় কোন তালিকা উপাদান উপস্থিত আছে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।,"def check_element(test_tup, check_list):
+  res = False
+  for ele in check_list:
+    if ele in test_tup:
+      res = True
+      break
+  return (res) ","""['assert check_element((4, 5, 7, 9, 3),  [6, 7, 10, 11]) == True', 'assert check_element((1, 2, 3, 4),  [4, 6, 7, 8, 9]) == True', 'assert check_element((3, 2, 1, 4, 5),  [9, 8, 7, 6]) == False']"""
+43,heapq মডিউল ব্যবহার করে দুটি প্রদত্ত বাছাই করা তালিকা একত্রিত করার জন্য একটি ফাংশন লিখুন।,"from heapq import merge
+def combine_lists(num1,num2):
+  combine_lists=list(merge(num1, num2))
+  return combine_lists","""['assert combine_lists([1, 3, 5, 7, 9, 11],[0, 2, 4, 6, 8, 10])==[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]', 'assert combine_lists([1, 3, 5, 6, 8, 9], [2, 5, 7, 11])==[1,2,3,5,5,6,7,8,9,11]', 'assert combine_lists([1,3,7],[2,4,6])==[1,2,3,4,6,7]']"""
+44,একটি প্রদত্ত স্ট্রিং এর সংখ্যা এবং তাদের অবস্থান পৃথক এবং মুদ্রণ করার জন্য একটি ফাংশন লিখুন।,"import re
+def num_position(text):
+ for m in re.finditer(""\d+"", text):
+    return m.start()","""['assert num_position(\""there are 70 flats in this apartment\"")==10', 'assert num_position(\""every adult have 32 teeth\"")==17', 'assert num_position(\""isha has 79 chocolates in her bag\"")==9']"""
+45,প্রদত্ত টুপলগুলিকে সেটে রূপান্তর করার জন্য একটি ফাংশন লিখুন।,"def tuple_to_set(t):
+  s = set(t)
+  return (s) ","""[\""assert tuple_to_set(('x', 'y', 'z') ) == {'y', 'x', 'z'}\"", \""assert tuple_to_set(('a', 'b', 'c') ) == {'c', 'a', 'b'}\"", \""assert tuple_to_set(('z', 'd', 'e') ) == {'d', 'e', 'z'}\""]"""
+46,একটি নির্দিষ্ট পাঠ্যের সবচেয়ে সাধারণ উপাদান এবং তাদের গণনা খুঁজে পেতে একটি ফাংশন লিখুন।,"from collections import Counter 
+def most_common_elem(s,a):
+  most_common_elem=Counter(s).most_common(a)
+  return most_common_elem","""[\""assert most_common_elem('lkseropewdssafsdfafkpwe',3)==[('s', 4), ('e', 3), ('f', 3)] \"", \""assert most_common_elem('lkseropewdssafsdfafkpwe',2)==[('s', 4), ('e', 3)]\"", \""assert most_common_elem('lkseropewdssafsdfafkpwe',7)==[('s', 4), ('e', 3), ('f', 3), ('k', 2), ('p', 2), ('w', 2), ('d', 2)]\""]"""
+47,সবচেয়ে ছোট শব্দের দৈর্ঘ্য খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।,"def len_log(list1):
+    min=len(list1[0])
+    for i in list1:
+        if len(i)<min:
+            min=len(i)
+    return min","""['assert len_log([\""win\"",\""lose\"",\""great\""]) == 3', 'assert len_log([\""a\"",\""ab\"",\""abc\""]) == 1', 'assert len_log([\""12\"",\""12\"",\""1234\""]) == 2']"""
+48,একটি টুপেলের একটি আইটেম পেতে একটি ফাংশন লিখুন।,"def get_item(tup1,index):
+  item = tup1[index]
+  return item","""['assert get_item((\""w\"", 3, \""r\"", \""e\"", \""s\"", \""o\"", \""u\"", \""r\"", \""c\"", \""e\""),3)==(\\'e\\')', 'assert get_item((\""w\"", 3, \""r\"", \""e\"", \""s\"", \""o\"", \""u\"", \""r\"", \""c\"", \""e\""),-4)==(\\'u\\')', 'assert get_item((\""w\"", 3, \""r\"", \""e\"", \""s\"", \""o\"", \""u\"", \""r\"", \""c\"", \""e\""),-3)==(\\'r\\')']"""
+49,একটি ফাংশন লিখুন যা প্রদত্ত টিপল তালিকার ভিত্তিতে টিপলের মোট সংখ্যা সাজায়।,"def count_digs(tup):
+  return sum([len(str(ele)) for ele in tup ]) 
+def sort_list(test_list):
+  test_list.sort(key = count_digs)
+  return (str(test_list))","""[\""assert sort_list([(3, 4, 6, 723), (1, 2), (12345,), (134, 234, 34)] ) == '[(1, 2), (12345,), (3, 4, 6, 723), (134, 234, 34)]'\"", \""assert sort_list([(3, 4, 8), (1, 2), (1234335,), (1345, 234, 334)] ) == '[(1, 2), (3, 4, 8), (1234335,), (1345, 234, 334)]'\"", \""assert sort_list([(34, 4, 61, 723), (1, 2), (145,), (134, 23)] ) == '[(1, 2), (145,), (134, 23), (34, 4, 61, 723)]'\""]"""
+50,প্রদত্ত বছরের জন্য চীনা রাশিচক্রের চিহ্ন প্রদর্শন করার জন্য একটি ফাংশন লিখুন।,"def chinese_zodiac(year):
+ if (year - 2000) % 12 == 0:
+     sign = 'Dragon'
+ elif (year - 2000) % 12 == 1:
+     sign = 'Snake'
+ elif (year - 2000) % 12 == 2:
+     sign = 'Horse'
+ elif (year - 2000) % 12 == 3:
+     sign = 'sheep'
+ elif (year - 2000) % 12 == 4:
+     sign = 'Monkey'
+ elif (year - 2000) % 12 == 5:
+     sign = 'Rooster'
+ elif (year - 2000) % 12 == 6:
+     sign = 'Dog'
+ elif (year - 2000) % 12 == 7:
+     sign = 'Pig'
+ elif (year - 2000) % 12 == 8:
+     sign = 'Rat'
+ elif (year - 2000) % 12 == 9:
+     sign = 'Ox'
+ elif (year - 2000) % 12 == 10:
+     sign = 'Tiger'
+ else:
+     sign = 'Hare'
+ return sign","""[\""assert chinese_zodiac(1997)==('Ox')\"", \""assert chinese_zodiac(1998)==('Tiger')\"", \""assert chinese_zodiac(1994)==('Dog')\""]"""
+51,একটি ফাংশন লিখুন যাতে দুটি তালিকার মধ্যে একই রকম সূচকের সর্বোচ্চ সংখ্যা পাওয়া যায়।,"def max_similar_indices(test_list1, test_list2):
+  res = [(max(x[0], y[0]), max(x[1], y[1]))
+   for x, y in zip(test_list1, test_list2)]
+  return (res) ","""['assert max_similar_indices([(2, 4), (6, 7), (5, 1)],[(5, 4), (8, 10), (8, 14)]) == [(5, 4), (8, 10), (8, 14)]', 'assert max_similar_indices([(3, 5), (7, 8), (6, 2)],[(6, 5), (9, 11), (9, 15)]) == [(6, 5), (9, 11), (9, 15)]', 'assert max_similar_indices([(4, 6), (8, 9), (7, 3)],[(7, 6), (10, 12), (10, 16)]) == [(7, 6), (10, 12), (10, 16)]']"""
+52,ncr mod p এর মান গণনা করার জন্য একটি ফাংশন লিখুন।,"def nCr_mod_p(n, r, p): 
+	if (r > n- r): 
+		r = n - r 
+	C = [0 for i in range(r + 1)] 
+	C[0] = 1 
+	for i in range(1, n + 1): 
+		for j in range(min(i, r), 0, -1): 
+			C[j] = (C[j] + C[j-1]) % p 
+	return C[r] ","""['assert nCr_mod_p(10, 2, 13) == 6', 'assert nCr_mod_p(11, 3, 14) == 11', 'assert nCr_mod_p(18, 14, 19) == 1']"""
+53,একটি পাইথন ফাংশন লিখুন যাতে স্বতন্ত্র উপাদানগুলির সাথে উপসেটগুলির সর্বনিম্ন সংখ্যা খুঁজে পাওয়া যায়।,"def subset(ar, n): 
+    res = 0
+    ar.sort() 
+    for i in range(0, n) : 
+        count = 1
+        for i in range(n - 1): 
+            if ar[i] == ar[i + 1]: 
+                count+=1
+            else: 
+                break 
+        res = max(res, count)  
+    return res ","""['assert subset([1, 2, 3, 4],4) == 1', 'assert subset([5, 6, 9, 3, 4, 3, 4],7) == 2', 'assert subset([1, 2, 3 ],3) == 1']"""
+54,একটি ফাংশন লিখুন যা লাভের পরিমাণ দেয় যদি প্রদত্ত পরিমাণে লাভ থাকে অন্যথায় কোনটিই ফেরত দেয় না।,"def profit_amount(actual_cost,sale_amount): 
+ if(actual_cost > sale_amount):
+    amount = actual_cost - sale_amount
+    return amount
+ else:
+    return None","""['assert profit_amount(1500,1200)==300', 'assert profit_amount(100,200)==None', 'assert profit_amount(2000,5000)==None']"""
+55,"একটি ফাংশন লিখুন, যেটা দিয়ে আমরা জানতে পারি যে, প্রদত্ত সংখ্যাটি প্রচুর পরিমাণে আছে কিনা।","def is_abundant(n):
+    fctrsum = sum([fctr for fctr in range(1, n) if n % fctr == 0])
+    return fctrsum > n","""['assert is_abundant(12)==True', 'assert is_abundant(13)==False', 'assert is_abundant(9)==False']"""
+56,রেজেক্স ব্যবহার করে বড় অক্ষরে প্রদত্ত স্ট্রিংকে বিভক্ত করার জন্য একটি ফাংশন লিখুন।,"import re
+def split_list(text):
+  return (re.findall('[A-Z][^A-Z]*', text))","""['assert split_list(\""LearnToBuildAnythingWithGoogle\"") == [\\'Learn\\', \\'To\\', \\'Build\\', \\'Anything\\', \\'With\\', \\'Google\\']', 'assert split_list(\""ApmlifyingTheBlack+DeveloperCommunity\"") == [\\'Apmlifying\\', \\'The\\', \\'Black+\\', \\'Developer\\', \\'Community\\']', 'assert split_list(\""UpdateInTheGoEcoSystem\"") == [\\'Update\\', \\'In\\', \\'The\\', \\'Go\\', \\'Eco\\', \\'System\\']']"""
+57,ডানদিকের সেট বিটের অবস্থান পেতে একটি পাইথন ফাংশন লিখুন।,"import math
+def get_First_Set_Bit_Pos(n):
+     return math.log2(n&-n)+1","""['assert get_First_Set_Bit_Pos(12) == 3', 'assert get_First_Set_Bit_Pos(18) == 2', 'assert get_First_Set_Bit_Pos(16) == 5']"""
+58,একটি পূর্ণসংখ্যাকে রোমান সংখ্যায় রূপান্তর করার জন্য একটি ফাংশন লিখুন।,"def int_to_roman( num):
+        val = [1000, 900, 500, 400,100, 90, 50, 40,10, 9, 5, 4,1]
+        syb = [""M"", ""CM"", ""D"", ""CD"",""C"", ""XC"", ""L"", ""XL"",""X"", ""IX"", ""V"", ""IV"",""I""]
+        roman_num = ''
+        i = 0
+        while  num > 0:
+            for _ in range(num // val[i]):
+                roman_num += syb[i]
+                num -= val[i]
+            i += 1
+        return roman_num","""['assert int_to_roman(1)==(\""I\"")', 'assert int_to_roman(50)==(\""L\"")', 'assert int_to_roman(4)==(\""IV\"")']"""
+59,একটি তালিকা গড় খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।,"def Average(lst): 
+    return sum(lst) / len(lst) ","""['assert Average([15, 9, 55, 41, 35, 20, 62, 49]) == 35.75', 'assert Average([4, 5, 1, 2, 9, 7, 10, 8]) == 5.75', 'assert Average([1,2,3]) == 2']"""
+60,টাইলিং সমস্যা সমাধানের জন্য একটি ফাংশন লিখুন।,"def get_noOfways(n):
+    if (n == 0):
+        return 0;
+    if (n == 1):
+        return 1; 
+    return get_noOfways(n - 1) + get_noOfways(n - 2);","""['assert get_noOfways(4)==3', 'assert get_noOfways(3)==2', 'assert get_noOfways(5)==5']"""
+61,একটি রোমান সংখ্যাকে একটি পূর্ণসংখ্যায় রূপান্তর করার জন্য একটি ফাংশন লিখুন।,"def roman_to_int(s):
+        rom_val = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+        int_val = 0
+        for i in range(len(s)):
+            if i > 0 and rom_val[s[i]] > rom_val[s[i - 1]]:
+                int_val += rom_val[s[i]] - 2 * rom_val[s[i - 1]]
+            else:
+                int_val += rom_val[s[i]]
+        return int_val","""[\""assert roman_to_int('MMMCMLXXXVI')==3986\"", \""assert roman_to_int('MMMM')==4000\"", \""assert roman_to_int('C')==100\""]"""
+62,l এবং r এর মধ্যে সমস্ত সম প্রাকৃতিক সংখ্যার যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।,"def sum_Natural(n): 
+    sum = (n * (n + 1)) 
+    return int(sum) 
+def sum_Even(l,r): 
+    return (sum_Natural(int(r / 2)) - sum_Natural(int((l - 1) / 2))) ","""['assert sum_Even(2,5) == 6', 'assert sum_Even(3,8) == 18', 'assert sum_Even(4,6) == 10']"""
+63,ডিসক্রিমিন্যান্ট মান গণনা করার জন্য একটি ফাংশন লিখুন।,"def discriminant_value(x,y,z):
+    discriminant = (y**2) - (4*x*z)
+    if discriminant > 0:
+        return (""Two solutions"",discriminant)
+    elif discriminant == 0:
+        return (""one solution"",discriminant)
+    elif discriminant < 0:
+        return (""no real solution"",discriminant)","""['assert discriminant_value(4,8,2)==(\""Two solutions\"",32)', 'assert discriminant_value(5,7,9)==(\""no real solution\"",-131)', 'assert discriminant_value(0,0,9)==(\""one solution\"",0)']"""
+64,একটি পাইথন ফাংশন লিখুন যাতে শব্দটির দৈর্ঘ্য সমান হয় কিনা তা পরীক্ষা করা যায়।,"def word_len(s): 
+    s = s.split(' ')   
+    for word in s:    
+        if len(word)%2==0: 
+            return True  
+        else:
+          return False","""['assert word_len(\""program\"") == False', 'assert word_len(\""solution\"") == True', 'assert word_len(\""data\"") == True']"""
+65,একটি ফাংশন লিখুন যা উট কেস স্ট্রিংকে সাপ কেস স্ট্রিংয়ে রূপান্তর করে।,"def camel_to_snake(text):
+        import re
+        str1 = re.sub('(.)([A-Z][a-z]+)', r'\1_\2', text)
+        return re.sub('([a-z0-9])([A-Z])', r'\1_\2', str1).lower()","""[\""assert camel_to_snake('PythonProgram')==('python_program')\"", \""assert camel_to_snake('pythonLanguage')==('python_language')\"", \""assert camel_to_snake('ProgrammingLanguage')==('programming_language')\""]"""
+66,একটি ফাংশন লিখুন যা একটি তালিকার একটি খালি টিপলকে সরিয়ে দেয়।,"def remove_empty(tuple1): #L = [(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')]
+   tuple1 = [t for t in tuple1 if t]
+   return tuple1","""[\""assert remove_empty([(), (), ('',), ('a', 'b'), ('a', 'b', 'c'), ('d')])==[('',), ('a', 'b'), ('a', 'b', 'c'), 'd']  \"", 'assert remove_empty([(), (), (\\'\\',), (\""python\""), (\""program\"")])==[(\\'\\',), (\""python\""), (\""program\"")]  ', 'assert remove_empty([(), (), (\\'\\',), (\""java\"")])==[(\\'\\',),(\""java\"") ]  ']"""
+67,একটি পাইথন ফাংশন লিখুন যাতে স্ট্রিংগুলিকে গ্রহণ করা যায় যাতে সমস্ত স্বরবর্ণ থাকে।,"def check(string): 
+  if len(set(string).intersection(""AEIOUaeiou""))>=5: 
+    return ('accepted') 
+  else: 
+    return (""not accepted"") ","""['assert check(\""SEEquoiaL\"") == \\'accepted\\'', 'assert check(\\'program\\') == \""not accepted\""', 'assert check(\\'fine\\') == \""not accepted\""']"""
+68,প্রদত্ত পর্যায়ক্রমিক ফাংশনের সর্বোচ্চ সম্ভাব্য মান খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।,"def floor_Max(A,B,N):
+    x = min(B - 1,N)
+    return (A*x) // B","""['assert floor_Max(11,10,9) == 9', 'assert floor_Max(5,7,4) == 2', 'assert floor_Max(2,2,1) == 1']"""
+69,যদি টুপলগুলির একই রকম প্রাথমিক উপাদান থাকে তবে তাদের যোগ করার জন্য একটি ফাংশন লিখুন।,"def join_tuples(test_list):
+  res = []
+  for sub in test_list:
+    if res and res[-1][0] == sub[0]:
+      res[-1].extend(sub[1:])
+    else:
+      res.append([ele for ele in sub])
+  res = list(map(tuple, res))
+  return (res) ","""['assert join_tuples([(5, 6), (5, 7), (6, 8), (6, 10), (7, 13)] ) == [(5, 6, 7), (6, 8, 10), (7, 13)]', 'assert join_tuples([(6, 7), (6, 8), (7, 9), (7, 11), (8, 14)] ) == [(6, 7, 8), (7, 9, 11), (8, 14)]', 'assert join_tuples([(7, 8), (7, 9), (8, 10), (8, 12), (9, 15)] ) == [(7, 8, 9), (8, 10, 12), (9, 15)]']"""
+70,একটি ফাংশন লিখুন যাতে দুইটি সংখ্যার সর্বনিম্ন সংখ্যা পাওয়া যায়।,"def min_of_two( x, y ):
+    if x < y:
+        return x
+    return y","""['assert min_of_two(10,20)==10', 'assert min_of_two(19,15)==15', 'assert min_of_two(-10,-20)==-20']"""
+71,"একটি ফাংশন লিখুন যা a, b এবং c দৈর্ঘ্যের সেগমেন্টের সর্বোচ্চ সংখ্যা খুঁজে বের করে যা n থেকে গঠিত হতে পারে।","def maximum_segments(n, a, b, c) : 
+	dp = [-1] * (n + 10) 
+	dp[0] = 0
+	for i in range(0, n) : 
+		if (dp[i] != -1) : 
+			if(i + a <= n ): 
+				dp[i + a] = max(dp[i] + 1, 
+							dp[i + a]) 
+			if(i + b <= n ): 
+				dp[i + b] = max(dp[i] + 1, 
+							dp[i + b]) 
+			if(i + c <= n ): 
+				dp[i + c] = max(dp[i] + 1, 
+							dp[i + c]) 
+	return dp[n]","""['assert maximum_segments(7, 5, 2, 5) == 2', 'assert maximum_segments(17, 2, 1, 3) == 17', 'assert maximum_segments(18, 16, 3, 6) == 6']"""
+72,একটি ফাংশন লিখুন যা দেওয়া দুটি টিপলকে একটি নেস্টেড টিপলে সংযুক্ত করে।,"def concatenate_nested(test_tup1, test_tup2):
+  res = test_tup1 + test_tup2
+  return (res) ","""['assert concatenate_nested((3, 4), (5, 6)) == (3, 4, 5, 6)', 'assert concatenate_nested((1, 2), (3, 4)) == (1, 2, 3, 4)', 'assert concatenate_nested((4, 5), (6, 8)) == (4, 5, 6, 8)']"""
+73,একটি পাইথন ফাংশন লিখুন যা স্ট্রিংকে বাম দিকে ঘোরায়।,"def left_rotate(s,d):
+    tmp = s[d : ] + s[0 : d]
+    return tmp  ","""['assert left_rotate(\""python\"",2) == \""thonpy\""   ', 'assert left_rotate(\""bigdata\"",3 ) == \""databig\"" ', 'assert left_rotate(\""hadoop\"",1 ) == \""adooph\"" ']"""
+74,প্রদত্ত ত্রিভুজটির সর্বনিম্ন মোট পথের যোগফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।,"def min_sum_path(A): 
+	memo = [None] * len(A) 
+	n = len(A) - 1
+	for i in range(len(A[n])): 
+		memo[i] = A[n][i] 
+	for i in range(len(A) - 2, -1,-1): 
+		for j in range( len(A[i])): 
+			memo[j] = A[i][j] + min(memo[j], 
+									memo[j + 1]) 
+	return memo[0]","""['assert min_sum_path([[ 2 ], [3, 9 ], [1, 6, 7 ]]) == 6', 'assert min_sum_path([[ 2 ], [3, 7 ], [8, 5, 6 ]]) == 10 ', 'assert min_sum_path([[ 3 ], [6, 4 ], [5, 2, 7 ]]) == 9']"""
