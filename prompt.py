@@ -1,13 +1,3 @@
-# %% [markdown]
-# ## Step 0 - Installing Librariess
-
-# %%
-pip install --no-deps bitsandbytes accelerate xformers==0.0.29.post3 peft trl triton cut_cross_entropy unsloth_zoo
-pip install sentencepiece protobuf "datasets>=3.4.1" huggingface_hub hf_transfer
-pip install --no-deps unsloth
-
-# %% [markdown]
-# ## Step 1 - Choosing Models
 
 # %%
 from unsloth import FastModel
@@ -15,15 +5,15 @@ import torch
 from transformers import AutoConfig # Import AutoConfig
 
 # Choose any model of your choosing, based on your GPU RAM
-default = "md-nishat-008/TigerLLM-1B-it"
+# default = "md-nishat-008/TigerLLM-1B-it"
 # gemma3_1b = "google/gemma-3-1b-it"
 # gemma3_4b = "google/gemma-3-4b-it"
-# gemma3_12b = "google/gemma-3-12b-it"
+gemma3_12b = "google/gemma-3-12b-it"
 # gemma3_27b = "google/gemma-3-27b-it"
 
 # Load model with the corrected config
 model, tokenizer = FastModel.from_pretrained(
-    model_name = default,
+    model_name = gemma3_12b,
     max_seq_length = 1024,
     load_in_4bit = False,
     load_in_8bit = True,
