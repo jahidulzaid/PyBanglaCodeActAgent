@@ -9,15 +9,15 @@ import torch
 from transformers import AutoConfig # Import AutoConfig
 
 # Choose any model of your choosing, based on your GPU RAM
-default = "md-nishat-008/TigerLLM-1B-it"
+# default = "md-nishat-008/TigerLLM-1B-it"
 # gemma3_1b = "google/gemma-3-1b-it"
-# gemma3_4b = "google/gemma-3-4b-it"
+gemma3_4b = "google/gemma-3-4b-it"
 # gemma3_12b = "google/gemma-3-12b-it"
 # gemma3_27b = "google/gemma-3-27b-it"
 
 # Load model with the corrected config
 model, tokenizer = FastModel.from_pretrained(
-    model_name = default,
+    model_name = gemma3_4b,
     max_seq_length = 1024,
     load_in_4bit = False,
     load_in_8bit = True,
