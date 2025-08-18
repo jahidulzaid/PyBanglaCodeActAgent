@@ -5,8 +5,8 @@ import pandas as pd
 import time
 import signal
 
-reference_dir = "dev.csv" #replace with the path to the reference data (dev.csv)
-prediction_dir = "submission.json" #replace with the path to the prediction data (submission.json)
+reference_dir = "" #replace with the path to the reference data (dev.csv)
+prediction_dir = "" #replace with the path to the prediction data (submission.json)
 
 
 #Do not modify anything below this part
