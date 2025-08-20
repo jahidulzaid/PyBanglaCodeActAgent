@@ -1,0 +1,10 @@
+id,instruction,test_list
+1,"একটি ফাংশন লিখুন যা দিয়ে দেওয়া জোড়া থেকে তৈরি করা সবচেয়ে দীর্ঘতম চেইন খুঁজে বের করতে হবে।
+Exammple:
+max_chain_length(lst, n)","""['assert max_chain_length([Pair(5, 24), Pair(15, 25),Pair(27, 40), Pair(50, 60)], 4) == 3', 'assert max_chain_length([Pair(1, 2), Pair(3, 4),Pair(5, 6), Pair(7, 8)], 4) == 4', 'assert max_chain_length([Pair(19, 10), Pair(11, 12),Pair(13, 14), Pair(15, 16), Pair(31, 54)], 5) == 5']"""
+2,"একটি প্রদত্ত স্ট্রিং-এ প্রথম পুনরাবৃত্ত অক্ষর খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+first_repeated_char(s)","""['assert first_repeated_char(\""abcabc\"") == \""a\""', 'assert first_repeated_char(\""abc\"") == \""None\""', 'assert first_repeated_char(\""123123\"") == \""1\""']"""
+3,"একটি ফাংশন লিখুন যা n এর চেয়ে ছোট বা সমান একটি স্বচ্ছ সংখ্যা পেতে পারে।
+Exammple:
+get_ludic(n)","""['assert get_ludic(10) == [1, 2, 3, 5, 7]', 'assert get_ludic(25) == [1, 2, 3, 5, 7, 11, 13, 17, 23, 25]', 'assert get_ludic(45) == [1, 2, 3, 5, 7, 11, 13, 17, 23, 25, 29, 37, 41, 43]']"""
