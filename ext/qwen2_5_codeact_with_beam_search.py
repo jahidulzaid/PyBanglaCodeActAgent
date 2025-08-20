@@ -34,7 +34,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         temperature=0,
         # use_beam_search=True,
         # num_beams=3,
-        best_of=3,
+        best_of=1,
         max_tokens=2048,
         stop=stop_sequences,
         include_stop_str_in_output=True,
