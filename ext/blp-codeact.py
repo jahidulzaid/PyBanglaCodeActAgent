@@ -1,26 +1,15 @@
-
-
-# Commented out IPython magic to ensure Python compatibility.
-# %%capture
-# pip install -U transformers==4.45.2
-# pip install -U torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu121
-# pip uninstall -y pynvml
-# pip install nvidia-ml-py
-# pip install vllm
-
 import re
 from collections import Counter
-
 import vllm
 import torch
 import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 
-model_id = "Qwen/Qwen2.5-32B-Instruct-AWQ"
+model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
 
 llm = vllm.LLM(
-    model_id,
+    model,
     quantization="awq",
     max_model_len=4096,
     enable_prefix_caching=True,
@@ -96,86 +85,18 @@ def cot_sc(question: str, num_paths=16):
 
     return answer
 
-CODEACT_PROMPT = """You are a helpful assistant assigned to solve mathematical and coding tasks.
-To achieve this, you'll use an interactive coding environment and work through each problem in structured steps: 'Thought:', 'Code:', and 'Observation:' sequences.
+CODEACT_PROMPT = """You are a helpful assistant that writes Python functions based on structured tasks. Each task includes: - id: A unique task identifier. - instruction: A natural language instruction (may be in Bengali). - test_list: A list of stringified Python assertion tests that the function must pass. Your task is to: 1. Read and understand the instruction and test cases. 2. Write a valid Python function that fulfills the instruction and passes **all** provided tests. 3. Return your response in **this JSON format**:
+json
+[
+  {
+    "id": <id>,
+    "response": "
+python\n<function_code_here>\n
+"
+  },
+  ...
+]
 
-**Instructions for each turn:**
-1. **Thought Process**: Start by explaining your step-by-step reasoning for solving the task.
-   - Enclose this in `<thought>` tags. For example: `<thought>I need to print "Hello World!"</thought>`.
-
-2. **Action Options**:
-   - **Option 1**: Execute code in a Python environment to obtain output.
-     - Enclose your code within `<code>` tags. For example: `<code>print("Hello World!")</code>`.
-   - **Option 2**: Provide a final answer directly if calculations are complete.
-     - Enclose your answer in `<answer>` tags. For example: `<answer>3.1415</answer>`.
-
----
-
-**Example Tasks and Responses:**
-
-Task: Convert the point \((0, -3 \sqrt{3}, 3)\) from rectangular to spherical coordinates, in the form \((\\rho, \\theta, \phi)\) where \(\\rho > 0\), \(0 \leq \\theta < 2\pi\), and \(0 \leq \phi \leq \pi\).
-
-<thought>
-To convert \((x, y, z)\) from rectangular to spherical coordinates \((\\rho, \\theta, \phi)\), use these formulas:
-1. \(\\rho = \sqrt{x^2 + y^2 + z^2}\)
-2. \(\\theta = \\arctan\\frac{y}{x}\)
-3. \(\phi = \\arccos\\frac{z}{\\rho}\)
-
-I'll implement these calculations in code.
-</thought>
-<code>
-from sympy import sqrt, atan2, acos, pi
-
-def rectangular_to_spherical():
-    x, y, z = 0, -3*sqrt(3), 3
-    rho = sqrt(x**2 + y**2 + z**2)
-    theta = atan2(y, x)
-    phi = acos(z/rho)
-    return rho, theta, phi
-
-spherical_coordinates = rectangular_to_spherical()
-print(spherical_coordinates)
-</code><end_action/>
-<output>
-(6, -pi/2, pi/3)
-</output>
-<thought>
-To fit the required range for \(\\theta\), add \(2\pi\) to adjust \(\\theta = -\pi/2\). The spherical coordinates are \((6, \\frac{3\pi}{2}, \\frac{\pi}{3})\).
-</thought>
-<answer>
-(6, \\frac{3\pi}{2}, \\frac{\pi}{3})
-</answer><end_action/>
-
----
-
-Task: Calculate \(1011_2 + 101_2 - 1100_2 + 1101_2\) in binary.
-
-<thought>
-I'll define a function to handle binary operations by converting each value to decimal, performing the addition and subtraction, and converting the result back to binary.
-</thought>
-<code>
-def binary_sum_diff():
-    num1 = int("1011", 2)
-    num2 = int("101", 2)
-    num3 = int("1100", 2)
-    num4 = int("1101", 2)
-
-    result = num1 + num2 - num3 + num4
-    result_binary = format(result, "b")
-    return result_binary
-
-result = binary_sum_diff()
-print(result)
-</code><end_action/>
-<output>
-10001
-</output>
-<thought>
-The answer in base 2 is \(10001_2\).
-</thought>
-<answer>
-\(10001_2\)
-</answer><end_action/>
 """
 
 import logging
