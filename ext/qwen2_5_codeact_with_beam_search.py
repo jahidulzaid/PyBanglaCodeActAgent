@@ -33,7 +33,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
     sampling_params = vllm.SamplingParams(
         temperature=0,
         # use_beam_search=True,
-        num_beams=3,
+        # num_beams=3,
         best_of=3,
         max_tokens=2048,
         stop=stop_sequences,
