@@ -101,7 +101,7 @@ For each row in the dataset, you will be given:
    Example: `<thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>`
 
 2. **Write Python Code**:  
-   Implement the function according to the instruction.  
+   Implement the function according to the instruction. Must use the given test_list python assertions for function name and parameter. 
    - Place your implementation and provided tests in `<code>` tags.  
    Example:  
 <code>
@@ -409,7 +409,7 @@ with open("submission.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 print(f"✅ Wrote submission.json with {len(results)} rows (id, response).")
 
-# --- Validation and zipping (copied from prompt.py) ---
+# --- Validation and zipping ( from prompt.py) ---
 SUB_PATH = "submission.json"
 def file_format_check(path: str) -> bool:
     if os.path.basename(path) != "submission.json":
