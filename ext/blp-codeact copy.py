@@ -298,7 +298,6 @@ class CodeActAgent:
         logger.log(34, task)
 
         final_answer = None
-        last_code = None
 
         for _ in range(self.max_iterations):
             response = self.llm_engine(messages, stop_sequences=["</code>", "</answer>"], start_sequence="<thought>\n")
@@ -311,7 +310,6 @@ class CodeActAgent:
             # If no action was taken, resample
             if len(codes) == 0 and len(answers) == 0:
                 logger.error("Agent did not take any action.")
-                logger.log(36, f"Raw LLM response: {response}")
                 return None
 
             if thoughts:
@@ -320,18 +318,17 @@ class CodeActAgent:
 
             if codes:
                 code = codes[0].strip()
-                last_code = code
-                code_highlight = highlight(
+                code = highlight(
                     code,
                     PythonLexer(ensurenl=False),
                     Terminal256Formatter(style="nord"),
                 )
 
                 logger.log(35, ">>> Agent is executing the code below:")
-                logger.log(31, code_highlight)
+                logger.log(31, code)
                 logger.log(35, "====")
 
-                final_output, print_output = self.repl.run(code)
+                final_output, print_output = self.repl.run(codes[0].strip())
                 logger.log(35, "Print outputs:")
 
                 total_output = ""
@@ -349,15 +346,9 @@ class CodeActAgent:
                 messages.append({"role": "assistant", "content": response})
                 messages.append({"role": "user", "content": output})
 
-            # Prefer <answer> if present, else fallback to last <code> block
-            if answers and answers[0].strip():
-                final_answer = answers[0].strip()
-            elif last_code:
-                final_answer = last_code.strip()
-            else:
-                final_answer = None
+            final_answer = answers[0].strip() if answers else None
 
-            if final_answer:
+            if final_answer is not None:
                 break
 
         else:
