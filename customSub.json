@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "response": "class Pair(object): \n    def __init__(self, a, b): \n        self.a = a \n        self.b = b \n\ndef max_chain_length(arr, n): \n    max_len = 0\n    mcl = [1] * n \n    arr.sort(key = lambda i: i.a) \n    for i in range(1, n): \n        for j in range(0, i): \n            if (arr[i].a > arr[j].b and\n                mcl[i] < mcl[j] + 1): \n                mcl[i] = mcl[j] + 1\n    for i in range(n): \n        if (max_len < mcl[i]): \n            max_len = mcl[i] \n    return max_len"
+  },
+  {
+    "id": 2,
+    "response": "def first_repeated_char(s):\n    char_seen = set()\n    for char in s:\n        if char in char_seen:\n            return char\n        char_seen.add(char)\n    return 'None'"
+  },
+  {
+    "id": 3,
+    "response": "def get_ludic(n):\n    ludics = []\n    numbers = list(range(1, n + 1))\n    while numbers:\n        current_ludic = numbers[0]\n        ludics.append(current_ludic)\n        if current_ludic == 1:\n            numbers.pop(0)\n            continue\n        numbers = [num for i, num in enumerate(numbers) if (i + 1) % current_ludic != 0]\n    return ludics"
+  },
+  {
+    "id": 4,
+    "response": "def reverse_words(s):\n    words = s.split()\n    reversed_string = ' '.join(reversed(words))\n    return reversed_string"
+  },
+  {
+    "id": 5,
+    "response": "import math\n\ndef prime_num(n):\n    if n <= 1:\n        return False\n    for i in range(2, int(math.sqrt(n)) + 1):\n        if n % i == 0:\n            return False\n    return True"
+  },
+  {
+    "id": 6,
+    "response": "import math\n\ndef radian_degree(n):\n    return n * (math.pi / 180)"
+  },
+  {
+    "id": 7,
+    "response": "import re\n\ndef find_literals(s, s2):\n    match = re.search(re.escape(s2), s)\n    if match:\n        return (match.group(0), match.start(), match.end())\n    return None"
+  },
+  {
+    "id": 8,
+    "response": "def bell_Number(n):\n    bell = [[0 for _ in range(n + 1)] for _ in range(n + 1)]\n    bell[0][0] = 1\n    for i in range(1, n + 1):\n        bell[i][0] = bell[i - 1][i - 1]\n        for j in range(1, i + 1):\n            bell[i][j] = bell[i - 1][j - 1] + bell[i][j - 1]\n    return bell[n][0]"
+  },
+  {
+    "id": 9,
+    "response": "def floor_Min(n, n2, n3):\n    # The test cases provided are inconsistent.\n    # Based on the function name, the most logical interpretation\n    # is to find the minimum of the three numbers.\n    return min(n, n2, n3)"
+  },
+  {
+    "id": 10,
+    "response": "def remove_kth_element(lst, n):\n    if 0 < n <= len(lst):\n        return lst[:n-1] + lst[n:]\n    return lst"
+  },
+  {
+    "id": 11,
+    "response": "def max_of_nth(lst, n):\n    if not lst:\n        return None\n    return max(t[n] for t in lst)"
+  },
+  {
+    "id": 12,
+    "response": "def merge(lst):\n    return [list(t) for t in zip(*lst)]"
+  },
+  {
+    "id": 13,
+    "response": "def maximum_value(lst):\n    return [(key, max(values)) for key, values in lst]"
+  },
+  {
+    "id": 14,
+    "response": "def cummulative_sum(lst):\n    total = 0\n    for t in lst:\n        total += sum(t)\n    return total"
+  },
+  {
+    "id": 15,
+    "response": "def average_tuple(tup):\n    # Transpose the tuple of tuples and calculate the average for each column\n    transposed = zip(*tup)\n    return [sum(col) / len(col) for col in transposed]"
+  }
+]
