@@ -488,11 +488,32 @@ with open(SUB_PATH, "r", encoding="utf-8") as f:
 
 
 
+# using encoding utf-8
+
 with open(SUB_PATH, "w", encoding="utf-8") as f:
     json.dump(
         [{"id": item["id"], "response": item["response"]} for item in data],
         f, ensure_ascii=False, indent=2
     )
+
+# using manual method for building json 
+
+# output = '[\n'
+# for i, item in enumerate(results):
+#     output += f'  {{ "id": {item["id"]}, "response": "{item["response"].replace("\"", "\\\"")}" }}'
+#     if i != len(results) - 1:
+#         output += ',\n'
+#     else:
+#         output += '\n'
+# output += ']'
+
+
+# with open("submission.json", "w", encoding="utf-8") as f:
+#     f.write(output)
+
+
+
+
 print("✅ Updated submission.json after checks (invalid responses blanked).")
 _ = file_format_check(SUB_PATH)
 with zipfile.ZipFile("submission.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
