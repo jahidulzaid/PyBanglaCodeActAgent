@@ -104,23 +104,7 @@ For each row in the dataset, you will be given:
    - Place your implementation and provided tests in `<code>` tags.  
    Example:  
 <code>
-def smallest_multiple(n):
-    if n <= 2:
-        return n
-    i = n * 2
-    factors = [number for number in range(n, 1, -1) if number * 2 > n]
-    while True:
-        for a in factors:
-            if i % a != 0:
-                i += n
-                break
-            if a == factors[-1] and i % a == 0:
-                return i
 
-# Run tests
-assert smallest_multiple(13) == 360360
-assert smallest_multiple(2) == 2
-assert smallest_multiple(1) == 1
 </code>
 
 3. **Observation**:  
@@ -132,18 +116,7 @@ Provide only the clean python program (without test assertions).
 - Wrap in `<answer>` tags.  
 Example:  
 <answer>
-def smallest_multiple(n):
-    if n <= 2:
-        return n
-    i = n * 2
-    factors = [number for number in range(n, 1, -1) if number * 2 > n]
-    while True:
-        for a in factors:
-            if i % a != 0:
-                i += n
-                break
-            if a == factors[-1] and i % a == 0:
-                return i
+
 </answer>
 """
 
