@@ -36,6 +36,8 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
 
     if start_sequence:
         response = start_sequence + response
+        # Debugging output
+        print(f"this is response: {response}")
     return response
 
 def extract_answer(response):
@@ -298,7 +300,6 @@ class CodeActAgent:
         logger.log(34, task)
 
         final_answer = None
-        last_code = None
 
         for _ in range(self.max_iterations):
             response = self.llm_engine(messages, stop_sequences=["</code>", "</answer>"], start_sequence="<thought>\n")
@@ -327,7 +328,6 @@ class CodeActAgent:
 
             if codes:
                 code = codes[0].strip()
-                last_code = code
                 code_highlight = highlight(
                     code,
                     PythonLexer(ensurenl=False),
@@ -355,12 +355,11 @@ class CodeActAgent:
                 output = f"<output>\n{total_output}</output>"
                 messages.append({"role": "assistant", "content": response})
                 messages.append({"role": "user", "content": output})
+                print(f"debug \n last_code: {total_output}")
 
             # Prefer <answer> if present, else fallback to last <code> block
             if answers and answers[0].strip():
                 final_answer = answers[0].strip()
-            elif last_code:
-                final_answer = last_code.strip()
             else:
                 # As a last fallback, extract a Python function from the raw response
                 func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
@@ -401,7 +400,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     response = agent.run(question)
     # If agent.run returns None, blank the response
     if response is None:
-        response = ""
+        response = "returen None"
     results.append({"id": int(row["id"]), "response": str(response)})
 
 # Save as JSON list
