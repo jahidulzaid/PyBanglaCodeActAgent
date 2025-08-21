@@ -6,7 +6,7 @@ import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 
-model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
+model = "md-nishat-008/TigerLLM-1B-it"
 
 llm = vllm.LLM(
     model,
