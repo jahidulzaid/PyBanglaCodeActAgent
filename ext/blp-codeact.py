@@ -36,8 +36,6 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
 
     if start_sequence:
         response = start_sequence + response
-        # Debugging output
-        print(f"this is response: {response}")
     return response
 
 def extract_answer(response):
@@ -355,7 +353,7 @@ class CodeActAgent:
                 output = f"<output>\n{total_output}</output>"
                 messages.append({"role": "assistant", "content": response})
                 messages.append({"role": "user", "content": output})
-                print(f"debug \n last_code: {total_output}")
+                print(f"debugggg1: final_output \n : {final_output}")
 
             # Prefer <answer> if present, else fallback to last <code> block
             if answers and answers[0].strip():
@@ -367,7 +365,7 @@ class CodeActAgent:
                     final_answer = func_match.group(1).strip()
                 else:
                     final_answer = None
-
+            print(f"debugggg2: final_answer \n : {final_answer}")
             if final_answer:
                 break
 
@@ -377,6 +375,7 @@ class CodeActAgent:
 
         logger.log(33, "Final answer:")
         logger.log(32, final_answer)
+
 
         return final_answer
 
@@ -399,9 +398,13 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     question = str(row["instruction"])
     response = agent.run(question)
     # If agent.run returns None, blank the response
+    print(f"debugggg3:  \n : {response}")
     if response is None:
-        response = "returen None"
+        response = ""
     results.append({"id": int(row["id"]), "response": str(response)})
+    print(f"debugggg4:results  \n : {results[-1]}")
+    print(f"debugggg5:question  \n : {question}")
+    print(f"debugggg6:response  \n : {response}")
 
 # Save as JSON list
 with open("submission.json", "w", encoding="utf-8") as f:
