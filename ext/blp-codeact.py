@@ -312,6 +312,13 @@ class CodeActAgent:
             if len(codes) == 0 and len(answers) == 0:
                 logger.error("Agent did not take any action.")
                 logger.log(36, f"Raw LLM response: {response}")
+                # Try to extract a Python function as a last resort
+                func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
+                if func_match:
+                    final_answer = func_match.group(1).strip()
+                    logger.log(33, "Fallback: Extracted function from raw response.")
+                    logger.log(32, final_answer)
+                    return final_answer
                 return None
 
             if thoughts:
@@ -355,7 +362,12 @@ class CodeActAgent:
             elif last_code:
                 final_answer = last_code.strip()
             else:
-                final_answer = None
+                # As a last fallback, extract a Python function from the raw response
+                func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
+                if func_match:
+                    final_answer = func_match.group(1).strip()
+                else:
+                    final_answer = None
 
             if final_answer:
                 break
