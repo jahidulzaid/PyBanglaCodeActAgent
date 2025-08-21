@@ -101,7 +101,7 @@ For each row in the dataset, you will be given:
    Example: `<thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>`
 
 2. **Write Python Code**:  
-   Implement the function according to the instruction. Must use the exact given python assertions for function name and parameter(also capitalization). 
+   Implement the function according to the instruction. Must use the exact given python assertions for class and function name. 
    - Place your implementation and provided tests in `<code>` tags.  
    Example:  
 <code>
@@ -399,12 +399,14 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     response = agent.run(question)
     # If agent.run returns None, blank the response
     print(f"debugggg3:  \n : {response}")
-    if response is None:
+    if not isinstance(response, str):
         response = ""
+    # if response is None:
+    #     response = ""
     results.append({"id": int(row["id"]), "response": str(response)})
-    print(f"debugggg4:results  \n : {results[-1]}")
-    print(f"debugggg5:question  \n : {question}")
-    print(f"debugggg6:response  \n : {response}")
+    # print(f"debugggg4:results  \n : {results[-1]}")
+    # print(f"debugggg5:question  \n : {question}")
+    # print(f"debugggg6:response  \n : {response}")
 
 # Save as JSON list
 with open("submission.json", "w", encoding="utf-8") as f:
