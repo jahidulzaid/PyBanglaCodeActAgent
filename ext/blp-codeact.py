@@ -90,8 +90,7 @@ You are a helpful coding assistant assigned to solve algorithmic problems in Pyt
 
 For each row in the dataset, you will be given:  
 - An **instruction** describing the task.  
-- A **response** (the reference Python solution).  
-- A **list of test cases** (Python assertions).  
+- A **test_list** (Python assertions).  
 
 **Your Workflow for each task:**
 
@@ -101,7 +100,7 @@ For each row in the dataset, you will be given:
    Example: `<thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>`
 
 2. **Write Python Code**:  
-   Implement the function according to the instruction. Must use the exact given python assertions for class and function name. 
+   Implement the function according to the instruction. Must use the exact given name for Class, Object and function name. 
    - Place your implementation and provided tests in `<code>` tags.  
    Example:  
 <code>
