@@ -10,7 +10,7 @@ model = "md-nishat-008/TigerLLM-1B-it"
 
 llm = vllm.LLM(
     model,
-    quantization="awq",
+    # quantization="awq",
     max_model_len=4096,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
