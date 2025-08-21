@@ -451,33 +451,43 @@ def file_format_check(path: str) -> bool:
 with open(SUB_PATH, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-fence_pat = re.compile(r"^```python[\s\S]*```$", re.MULTILINE)
-valid_format = []
-valid_fence  = []
-valid_both   = []
-def item_format_ok(item):
-    return (
-        isinstance(item, dict)
-        and set(item.keys()) == {"id", "response"}
-        and isinstance(item["id"], int)
-        and isinstance(item["response"], str)
-    )
-for item in data:
-    vfmt = item_format_ok(item)
-    vf   = bool(fence_pat.match(item["response"])) if vfmt else False
-    valid_format.append(vfmt)
-    valid_fence.append(vf)
-    valid_both.append(vfmt and vf)
-nf = sum(valid_fence)
-nm = sum(valid_format)
-nb = sum(valid_both)
-den = max(len(data), 1)
-print(f"Fencing valid: {nf}/{len(data)} ({nf*100.0/den:.1f}%)")
-print(f"Format valid:  {nm}/{len(data)} ({nm*100.0/den:.1f}%)")
-print(f"Both valid:    {nb}/{len(data)} ({nb*100.0/den:.1f}%)")
-for i, ok in enumerate(valid_both):
-    if not ok and isinstance(data[i], dict) and "response" in data[i]:
-        data[i]["response"] = ""
+
+
+
+
+# # fence_pat = re.compile(r"^```python[\s\S]*```$", re.MULTILINE)
+# fence_pat = re.compile(r"^```python\s[\s\S]*?```$", re.MULTILINE)
+# valid_format = []
+# valid_fence  = []
+# valid_both   = []
+# def item_format_ok(item):
+#     return (
+#         isinstance(item, dict)
+#         and set(item.keys()) == {"id", "response"}
+#         and isinstance(item["id"], int)
+#         and isinstance(item["response"], str)
+#     )
+# for item in data:
+#     vfmt = item_format_ok(item)
+#     vf   = bool(fence_pat.match(item["response"])) if vfmt else False
+#     valid_format.append(vfmt)
+#     valid_fence.append(vf)
+#     valid_both.append(vfmt and vf)
+# nf = sum(valid_fence)
+# nm = sum(valid_format)
+# nb = sum(valid_both)
+# den = max(len(data), 1)
+# print(f"Fencing valid: {nf}/{len(data)} ({nf*100.0/den:.1f}%)")
+# print(f"Format valid:  {nm}/{len(data)} ({nm*100.0/den:.1f}%)")
+# print(f"Both valid:    {nb}/{len(data)} ({nb*100.0/den:.1f}%)")
+# for i, ok in enumerate(valid_both):
+#     if not ok and isinstance(data[i], dict) and "response" in data[i]:
+#         data[i]["response"] = ""
+
+
+
+
+
 with open(SUB_PATH, "w", encoding="utf-8") as f:
     json.dump(
         [{"id": item["id"], "response": item["response"]} for item in data],
