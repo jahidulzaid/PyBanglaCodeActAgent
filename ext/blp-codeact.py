@@ -100,7 +100,7 @@ For each row in the dataset, you will be given:
    Example: `<thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>`
 
 2. **Write Python Code**:  
-   Implement the function according to the instruction. Must use the exact given name for Class, Object and function name. 
+   Implement the python program according to the instruction. Must use the exact given name for Class, Object and function name. 
    - Place your implementation and provided tests in `<code>` tags.  
    Example:  
 <code>
@@ -128,7 +128,7 @@ After executing, confirm if all tests passed or debugging is needed.
 Example: `<observation>All tests passed successfully.</observation>`
 
 4. **Final Answer**:  
-Provide only the clean function (without test assertions).  
+Provide only the clean python program (without test assertions).  
 - Wrap in `<answer>` tags.  
 Example:  
 <answer>
