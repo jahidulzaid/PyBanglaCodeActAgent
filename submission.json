@@ -1,14 +1,6 @@
 [
   {
     "id": 1,
-    "response": ""
-  },
-  {
-    "id": 2,
-    "response": ""
-  },
-  {
-    "id": 3,
-    "response": ""
+    "response": "def max_chain_length(pairs, n):\n    # Sort the pairs based on the second element of each pair\n    pairs.sort(key=lambda x: x[1])\n\n    # Initialize the end of the current chain and the length of the chain\n    current_end = -1\n    chain_length = 0\n\n    # Iterate through the sorted pairs\n    for pair in pairs:\n        if pair[0] > current_end:\n            # If the current pair can be added to the chain\n            current_end = pair[1]\n            chain_length += 1\n\n    return chain_length"
   }
 ]
