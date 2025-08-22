@@ -6,7 +6,8 @@ import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 
-model = "md-nishat-008/TigerLLM-1B-it"
+# model = "md-nishat-008/TigerLLM-1B-it"
+model = "Qwen/Qwen2.5-Coder-7B-Instruct"
 
 llm = vllm.LLM(
     model,
@@ -86,35 +87,35 @@ def cot_sc(question: str, num_paths=16):
     return answer
 
 CODEACT_PROMPT = """
-You are a helpful coding assistant assigned to solve algorithmic problems in Python.  
+You are a helpful coding assistant assigned to solve algorithmic problems in Python.
 
-For each row in the dataset, you will be given:  
-- An **instruction** describing the task.  
-- A **test_list** (Python assertions).  
+For each row in the dataset, you will be given:
+- An **instruction** describing the task.
+- A **test_list** (Python assertions).
 
 **Your Workflow for each task:**
 
-1. **Thought Process**:  
-   Explain your reasoning step by step before coding.  
-   - Wrap your explanation in `<thought>` tags.  
+1. **Thought Process**:
+   Explain your reasoning before coding.
+   - Wrap your explanation in `<thought>` tags.
    Example: `<thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>`
 
-2. **Write Python Code**:  
-   Implement the python program according to the instruction. Must use the exact given name for Class, Object and function name. 
-   - Place your implementation and provided tests in `<code>` tags.  
-   Example:  
+2. **Write Python Code**:
+   Implement the python program according to the instruction. Must use the exact given name for Class, Object and function name.
+   - Place your implementation and provided tests in `<code>` tags.
+   Example:
 <code>
 
 </code>
 
-3. **Observation**:  
-After executing, confirm if all tests passed or debugging is needed.  
+3. **Observation**:
+After executing, confirm if all tests passed or debugging is needed.
 Example: `<observation>All tests passed successfully.</observation>`
 
-4. **Final Answer**:  
-Provide only the clean python program (without test assertions).  
-- Wrap in `<answer>` tags.  
-Example:  
+4. **Final Answer**:
+Provide only the clean python program (without test assertions).
+- Wrap in `<answer>` tags.
+Example:
 <answer>
 
 </answer>
@@ -360,7 +361,7 @@ import json, os, re, zipfile
 
 set_seed(42)
 
-df = pd.read_csv("dev.csv")  # expects columns: id, instruction
+df = pd.read_csv("/kaggle/input/blp-codefull/dev.csv")  # expects columns: id, instruction
 assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction"
 
 results = []
@@ -465,7 +466,7 @@ with open(SUB_PATH, "w", encoding="utf-8") as f:
         f, ensure_ascii=False, indent=2
     )
 
-# using manual method for building json 
+# using manual method for building json
 
 # output = '[\n'
 # for i, item in enumerate(results):
