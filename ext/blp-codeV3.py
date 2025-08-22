@@ -249,7 +249,7 @@ from pygments.lexers import PythonLexer
 
 
 class CodeActAgent:
-    def __init__(self, llm_engine, max_iterations=4):
+    def __init__(self, llm_engine, max_iterations=10):
         self.llm_engine = llm_engine
         self.max_iterations = max_iterations
         self.repl = PythonREPL(timeout=5)
@@ -361,7 +361,7 @@ import json, os, re, zipfile
 
 set_seed(42)
 
-df = pd.read_csv("/kaggle/input/blp-codefull/dev.csv")  # expects columns: id, instruction
+df = pd.read_csv("dev.csv")  # expects columns: id, instruction
 assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction"
 
 results = []
