@@ -7,11 +7,11 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 # model = "md-nishat-008/TigerLLM-1B-it"
-model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
+model = "Qwen/Qwen2.5-Coder-7B-Instruct"
 
 llm = vllm.LLM(
     model,
-    quantization="awq",
+    # quantization="awq",
     max_model_len=4096,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
@@ -98,28 +98,62 @@ For each row in the dataset, you will be given:
 1. **Thought Process**:  
    Explain your reasoning step by step before coding.  
    - Wrap your explanation in `<thought>` tags.  
-   Example: `<thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>`
+   - Consider edge cases (e.g., empty inputs, zero values, large inputs) in your reasoning.  
+   Example:  
+   <thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>  
 
 2. **Write Python Code**:  
-   Implement the python program according to the instruction. Must use the exact given name for Class, Object and function name. 
-   - Place your implementation and provided tests in `<code>` tags.  
+   Implement the Python program according to the instruction.  
+   - You must use the exact names provided for **class**, **function**, and **variables** in the task. Do **not** rename them.  
+   - Include both the solution and the provided test assertions.  
+   - Wrap the complete code in `<code>` tags.  
    Example:  
-<code>
+   <code>
+    def smallest_multiple(n):
+        if n <= 2:
+            return n
+        i = n * 2
+        factors = [number for number in range(n, 1, -1) if number * 2 > n]
+        while True:
+            for a in factors:
+                if i % a != 0:
+                    i += n
+                    break
+                if a == factors[-1] and i % a == 0:
+                    return i
 
-</code>
+    # Run tests
+    assert smallest_multiple(13) == 360360
+    assert smallest_multiple(2) == 2
+    assert smallest_multiple(1) == 1
+    </code>
 
 3. **Observation**:  
-After executing, confirm if all tests passed or debugging is needed.  
-Example: `<observation>All tests passed successfully.</observation>`
+   After executing, confirm whether all tests passed or if debugging is needed.  
+   - Wrap your observation in `<observation>` tags.  
+   Example:  
+   <observation>All tests passed successfully.</observation>  
 
 4. **Final Answer**:  
-Provide only the clean python program (without test assertions).  
-- Wrap in `<answer>` tags.  
-Example:  
-<answer>
-
-</answer>
+   Provide only the final clean Python program (without test assertions).  
+   - Wrap your final answer in `<answer>` tags.  
+   Example:  
+    <answer>
+    def smallest_multiple(n):
+        if n <= 2:
+            return n
+        i = n * 2
+        factors = [number for number in range(n, 1, -1) if number * 2 > n]
+        while True:
+            for a in factors:
+                if i % a != 0:
+                    i += n
+                    break
+                if a == factors[-1] and i % a == 0:
+                    return i
+    </answer>
 """
+
 
 
 import logging
@@ -354,6 +388,33 @@ agent = CodeActAgent(
     llm_engine=llm_engine,
     max_iterations=4,
 )
+from collections import Counter
+
+def run_with_self_consistency(agent, task: str, num_paths=5):
+    """
+    Run the agent multiple times and pick the most common final answer.
+    """
+    answers = []
+
+    for _ in range(num_paths):
+        answer = agent.run(task)
+        if answer:
+            answers.append(answer.strip())
+
+    if not answers:
+        return None  # model failed every run
+
+    # majority voting
+    most_common, count = Counter(answers).most_common(1)[0]
+
+    # Optional: debug log all answers
+    logger.log(35, f"All candidate answers: {answers}")
+    logger.log(33, f"Final majority-voted answer (count={count}): {most_common}")
+
+    return most_common
+
+
+
 
 
 # === New logic: process dev.csv and output submission.json (id, response) ===
@@ -367,7 +428,11 @@ assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, i
 results = []
 for i, row in tqdm(df.iterrows(), total=len(df)):
     question = str(row["instruction"])
-    response = agent.run(question)
+    
+    # response = agent.run(question)
+    response = run_with_self_consistency(agent, task, num_paths=5)
+
+
     # If agent.run returns None, blank the response
     if not isinstance(response, str):
         response = ""
