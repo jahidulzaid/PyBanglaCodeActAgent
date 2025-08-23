@@ -430,7 +430,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     question = str(row["instruction"])
     
     # response = agent.run(question)
-    response = run_with_self_consistency(agent, task, num_paths=5)
+    response = run_with_self_consistency(agent, question, num_paths=5)
 
 
     # If agent.run returns None, blank the response

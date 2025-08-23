@@ -1,0 +1,1602 @@
+[
+  {
+    "id": 1,
+    "response": "def max_chain_length(lst, n):\n    # Sort the pairs based on the first element\n    lst.sort(key=lambda x: x[0])\n    \n    # Initialize the dp array\n    dp = [1] * n\n    \n    # Fill the dp array\n    for i in range(1, n):\n        for j in range(i):\n            if lst[i][0] > lst[j][1]:\n                dp[i] = max(dp[i], dp[j] + 1)\n    \n    # The maximum value in dp array is the length of the longest chain\n    return max(dp)"
+  },
+  {
+    "id": 2,
+    "response": ""
+  },
+  {
+    "id": 3,
+    "response": "def lcm(a, b):\n    from math import gcd\n    return a * b // gcd(a, b)"
+  },
+  {
+    "id": 4,
+    "response": ""
+  },
+  {
+    "id": 5,
+    "response": ""
+  },
+  {
+    "id": 6,
+    "response": ""
+  },
+  {
+    "id": 7,
+    "response": ""
+  },
+  {
+    "id": 8,
+    "response": "def bell_Number(n):\n    # Initialize a 2D list to store Bell numbers\n    bell = [[0 for _ in range(n+1)] for _ in range(n+1)]\n    \n    # Base case\n    bell[0][0] = 1\n    \n    # Fill the Bell triangle\n    for i in range(1, n+1):\n        bell[i][0] = bell[i-1][i-1]\n        for j in range(1, i+1):\n            bell[i][j] = bell[i-1][j-1] + bell[i][j-1]\n    \n    # The nth Bell number is the first element of the nth row\n    return bell[n][0]"
+  },
+  {
+    "id": 9,
+    "response": ""
+  },
+  {
+    "id": 10,
+    "response": "def remove_kth_element(lst, k):\n    # Check if k is within the valid range\n    if k < 0 or k >= len(lst):\n        raise IndexError(\"k is out of bounds\")\n    \n    # Remove the k'th element\n    del lst[k]\n    \n    return lst"
+  },
+  {
+    "id": 11,
+    "response": ""
+  },
+  {
+    "id": 12,
+    "response": "def merge(lst):\n    if not lst:\n        return []\n    return [lst[0], lst[-1]]"
+  },
+  {
+    "id": 13,
+    "response": ""
+  },
+  {
+    "id": 14,
+    "response": ""
+  },
+  {
+    "id": 15,
+    "response": ""
+  },
+  {
+    "id": 16,
+    "response": ""
+  },
+  {
+    "id": 17,
+    "response": "def min_Jumps(n, n2, n3, d):\n    # Initialize the queue for BFS\n    queue = deque([(0, 0, 0)])  # (x, y, jumps)\n    visited = set()\n    visited.add((0, 0))\n    \n    while queue:\n        x, y, jumps = queue.popleft()\n        \n        # Check if we have reached the target point\n        if x == d and y == 0:\n            return jumps\n        \n        # Explore all possible jumps\n        for dx, dy in [(n, 0), (n2, 0), (n3, 0), (-n, 0), (-n2, 0), (-n3, 0), (0, n), (0, n2), (0, n3), (0, -n), (0, -n2), (0, -n3)]:\n            nx, ny = x + dx, y + dy\n            \n            # Check if the new position is within bounds and not visited\n            if (nx, ny) not in visited:\n                visited.add((nx, ny))\n                queue.append((nx, ny, jumps + 1))\n    \n    # If we exhaust the queue without reaching the target, return -1\n    return -1"
+  },
+  {
+    "id": 18,
+    "response": "def div_list(lst, lst2):\n    # Using list comprehension and lambda to filter common elements\n    common_elements = list(filter(lambda x: x in lst2, lst))\n    return common_elements"
+  },
+  {
+    "id": 19,
+    "response": ""
+  },
+  {
+    "id": 20,
+    "response": "def largest_subset(lst, n):\n    def is_valid_subset(subset):\n        for i in range(len(subset)):\n            for j in range(i + 1, len(subset)):\n                if (subset[i] + subset[j]) % n != 0:\n                    return False\n        return True"
+  },
+  {
+    "id": 21,
+    "response": "def increment_numerics(lst, k):\n    result = []\n    for item in lst:\n        new_item = \"\"\n        i = 0\n        while i < len(item):\n            if item[i].isdigit():\n                start = i\n                while i < len(item) and item[i].isdigit():\n                    i += 1\n                num = int(item[start:i])\n                new_item += str(num + k)\n            else:\n                new_item += item[i]\n                i += 1\n        result.append(new_item)\n    return result"
+  },
+  {
+    "id": 22,
+    "response": ""
+  },
+  {
+    "id": 23,
+    "response": "def nth_nums(lst, n):\n    return [x**n for x in lst]"
+  },
+  {
+    "id": 24,
+    "response": "def is_upper(s):\n    return s.upper()"
+  },
+  {
+    "id": 25,
+    "response": ""
+  },
+  {
+    "id": 26,
+    "response": "def triangle_area(n):\n    return n ** 2"
+  },
+  {
+    "id": 27,
+    "response": "def find_First_Missing(lst, n, n2):\n    num_set = set(lst)\n    for i in range(1, n2 + 1):\n        if i not in num_set:\n            return i\n    return n2 + 1"
+  },
+  {
+    "id": 28,
+    "response": ""
+  },
+  {
+    "id": 29,
+    "response": ""
+  },
+  {
+    "id": 30,
+    "response": ""
+  },
+  {
+    "id": 31,
+    "response": ""
+  },
+  {
+    "id": 32,
+    "response": ""
+  },
+  {
+    "id": 33,
+    "response": ""
+  },
+  {
+    "id": 34,
+    "response": "def smallest_divisible(n):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a"
+  },
+  {
+    "id": 35,
+    "response": ""
+  },
+  {
+    "id": 36,
+    "response": ""
+  },
+  {
+    "id": 37,
+    "response": ""
+  },
+  {
+    "id": 38,
+    "response": ""
+  },
+  {
+    "id": 39,
+    "response": ""
+  },
+  {
+    "id": 40,
+    "response": "def remove_parenthesis(s):\n    stack = []\n    result = list(s)\n    \n    for i, char in enumerate(s):\n        if char == '(':\n            stack.append(i)\n        elif char == ')':\n            if stack:\n                stack.pop()\n                if not stack:\n                    result[stack[-1]:i+1] = []\n    \n    return ''.join(result)"
+  },
+  {
+    "id": 41,
+    "response": "def is_nonagonal(n):\n    return (n * (7 * n - 5)) // 2"
+  },
+  {
+    "id": 42,
+    "response": ""
+  },
+  {
+    "id": 43,
+    "response": "def text_match_wordz_middle(s):\n    if s.startswith('z') or s.endswith('z'):\n        return s + 'z'\n    else:\n        return s"
+  },
+  {
+    "id": 44,
+    "response": ""
+  },
+  {
+    "id": 45,
+    "response": "def find_k_product(lst, k):\n    product = 1\n    for tup in lst:\n        try:\n            product *= tup[k]\n        except IndexError:\n            continue\n    return product"
+  },
+  {
+    "id": 46,
+    "response": "def No_of_cubes(n, k):\n    if n % k != 0:\n        return 0\n    return (n // k) ** 3"
+  },
+  {
+    "id": 47,
+    "response": ""
+  },
+  {
+    "id": 48,
+    "response": "def exchange_elements(lst):\n    # Iterate through the list with a step of 2 to ensure we only swap pairs\n    for i in range(0, len(lst) - 1, 2):\n        # Swap the n-th element with the (n+1)-th element\n        lst[i], lst[i + 1] = lst[i + 1], lst[i]\n    return lst"
+  },
+  {
+    "id": 49,
+    "response": ""
+  },
+  {
+    "id": 50,
+    "response": ""
+  },
+  {
+    "id": 51,
+    "response": ""
+  },
+  {
+    "id": 52,
+    "response": ""
+  },
+  {
+    "id": 53,
+    "response": ""
+  },
+  {
+    "id": 54,
+    "response": "def rectangle_perimeter(n, n2):\n    return 2 * (n + n2)"
+  },
+  {
+    "id": 55,
+    "response": "def smallest_divisible(n):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a"
+  },
+  {
+    "id": 56,
+    "response": "def find_Min_Sum(lst, lst2, n):\n    # Sort both lists\n    lst.sort()\n    lst2.sort()\n    \n    # Initialize the minimum sum\n    min_sum = 0\n    \n    # Calculate the sum of absolute differences\n    for i in range(n):\n        min_sum += abs(lst[i] - lst2[i])\n    \n    return min_sum"
+  },
+  {
+    "id": 57,
+    "response": ""
+  },
+  {
+    "id": 58,
+    "response": ""
+  },
+  {
+    "id": 59,
+    "response": ""
+  },
+  {
+    "id": 60,
+    "response": ""
+  },
+  {
+    "id": 61,
+    "response": "def max_sum_of_three_consecutive(lst, n):\n    max_sum = float('-inf')\n    \n    for i in range(n - 2):\n        for j in range(i + 2, n):\n            for k in range(j + 2, n):\n                if abs(i - j) > 1 and abs(j - k) > 1 and abs(i - k) > 1:\n                    current_sum = lst[i] + lst[j] + lst[k]\n                    if current_sum > max_sum:\n                        max_sum = current_sum\n    \n    return max_sum"
+  },
+  {
+    "id": 62,
+    "response": "def sorted_dict(dct):\n    # Step 1: Extract key-value pairs and sort by values\n    sorted_pairs = sorted(dct.items(), key=lambda item: item[1])\n    \n    # Step 2: Extract sorted keys\n    sorted_keys = [key for key, value in sorted_pairs]\n    \n    return sorted_keys"
+  },
+  {
+    "id": 63,
+    "response": ""
+  },
+  {
+    "id": 64,
+    "response": ""
+  },
+  {
+    "id": 65,
+    "response": "def move_last(lst):\n    if len(lst) <= 1:\n        return lst\n    else:\n        first_element = lst.pop(0)\n        lst.append(first_element)\n        return lst"
+  },
+  {
+    "id": 66,
+    "response": ""
+  },
+  {
+    "id": 67,
+    "response": ""
+  },
+  {
+    "id": 68,
+    "response": ""
+  },
+  {
+    "id": 69,
+    "response": ""
+  },
+  {
+    "id": 70,
+    "response": ""
+  },
+  {
+    "id": 71,
+    "response": "def set_Right_most_Unset_Bit(n):\n    if n == 0:\n        return 1\n    return n | (n + 1) - n"
+  },
+  {
+    "id": 72,
+    "response": ""
+  },
+  {
+    "id": 73,
+    "response": ""
+  },
+  {
+    "id": 74,
+    "response": ""
+  },
+  {
+    "id": 75,
+    "response": ""
+  },
+  {
+    "id": 76,
+    "response": ""
+  },
+  {
+    "id": 77,
+    "response": ""
+  },
+  {
+    "id": 78,
+    "response": ""
+  },
+  {
+    "id": 79,
+    "response": ""
+  },
+  {
+    "id": 80,
+    "response": ""
+  },
+  {
+    "id": 81,
+    "response": "def smallest_Divisor(n):\n    if n <= 1:\n        return None  # No divisors for numbers less than or equal to 1\n    for i in range(2, n + 1):\n        if n % i == 0:\n            return i"
+  },
+  {
+    "id": 82,
+    "response": ""
+  },
+  {
+    "id": 83,
+    "response": ""
+  },
+  {
+    "id": 84,
+    "response": ""
+  },
+  {
+    "id": 85,
+    "response": "def is_prime(num):\n    if num <= 1:\n        return False\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            return False\n    return True"
+  },
+  {
+    "id": 86,
+    "response": ""
+  },
+  {
+    "id": 87,
+    "response": "def recur_gcd(n, n2):\n    if n2 == 0:\n        return n\n    else:\n        return recur_gcd(n2, n % n2)"
+  },
+  {
+    "id": 88,
+    "response": ""
+  },
+  {
+    "id": 89,
+    "response": ""
+  },
+  {
+    "id": 90,
+    "response": ""
+  },
+  {
+    "id": 91,
+    "response": ""
+  },
+  {
+    "id": 92,
+    "response": "def last_Two_Digits(n):\n    factorial = 1\n    for i in range(1, n + 1):\n        factorial = (factorial * i) % 100\n    return factorial"
+  },
+  {
+    "id": 93,
+    "response": ""
+  },
+  {
+    "id": 94,
+    "response": ""
+  },
+  {
+    "id": 95,
+    "response": ""
+  },
+  {
+    "id": 96,
+    "response": ""
+  },
+  {
+    "id": 97,
+    "response": ""
+  },
+  {
+    "id": 98,
+    "response": "def sort_dict_item(dct):\n    sorted_dict = {key: tuple(sorted(value)) for key, value in dct.items()}\n    return sorted_dict"
+  },
+  {
+    "id": 99,
+    "response": ""
+  },
+  {
+    "id": 100,
+    "response": "def test_count_range_in_list():\n    assert count_range_in_list([1, 2, 3, 4, 5], 2, 4) == 3, \"Test case 1 failed\"\n    assert count_range_in_list([10, 20, 30, 40, 50], 25, 45) == 2, \"Test case 2 failed\"\n    assert count_range_in_list([1, 2, 3, 4, 5], 6, 10) == 0, \"Test case 3 failed\"\n    assert count_range_in_list([], 1, 10) == 0, \"Test case 4 failed\"\n    assert count_range_in_list([10, 20, 30, 40, 50], 10, 50) == 5, \"Test case 5 failed\"\n    assert count_range_in_list([5, 15, 25, 35, 45], 5, 5) == 1, \"Test case 6 failed\"\n    print(\"All tests passed successfully.\")"
+  },
+  {
+    "id": 101,
+    "response": ""
+  },
+  {
+    "id": 102,
+    "response": "def removals(lst, n, n2):\n    # Filter the list to include only elements <= n and <= n2\n    filtered_list = [x for x in lst if x <= n and x <= n2]\n    \n    # Find the smallest number in the filtered list\n    if filtered_list:\n        return min(filtered_list)\n    else:\n        return None  # Return None if no such element exists"
+  },
+  {
+    "id": 103,
+    "response": ""
+  },
+  {
+    "id": 104,
+    "response": "def harmonic_sum(n):\n    if n <= 0:\n        return 0\n    else:\n        return 1 + harmonic_sum(n - 1) / n"
+  },
+  {
+    "id": 105,
+    "response": ""
+  },
+  {
+    "id": 106,
+    "response": ""
+  },
+  {
+    "id": 107,
+    "response": "def count_Set_Bits(n):\n    total_set_bits = 0\n    for i in range(1, n + 1):\n        total_set_bits += bin(i).count('1')\n    return total_set_bits"
+  },
+  {
+    "id": 108,
+    "response": ""
+  },
+  {
+    "id": 109,
+    "response": ""
+  },
+  {
+    "id": 110,
+    "response": ""
+  },
+  {
+    "id": 111,
+    "response": ""
+  },
+  {
+    "id": 112,
+    "response": ""
+  },
+  {
+    "id": 113,
+    "response": ""
+  },
+  {
+    "id": 114,
+    "response": "def count_Fac(n):\n    def prime_factors(n):\n        factors = set()\n        # Check for number of 2s in n\n        while n % 2 == 0:\n            factors.add(2)\n            n = n // 2\n        # Check for other primes\n        for i in range(3, int(n**0.5) + 1, 2):\n            while n % i == 0:\n                factors.add(i)\n                n = n // i\n        # This condition is to check if n is a prime number greater than 2\n        if n > 2:\n            factors.add(n)\n        return factors\n    \n    return len(prime_factors(n))"
+  },
+  {
+    "id": 115,
+    "response": ""
+  },
+  {
+    "id": 116,
+    "response": ""
+  },
+  {
+    "id": 117,
+    "response": ""
+  },
+  {
+    "id": 118,
+    "response": ""
+  },
+  {
+    "id": 119,
+    "response": ""
+  },
+  {
+    "id": 120,
+    "response": ""
+  },
+  {
+    "id": 121,
+    "response": ""
+  },
+  {
+    "id": 122,
+    "response": "def filter_data(dct, n, n2):\n    filtered_dict = {}\n    for key, value in dct.items():\n        height, width = value\n        if n <= height <= n2 and n <= width <= n2:\n            filtered_dict[key] = value\n    return filtered_dict"
+  },
+  {
+    "id": 123,
+    "response": ""
+  },
+  {
+    "id": 124,
+    "response": "def power_base_sum(n, n2):\n    # Calculate the sum of all digits from 1 to n\n    digit_sum = sum(range(1, n + 1))\n    \n    # Raise the sum to the power of n2\n    result = digit_sum ** n2\n    \n    return result"
+  },
+  {
+    "id": 125,
+    "response": ""
+  },
+  {
+    "id": 126,
+    "response": "def multiply_elements(tup):\n    product = 1\n    for element in tup:\n        product *= element\n    return product"
+  },
+  {
+    "id": 127,
+    "response": ""
+  },
+  {
+    "id": 128,
+    "response": "def sum_list(lst, lst2):\n    if len(lst) != len(lst2):\n        raise ValueError(\"Both lists must have the same length\")\n    \n    result = []\n    for i in range(len(lst)):\n        result.append(lst[i] + lst2[i])\n    \n    return result"
+  },
+  {
+    "id": 129,
+    "response": ""
+  },
+  {
+    "id": 130,
+    "response": ""
+  },
+  {
+    "id": 131,
+    "response": ""
+  },
+  {
+    "id": 132,
+    "response": ""
+  },
+  {
+    "id": 133,
+    "response": ""
+  },
+  {
+    "id": 134,
+    "response": "def sum_Of_Subarray_Prod(lst, n):\n    total_sum = 0\n    \n    # Iterate through all possible start indices\n    for i in range(n):\n        product = 1\n        \n        # Iterate through all possible end indices\n        for j in range(i, n):\n            product *= lst[j]\n            total_sum += product\n    \n    return total_sum"
+  },
+  {
+    "id": 135,
+    "response": "def toggle_middle_bits(n):\n    # Calculate the number of bits in n\n    num_bits = n.bit_length()\n    \n    # If n has 2 or fewer bits, there are no middle bits to toggle\n    if num_bits <= 2:\n        return n\n    \n    # Create a mask with all bits set to 1 except the first and last bits\n    mask = (1 << (num_bits - 1)) - 1\n    \n    # Toggle the middle bits using XOR\n    result = n ^ mask\n    \n    return result"
+  },
+  {
+    "id": 136,
+    "response": ""
+  },
+  {
+    "id": 137,
+    "response": ""
+  },
+  {
+    "id": 138,
+    "response": "def geometric_sum(n):\n    if n <= 0:\n        return 0\n    return 2 * (1 - (1/2)**(n-1)) - 1"
+  },
+  {
+    "id": 139,
+    "response": "def find_Index(n):\n    def count_divisors(num):\n        count = 0\n        for i in range(1, int(num**0.5) + 1):\n            if num % i == 0:\n                count += 1\n                if i != num // i:\n                    count += 1\n        return count"
+  },
+  {
+    "id": 140,
+    "response": ""
+  },
+  {
+    "id": 141,
+    "response": ""
+  },
+  {
+    "id": 142,
+    "response": "def area_tetrahedron(a):\n    return (3 ** 0.5) * (a ** 2)"
+  },
+  {
+    "id": 143,
+    "response": "def rotate_right(lst, n, n2):\n    # Extract the sublist to be rotated\n    sublist = lst[:n2]\n    \n    # Rotate the sublist to the right by n positions\n    rotated_sublist = sublist[-n:] + sublist[:-n]\n    \n    # Replace the first n2 elements of the original list with the rotated sublist\n    lst[:n2] = rotated_sublist\n    \n    return lst"
+  },
+  {
+    "id": 144,
+    "response": ""
+  },
+  {
+    "id": 145,
+    "response": "def divisible_by_digits(n, n2):\n    # Convert the number to a string to iterate over each digit\n    digits = str(n)\n    \n    # Iterate over each digit\n    for digit in digits:\n        # Convert the digit back to an integer\n        digit = int(digit)\n        \n        # Check if the number is divisible by the digit\n        if digit == 0 or n % digit != 0:\n            return False\n    \n    return True"
+  },
+  {
+    "id": 146,
+    "response": ""
+  },
+  {
+    "id": 147,
+    "response": ""
+  },
+  {
+    "id": 148,
+    "response": "def capital_words_spaces(s):\n    words = s.split()\n    result = []\n    for word in words:\n        if word[0].isupper():\n            result.append(' ' + word)\n        else:\n            result.append(word)\n    return ''.join(result)"
+  },
+  {
+    "id": 149,
+    "response": ""
+  },
+  {
+    "id": 150,
+    "response": ""
+  },
+  {
+    "id": 151,
+    "response": ""
+  },
+  {
+    "id": 152,
+    "response": ""
+  },
+  {
+    "id": 153,
+    "response": ""
+  },
+  {
+    "id": 154,
+    "response": ""
+  },
+  {
+    "id": 155,
+    "response": ""
+  },
+  {
+    "id": 156,
+    "response": ""
+  },
+  {
+    "id": 157,
+    "response": "def count_reverse_pairs(lst):\n    count = 0\n    for s in lst:\n        reverse_s = s[::-1]\n        if reverse_s in lst:\n            count += 1\n    return count"
+  },
+  {
+    "id": 158,
+    "response": "def unique_sublists(lst):\n    def generate_sublists(subset, start):\n        if start == len(lst):\n            sublists.append(subset)\n            return\n        generate_sublists(subset + [lst[start]], start + 1)\n        generate_sublists(subset, start + 1)\n    \n    sublists = []\n    generate_sublists([], 0)\n    unique_sublists = set(tuple(sublist) for sublist in sublists)\n    return len(unique_sublists)"
+  },
+  {
+    "id": 159,
+    "response": ""
+  },
+  {
+    "id": 160,
+    "response": ""
+  },
+  {
+    "id": 161,
+    "response": "def arc_length(radius, angle_degrees):\n    # Convert angle from degrees to radians\n    angle_radians = math.radians(angle_degrees)\n    # Calculate the arc length\n    arc_len = radius * angle_radians\n    return arc_len"
+  },
+  {
+    "id": 162,
+    "response": ""
+  },
+  {
+    "id": 163,
+    "response": "def find_Min_Diff(arr, n):\n    # Sort the array\n    arr.sort()\n    \n    # Initialize the minimum difference to a large number\n    min_diff = float('inf')\n    \n    # Iterate through the sorted array and calculate the difference between consecutive elements\n    for i in range(1, n):\n        diff = arr[i] - arr[i - 1]\n        if diff < min_diff:\n            min_diff = diff\n    \n    return min_diff"
+  },
+  {
+    "id": 164,
+    "response": "def number_ctr(s):\n    count = 0\n    for char in s:\n        if char.isdigit():\n            count += 1\n    return count"
+  },
+  {
+    "id": 165,
+    "response": ""
+  },
+  {
+    "id": 166,
+    "response": "def pair_wise(lst):\n    result = []\n    for i in range(len(lst) - 1):\n        result.append((lst[i], lst[i + 1]))\n    return result"
+  },
+  {
+    "id": 167,
+    "response": "def get_Pairs_Count(lst, n, n2):\n    count = 0\n    for i in range(n):\n        for j in range(i + 1, n):\n            if lst[i] + lst[j] == n2:\n                count += 1\n    return count"
+  },
+  {
+    "id": 168,
+    "response": ""
+  },
+  {
+    "id": 169,
+    "response": ""
+  },
+  {
+    "id": 170,
+    "response": "def odd_Num_Sum(n):\n    total_sum = 0\n    for i in range(1, n + 1):\n        odd_number = 2 * i - 1\n        total_sum += odd_number ** 4\n    return total_sum"
+  },
+  {
+    "id": 171,
+    "response": ""
+  },
+  {
+    "id": 172,
+    "response": "def remove_length(s, n):\n    # Split the string into a list of words\n    words = s.split()\n    \n    # Filter words that have length equal to n\n    filtered_words = [word for word in words if len(word) == n]\n    \n    # Join the filtered words back into a single string\n    result = ' '.join(filtered_words)\n    \n    return result"
+  },
+  {
+    "id": 173,
+    "response": "def occurance_substring(s, s2):\n    positions = []\n    start = 0\n    while True:\n        start = s.find(s2, start)\n        if start == -1:\n            break\n        positions.append(start)\n        start += 1\n    return positions"
+  },
+  {
+    "id": 174,
+    "response": "def check_email(s):\n    # Check if the string is empty\n    if not s:\n        return False\n    \n    # Split the string at the '@' symbol\n    parts = s.split('@')\n    if len(parts) != 2:\n        return False\n    \n    username, domain = parts\n    \n    # Check username part\n    if not username or not username[0].isalnum():\n        return False\n    for char in username[1:]:\n        if not (char.isalnum() or char in \"_.\"):\n            return False\n    \n    # Check domain part\n    if not domain or not domain[0].isalnum():\n        return False\n    for char in domain[1:]:\n        if not (char.isalnum() or char == '-'):\n            return False\n    \n    # Check domain extension\n    if '.' not in domain:\n        return False\n    extension = domain.split('.')[-1]\n    if not extension or not extension.isalnum():\n        return False\n    \n    return True"
+  },
+  {
+    "id": 175,
+    "response": "def odd_position(lst):\n    result = []\n    for i in range(len(lst)):\n        if (i + 1) % 2 != 0:  # Check if the position is odd\n            result.append(lst[i] % 2 != 0)  # Check if the number is odd\n        else:\n            result.append(False)  # If the position is not odd, append False\n    return result"
+  },
+  {
+    "id": 176,
+    "response": ""
+  },
+  {
+    "id": 177,
+    "response": ""
+  },
+  {
+    "id": 178,
+    "response": "def pack_consecutive_duplicates(lst):\n    if not lst:\n        return []\n    \n    result = []\n    current_group = [lst[0]]\n    \n    for item in lst[1:]:\n        if item == current_group[-1]:\n            current_group.append(item)\n        else:\n            result.append(current_group)\n            current_group = [item]\n    \n    result.append(current_group)\n    return result"
+  },
+  {
+    "id": 179,
+    "response": "def unique_sublists(lst):\n    unique_sublists_set = set()\n    \n    for i in range(len(lst)):\n        for j in range(i + 1, len(lst) + 1):\n            sublist = tuple(lst[i:j])\n            unique_sublists_set.add(sublist)\n    \n    return len(unique_sublists_set)"
+  },
+  {
+    "id": 180,
+    "response": "def find_combinations(lst):\n    result = []\n    for r in range(len(lst) + 1):\n        result.extend(combinations(lst, r))\n    return result"
+  },
+  {
+    "id": 181,
+    "response": ""
+  },
+  {
+    "id": 182,
+    "response": "def Odd_Length_Sum(lst):\n    total_sum = 0\n    n = len(lst)\n    \n    # Iterate through all possible starting points of subarrays\n    for start in range(n):\n        # Iterate through all possible ending points of subarrays\n        for end in range(start, n):\n            # Calculate the length of the current subarray\n            length = end - start + 1\n            # Check if the length is odd\n            if length % 2 != 0:\n                # Sum the elements of the current subarray\n                for i in range(start, end + 1):\n                    total_sum += lst[i]\n    \n    return total_sum"
+  },
+  {
+    "id": 183,
+    "response": ""
+  },
+  {
+    "id": 184,
+    "response": ""
+  },
+  {
+    "id": 185,
+    "response": ""
+  },
+  {
+    "id": 186,
+    "response": ""
+  },
+  {
+    "id": 187,
+    "response": ""
+  },
+  {
+    "id": 188,
+    "response": ""
+  },
+  {
+    "id": 189,
+    "response": ""
+  },
+  {
+    "id": 190,
+    "response": "def even_position(lst):\n    for i in range(len(lst) - 1):\n        if lst[i] % 2 != 0 or lst[i + 1] % 2 != 0:\n            return False\n    return True"
+  },
+  {
+    "id": 191,
+    "response": ""
+  },
+  {
+    "id": 192,
+    "response": ""
+  },
+  {
+    "id": 193,
+    "response": ""
+  },
+  {
+    "id": 194,
+    "response": ""
+  },
+  {
+    "id": 195,
+    "response": ""
+  },
+  {
+    "id": 196,
+    "response": "def return_sum(dct):\n    total_sum = 0\n    for value in dct.values():\n        total_sum += value\n    return total_sum"
+  },
+  {
+    "id": 197,
+    "response": ""
+  },
+  {
+    "id": 198,
+    "response": ""
+  },
+  {
+    "id": 199,
+    "response": "def left_Rotate(n, n2):\n    num_bits = n.bit_length()\n    mask = (1 << num_bits) - 1\n    rotated = (n << n2) & mask\n    return rotated"
+  },
+  {
+    "id": 200,
+    "response": ""
+  },
+  {
+    "id": 201,
+    "response": ""
+  },
+  {
+    "id": 202,
+    "response": "def count_Rotation(lst, n):\n    min_index = 0\n    for i in range(1, n):\n        if lst[i] < lst[min_index]:\n            min_index = i\n    return min_index"
+  },
+  {
+    "id": 203,
+    "response": ""
+  },
+  {
+    "id": 204,
+    "response": ""
+  },
+  {
+    "id": 205,
+    "response": "def max_sum_list(lst):\n    max_sum = float('-inf')\n    max_list = []\n    \n    for sublist in lst:\n        current_sum = sum(sublist)\n        if current_sum > max_sum:\n            max_sum = current_sum\n            max_list = sublist\n    \n    return max_list"
+  },
+  {
+    "id": 206,
+    "response": ""
+  },
+  {
+    "id": 207,
+    "response": ""
+  },
+  {
+    "id": 208,
+    "response": ""
+  },
+  {
+    "id": 209,
+    "response": ""
+  },
+  {
+    "id": 210,
+    "response": ""
+  },
+  {
+    "id": 211,
+    "response": ""
+  },
+  {
+    "id": 212,
+    "response": ""
+  },
+  {
+    "id": 213,
+    "response": ""
+  },
+  {
+    "id": 214,
+    "response": ""
+  },
+  {
+    "id": 215,
+    "response": ""
+  },
+  {
+    "id": 216,
+    "response": ""
+  },
+  {
+    "id": 217,
+    "response": ""
+  },
+  {
+    "id": 218,
+    "response": ""
+  },
+  {
+    "id": 219,
+    "response": ""
+  },
+  {
+    "id": 220,
+    "response": "def check_monthnum_number(n, year):\n    if n == 2:\n        if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):\n            return True\n        else:\n            return False\n    else:\n        return False"
+  },
+  {
+    "id": 221,
+    "response": ""
+  },
+  {
+    "id": 222,
+    "response": "def pass_validity(s):\n    # Define the minimum length of the password\n    min_length = 8\n    \n    # Check if the password length is less than the minimum length\n    if len(s) < min_length:\n        return False\n    \n    # Check for the presence of at least one uppercase letter\n    if not any(char.isupper() for char in s):\n        return False\n    \n    # Check for the presence of at least one lowercase letter\n    if not any(char.islower() for char in s):\n        return False\n    \n    # Check for the presence of at least one digit\n    if not any(char.isdigit() for char in s):\n        return False\n    \n    # Check for the presence of at least one special character\n    if not any(not char.isalnum() for char in s):\n        return False\n    \n    # If all conditions are met, return True\n    return True"
+  },
+  {
+    "id": 223,
+    "response": "def check_substring(s, s2):\n    return s.startswith(s2)"
+  },
+  {
+    "id": 224,
+    "response": ""
+  },
+  {
+    "id": 225,
+    "response": ""
+  },
+  {
+    "id": 226,
+    "response": ""
+  },
+  {
+    "id": 227,
+    "response": "def sum_column(lst, n):\n    total_sum = 0\n    for sublist in lst:\n        if len(sublist) >= n:\n            total_sum += sublist[n-1]\n    return total_sum"
+  },
+  {
+    "id": 228,
+    "response": ""
+  },
+  {
+    "id": 229,
+    "response": ""
+  },
+  {
+    "id": 230,
+    "response": ""
+  },
+  {
+    "id": 231,
+    "response": "def count_Pairs(lst, n):\n    from collections import defaultdict\n    \n    # Dictionary to store the frequency of each element\n    frequency = defaultdict(int)\n    \n    # Count the frequency of each element in the list\n    for element in lst:\n        frequency[element] += 1\n    \n    # Calculate the number of pairs with the same elements\n    total_pairs = 0\n    for count in frequency.values():\n        total_pairs += count * (count - 1) // 2\n    \n    return total_pairs"
+  },
+  {
+    "id": 232,
+    "response": ""
+  },
+  {
+    "id": 233,
+    "response": "def get_key(dct):\n    if not dct:\n        return None\n    max_key = max(dct, key=dct.get)\n    return max_key"
+  },
+  {
+    "id": 234,
+    "response": ""
+  },
+  {
+    "id": 235,
+    "response": ""
+  },
+  {
+    "id": 236,
+    "response": ""
+  },
+  {
+    "id": 237,
+    "response": ""
+  },
+  {
+    "id": 238,
+    "response": "def min_Swaps(s1, s2):\n    # Count the number of '1's in both strings\n    count1 = s1.count('1')\n    count2 = s2.count('1')\n    \n    # If the counts of '1's are not equal, return -1\n    if count1 != count2:\n        return -1\n    \n    # Initialize the number of swaps\n    swaps = 0\n    \n    # Iterate through the strings\n    for i in range(len(s1)):\n        if s1[i] != s2[i]:\n            # Find the next '1' in s2 starting from the current position\n            j = i + 1\n            while j < len(s2) and s2[j] != '1':\n                j += 1\n            \n            # If no '1' is found, return -1 (this should not happen if count1 == count2)\n            if j == len(s2):\n                return -1\n            \n            # Swap the '1' with the current position\n            s2 = s2[:j] + s2[i] + s2[j+1:]\n            swaps += 1\n    \n    return swaps"
+  },
+  {
+    "id": 239,
+    "response": ""
+  },
+  {
+    "id": 240,
+    "response": "def Check_Solution(n, n2, n3):\n    if n == n2 == n3:\n        return True\n    else:\n        return False"
+  },
+  {
+    "id": 241,
+    "response": "def get_inv_count(arr, n):\n    def merge_sort_and_count(arr, temp_arr, left, right):\n        inv_count = 0\n        if left < right:\n            mid = (left + right) // 2"
+  },
+  {
+    "id": 242,
+    "response": ""
+  },
+  {
+    "id": 243,
+    "response": ""
+  },
+  {
+    "id": 244,
+    "response": "def get_Number(n, n2, k):\n    # Generate an array of numbers from n to n2\n    array = list(range(n, n2 + 1))\n    \n    # Return the kth element (index k-1)\n    return array[k-1]"
+  },
+  {
+    "id": 245,
+    "response": ""
+  },
+  {
+    "id": 246,
+    "response": ""
+  },
+  {
+    "id": 247,
+    "response": ""
+  },
+  {
+    "id": 248,
+    "response": "def area_trapezium(n, n2, n3):\n    return 0.5 * (n + n2) * n3"
+  },
+  {
+    "id": 249,
+    "response": "def Sum(n):\n    # Initialize the sum of divisors\n    sum_divisors = 0\n    \n    # Iterate through all numbers from 1 to n\n    for i in range(1, n + 1):\n        # Check if i is a divisor of n\n        if n % i == 0:\n            # Add the divisor to the sum\n            sum_divisors += i\n    \n    # Return the sum of divisors\n    return sum_divisors"
+  },
+  {
+    "id": 250,
+    "response": ""
+  },
+  {
+    "id": 251,
+    "response": ""
+  },
+  {
+    "id": 252,
+    "response": ""
+  },
+  {
+    "id": 253,
+    "response": ""
+  },
+  {
+    "id": 254,
+    "response": ""
+  },
+  {
+    "id": 255,
+    "response": ""
+  },
+  {
+    "id": 256,
+    "response": ""
+  },
+  {
+    "id": 257,
+    "response": ""
+  },
+  {
+    "id": 258,
+    "response": ""
+  },
+  {
+    "id": 259,
+    "response": ""
+  },
+  {
+    "id": 260,
+    "response": ""
+  },
+  {
+    "id": 261,
+    "response": ""
+  },
+  {
+    "id": 262,
+    "response": "def n_common_words(s, n):\n    # Split the string into words\n    words = s.split()\n    \n    # Create a dictionary to count word occurrences\n    word_count = {}\n    for word in words:\n        if word in word_count:\n            word_count[word] += 1\n        else:\n            word_count[word] = 1\n    \n    # Sort the dictionary by word count in descending order\n    sorted_word_count = sorted(word_count.items(), key=lambda x: x[1], reverse=True)\n    \n    # Return the top n words\n    return [word for word, count in sorted_word_count[:n]]"
+  },
+  {
+    "id": 263,
+    "response": "def find_longest_conseq_subseq(lst, n):\n    # Convert the list to a set to remove duplicates and allow for O(1) average-time complexity for lookups\n    num_set = set(lst)\n    max_length = 0"
+  },
+  {
+    "id": 264,
+    "response": ""
+  },
+  {
+    "id": 265,
+    "response": ""
+  },
+  {
+    "id": 266,
+    "response": ""
+  },
+  {
+    "id": 267,
+    "response": "def min_Num(lst, n):\n    current_sum = sum(lst)\n    remainder = current_sum % n\n    if remainder == 0:\n        return 0\n    else:\n        return n - remainder"
+  },
+  {
+    "id": 268,
+    "response": ""
+  },
+  {
+    "id": 269,
+    "response": ""
+  },
+  {
+    "id": 270,
+    "response": ""
+  },
+  {
+    "id": 271,
+    "response": ""
+  },
+  {
+    "id": 272,
+    "response": ""
+  },
+  {
+    "id": 273,
+    "response": ""
+  },
+  {
+    "id": 274,
+    "response": ""
+  },
+  {
+    "id": 275,
+    "response": "def min_difference(lst):\n    min_diff = float('inf')\n    for tup1, tup2 in zip(lst, lst[1:]):\n        current_diff = sum(abs(a - b) for a, b in zip(tup1, tup2))\n        if current_diff < min_diff:\n            min_diff = current_diff\n    return min_diff"
+  },
+  {
+    "id": 276,
+    "response": "def lcm(n, n2):\n    return abs(n * n2) // math.gcd(n, n2)"
+  },
+  {
+    "id": 277,
+    "response": ""
+  },
+  {
+    "id": 278,
+    "response": ""
+  },
+  {
+    "id": 279,
+    "response": "def text_match(s):\n    pattern = '^a.*b$'\n    if re.search(pattern, s):\n        return True\n    else:\n        return False"
+  },
+  {
+    "id": 280,
+    "response": "def Check_Solution(n, n2, n3):\n    discriminant = n2**2 - 4*n*n3\n    if discriminant > 0:\n        return 2\n    elif discriminant == 0:\n        return 1\n    else:\n        return 0"
+  },
+  {
+    "id": 281,
+    "response": "def sum_even_odd(lst):\n    even_sum = 0\n    odd_sum = 0\n    for num in lst:\n        if num % 2 == 0:\n            even_sum += num\n        else:\n            odd_sum += num\n    return even_sum + odd_sum"
+  },
+  {
+    "id": 282,
+    "response": "def parallelogram_perimeter(n, n2):\n    return 2 * (n + n2)"
+  },
+  {
+    "id": 283,
+    "response": ""
+  },
+  {
+    "id": 284,
+    "response": ""
+  },
+  {
+    "id": 285,
+    "response": ""
+  },
+  {
+    "id": 286,
+    "response": ""
+  },
+  {
+    "id": 287,
+    "response": ""
+  },
+  {
+    "id": 288,
+    "response": ""
+  },
+  {
+    "id": 289,
+    "response": ""
+  },
+  {
+    "id": 290,
+    "response": "def find_Extra(lst, lst2, n):\n    extra_indices = []\n    for i in range(n):\n        if lst[i] not in lst2:\n            extra_indices.append(i)\n    return extra_indices"
+  },
+  {
+    "id": 291,
+    "response": ""
+  },
+  {
+    "id": 292,
+    "response": ""
+  },
+  {
+    "id": 293,
+    "response": ""
+  },
+  {
+    "id": 294,
+    "response": ""
+  },
+  {
+    "id": 295,
+    "response": ""
+  },
+  {
+    "id": 296,
+    "response": ""
+  },
+  {
+    "id": 297,
+    "response": ""
+  },
+  {
+    "id": 298,
+    "response": ""
+  },
+  {
+    "id": 299,
+    "response": ""
+  },
+  {
+    "id": 300,
+    "response": ""
+  },
+  {
+    "id": 301,
+    "response": ""
+  },
+  {
+    "id": 302,
+    "response": ""
+  },
+  {
+    "id": 303,
+    "response": ""
+  },
+  {
+    "id": 304,
+    "response": "def smallest_divisible(n):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a"
+  },
+  {
+    "id": 305,
+    "response": ""
+  },
+  {
+    "id": 306,
+    "response": "def factorial(num):\n    if num == 0 or num == 1:\n        return 1\n    else:\n        return num * factorial(num - 1)"
+  },
+  {
+    "id": 307,
+    "response": ""
+  },
+  {
+    "id": 308,
+    "response": ""
+  },
+  {
+    "id": 309,
+    "response": "def smallest_divisible(n):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a"
+  },
+  {
+    "id": 310,
+    "response": "def no_of_subsequences(lst, k):\n    n = len(lst)\n    dp = [[0 for _ in range(k)] for _ in range(n + 1)]\n    \n    # Base case: There's one subsequence (empty subsequence) with sum 0\n    dp[0][0] = 1\n    \n    for i in range(1, n + 1):\n        for j in range(k):\n            dp[i][j] = dp[i - 1][j]\n            if lst[i - 1] <= j:\n                dp[i][j] += dp[i - 1][j - lst[i - 1]]\n    \n    # Sum up all subsequences with sum less than k\n    result = sum(dp[n][j] for j in range(k))\n    return result"
+  },
+  {
+    "id": 311,
+    "response": ""
+  },
+  {
+    "id": 312,
+    "response": "def count_element_freq(tup):\n    def flatten(t):\n        for item in t:\n            if isinstance(item, tuple):\n                yield from flatten(item)\n            else:\n                yield item\n    \n    freq_dict = {}\n    for element in flatten(tup):\n        if element in freq_dict:\n            freq_dict[element] += 1\n        else:\n            freq_dict[element] = 1\n    return freq_dict"
+  },
+  {
+    "id": 313,
+    "response": ""
+  },
+  {
+    "id": 314,
+    "response": ""
+  },
+  {
+    "id": 315,
+    "response": "def modular_sum(lst, n, n2):\n    total_sum = sum(lst)\n    dp = [[False] * (total_sum + 1) for _ in range(len(lst) + 1)]\n    \n    # Initialize the DP table\n    for i in range(len(lst) + 1):\n        dp[i][0] = True\n    \n    # Fill the DP table\n    for i in range(1, len(lst) + 1):\n        for j in range(1, total_sum + 1):\n            if j < lst[i - 1]:\n                dp[i][j] = dp[i - 1][j]\n            else:\n                dp[i][j] = dp[i - 1][j] or dp[i - 1][j - lst[i - 1]]\n    \n    # Check if there is any subset whose sum modulo n equals n2\n    for j in range(total_sum + 1):\n        if dp[len(lst)][j] and (j % n == n2):\n            return True\n    \n    return False"
+  },
+  {
+    "id": 316,
+    "response": "def radix_sort(lst):\n    if not lst:\n        return lst"
+  },
+  {
+    "id": 317,
+    "response": ""
+  },
+  {
+    "id": 318,
+    "response": ""
+  },
+  {
+    "id": 319,
+    "response": ""
+  },
+  {
+    "id": 320,
+    "response": ""
+  },
+  {
+    "id": 321,
+    "response": ""
+  },
+  {
+    "id": 322,
+    "response": "def lbs(lst):\n    n = len(lst)\n    if n == 0:\n        return 0\n    \n    # Compute LIS for each element\n    lis = [1] * n\n    for i in range(1, n):\n        for j in range(i):\n            if lst[i] > lst[j] and lis[i] < lis[j] + 1:\n                lis[i] = lis[j] + 1\n    \n    # Compute LDS for each element\n    lds = [1] * n\n    for i in range(n-2, -1, -1):\n        for j in range(i+1, n):\n            if lst[i] > lst[j] and lds[i] < lds[j] + 1:\n                lds[i] = lds[j] + 1\n    \n    # Find the maximum length of bitonic subsequence\n    max_length = 0\n    for i in range(n):\n        max_length = max(max_length, lis[i] + lds[i] - 1)\n    \n    return max_length"
+  },
+  {
+    "id": 323,
+    "response": "def check_function(func):\n    for i, (input_str, expected) in enumerate(test_cases):\n        result = func(input_str)\n        assert result == expected, f\"Test case {i+1} failed: expected {expected}, got {result}\"\n    print(\"All tests passed successfully.\")"
+  },
+  {
+    "id": 324,
+    "response": ""
+  },
+  {
+    "id": 325,
+    "response": ""
+  },
+  {
+    "id": 326,
+    "response": ""
+  },
+  {
+    "id": 327,
+    "response": "def get_pairs_count(lst, n, n2):\n    count = 0\n    for i in range(n):\n        for j in range(i + 1, n):\n            if lst[i] + lst[j] == n2:\n                count += 1\n    return count"
+  },
+  {
+    "id": 328,
+    "response": ""
+  },
+  {
+    "id": 329,
+    "response": "def jacobsthal_lucas(n):\n    if n == 0:\n        return 2\n    elif n == 1:\n        return 1\n    else:\n        a, b = 2, 1\n        for _ in range(2, n + 1):\n            a, b = b, 2 * b + a\n        return b"
+  },
+  {
+    "id": 330,
+    "response": ""
+  },
+  {
+    "id": 331,
+    "response": "def min_coins(lst, n):\n    # Initialize the dp array with infinity\n    dp = [float('inf')] * (n + 1)\n    dp[0] = 0  # Base case: 0 coins are needed to make amount 0"
+  },
+  {
+    "id": 332,
+    "response": ""
+  },
+  {
+    "id": 333,
+    "response": ""
+  },
+  {
+    "id": 334,
+    "response": "def search_literal(s, s2):\n    if not s2:\n        return 0\n    if len(s2) > len(s):\n        return -1\n    \n    for i in range(len(s) - len(s2) + 1):\n        if s[i] == s2[0]:\n            match = True\n            for j in range(1, len(s2)):\n                if s[i + j] != s2[j]:\n                    match = False\n                    break\n            if match:\n                return i\n    return -1"
+  },
+  {
+    "id": 335,
+    "response": ""
+  },
+  {
+    "id": 336,
+    "response": "def nth_items(lst, n):\n    if not lst or n < 0 or n >= len(lst):\n        return None\n    return lst[n]"
+  },
+  {
+    "id": 337,
+    "response": "def first_repeated_word(s):\n    words = s.split()\n    seen = set()\n    \n    for word in words:\n        if word in seen:\n            return word\n        seen.add(word)\n    \n    return None"
+  },
+  {
+    "id": 338,
+    "response": ""
+  },
+  {
+    "id": 339,
+    "response": ""
+  },
+  {
+    "id": 340,
+    "response": "def find_Diff(lst, n):\n    # Step 1: Count the frequency of each element\n    frequency = {}\n    for item in lst:\n        if item in frequency:\n            frequency[item] += 1\n        else:\n            frequency[item] = 1\n    \n    # Step 2: Find the maximum and minimum frequencies\n    max_freq = max(frequency.values())\n    min_freq = min(frequency.values())\n    \n    # Step 3: Compute the difference\n    diff = max_freq - min_freq\n    \n    return diff"
+  },
+  {
+    "id": 341,
+    "response": ""
+  },
+  {
+    "id": 342,
+    "response": ""
+  },
+  {
+    "id": 343,
+    "response": ""
+  },
+  {
+    "id": 344,
+    "response": ""
+  },
+  {
+    "id": 345,
+    "response": ""
+  },
+  {
+    "id": 346,
+    "response": ""
+  },
+  {
+    "id": 347,
+    "response": ""
+  },
+  {
+    "id": 348,
+    "response": ""
+  },
+  {
+    "id": 349,
+    "response": "def smallest_divisible(n):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a"
+  },
+  {
+    "id": 350,
+    "response": ""
+  },
+  {
+    "id": 351,
+    "response": ""
+  },
+  {
+    "id": 352,
+    "response": ""
+  },
+  {
+    "id": 353,
+    "response": ""
+  },
+  {
+    "id": 354,
+    "response": ""
+  },
+  {
+    "id": 355,
+    "response": "def smallest_divisible(n):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a"
+  },
+  {
+    "id": 356,
+    "response": "def find_Odd_Pair(lst, n):\n    for i in range(n):\n        for j in range(i + 1, n):\n            if (lst[i] ^ lst[j]) % 2 != 0:\n                return (lst[i], lst[j])\n    return None  # Return None if no such pair is found"
+  },
+  {
+    "id": 357,
+    "response": ""
+  },
+  {
+    "id": 358,
+    "response": "def digit_distance_nums(n, n2):\n    # Convert numbers to strings\n    str_n = str(n)\n    str_n2 = str(n2)\n    \n    # Initialize the digit distance counter\n    distance = 0\n    \n    # Determine the length of the longer string\n    max_length = max(len(str_n), len(str_n2))\n    \n    # Iterate through the digits of both numbers\n    for i in range(max_length):\n        # Get the current digit from each number, padding with '0' if necessary\n        digit_n = str_n[i] if i < len(str_n) else '0'\n        digit_n2 = str_n2[i] if i < len(str_n2) else '0'\n        \n        # Increment the distance if the digits are different\n        if digit_n != digit_n2:\n            distance += 1\n    \n    return distance"
+  },
+  {
+    "id": 359,
+    "response": "def smallest_divisible(n):\n    def gcd(a, b):\n        while b:\n            a, b = b, a % b\n        return a"
+  },
+  {
+    "id": 360,
+    "response": ""
+  },
+  {
+    "id": 361,
+    "response": "def assign_elements(lst):\n    result = []\n    for i in range(0, len(lst) - 1, 2):\n        result.append((lst[i], lst[i + 1]))\n    if len(lst) % 2 != 0:\n        result.append((lst[-1],))\n    return result"
+  },
+  {
+    "id": 362,
+    "response": ""
+  },
+  {
+    "id": 363,
+    "response": "def extract_values(s):\n    # Define the pattern to match text enclosed in parentheses\n    pattern = r'\\([^)]*\\)'\n    \n    # Use re.findall to extract all matches\n    matches = re.findall(pattern, s)\n    \n    # Return the list of matches\n    return matches"
+  },
+  {
+    "id": 364,
+    "response": "def count_Pairs(lst, n):\n    elements = set(lst)\n    unique_pairs = set()\n    \n    for element in elements:\n        complement = n - element\n        if complement in elements and (element, complement) not in unique_pairs and (complement, element) not in unique_pairs:\n            unique_pairs.add((element, complement))\n    \n    return len(unique_pairs)"
+  },
+  {
+    "id": 365,
+    "response": ""
+  },
+  {
+    "id": 366,
+    "response": ""
+  },
+  {
+    "id": 367,
+    "response": ""
+  },
+  {
+    "id": 368,
+    "response": ""
+  },
+  {
+    "id": 369,
+    "response": ""
+  },
+  {
+    "id": 370,
+    "response": ""
+  },
+  {
+    "id": 371,
+    "response": ""
+  },
+  {
+    "id": 372,
+    "response": "def two_unique_nums(lst):\n    seen = set()\n    unique_nums = []\n    for num in lst:\n        if num not in seen:\n            seen.add(num)\n            unique_nums.append(num)\n    return unique_nums"
+  },
+  {
+    "id": 373,
+    "response": "def unique_product(lst):\n    # Step 1: Identify unique elements\n    unique_elements = set(lst)\n    \n    # Step 2: Initialize product to 1 (since 1 is the multiplicative identity)\n    product = 1\n    \n    # Step 3: Multiply all unique elements\n    for element in unique_elements:\n        product *= element\n    \n    # Step 4: Return the product\n    return product"
+  },
+  {
+    "id": 374,
+    "response": ""
+  },
+  {
+    "id": 375,
+    "response": ""
+  },
+  {
+    "id": 376,
+    "response": ""
+  },
+  {
+    "id": 377,
+    "response": ""
+  },
+  {
+    "id": 378,
+    "response": ""
+  },
+  {
+    "id": 379,
+    "response": ""
+  },
+  {
+    "id": 380,
+    "response": "def extract_even(tup):\n    even_elements = []\n    \n    def is_even(num):\n        return num % 2 == 0\n    \n    def extract_from_tuple(t):\n        for item in t:\n            if isinstance(item, tuple):\n                extract_from_tuple(item)\n            elif is_even(item):\n                even_elements.append(item)\n    \n    extract_from_tuple(tup)\n    return tuple(even_elements)"
+  },
+  {
+    "id": 381,
+    "response": ""
+  },
+  {
+    "id": 382,
+    "response": ""
+  },
+  {
+    "id": 383,
+    "response": ""
+  },
+  {
+    "id": 384,
+    "response": ""
+  },
+  {
+    "id": 385,
+    "response": ""
+  },
+  {
+    "id": 386,
+    "response": "def split_Arr(lst, n, n2):\n    # Split the list into three parts\n    first_part = lst[:n]\n    second_part = lst[n:n2]\n    third_part = lst[n2:]\n    \n    # Concatenate the first part with the third part\n    result = first_part + third_part\n    \n    return result"
+  },
+  {
+    "id": 387,
+    "response": ""
+  },
+  {
+    "id": 388,
+    "response": ""
+  },
+  {
+    "id": 389,
+    "response": "def perfect_squares(n, n2):\n    perfect_squares_list = []\n    for num in range(n, n2 + 1):\n        root = int(num ** 0.5)\n        if root * root == num:\n            perfect_squares_list.append(num)\n    return perfect_squares_list"
+  },
+  {
+    "id": 390,
+    "response": ""
+  },
+  {
+    "id": 391,
+    "response": ""
+  },
+  {
+    "id": 392,
+    "response": ""
+  },
+  {
+    "id": 393,
+    "response": ""
+  },
+  {
+    "id": 394,
+    "response": "def diff_even_odd(lst):\n    first_even = None\n    first_odd = None\n    \n    for num in lst:\n        if first_even is None and num % 2 == 0:\n            first_even = num\n        if first_odd is None and num % 2 != 0:\n            first_odd = num\n        if first_even is not None and first_odd is not None:\n            break\n    \n    if first_even is None or first_odd is None:\n        return None  # Return None if there are no even or odd numbers in the list\n    \n    return first_odd - first_even"
+  },
+  {
+    "id": 395,
+    "response": ""
+  },
+  {
+    "id": 396,
+    "response": ""
+  },
+  {
+    "id": 397,
+    "response": "def find_kth(lst, lst2, k):\n    i = j = 0\n    while i < len(lst) and j < len(lst2):\n        if lst[i] < lst2[j]:\n            k -= 1\n            if k == 0:\n                return lst[i]\n            i += 1\n        else:\n            k -= 1\n            if k == 0:\n                return lst2[j]\n            j += 1\n    while i < len(lst):\n        k -= 1\n        if k == 0:\n            return lst[i]\n        i += 1\n    while j < len(lst2):\n        k -= 1\n        if k == 0:\n            return lst2[j]\n        j += 1\n    return None  # In case k is larger than the combined length of both arrays"
+  },
+  {
+    "id": 398,
+    "response": ""
+  },
+  {
+    "id": 399,
+    "response": ""
+  },
+  {
+    "id": 400,
+    "response": ""
+  }
+]
