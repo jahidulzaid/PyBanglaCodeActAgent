@@ -388,6 +388,9 @@ agent = CodeActAgent(
     llm_engine=llm_engine,
     max_iterations=4,
 )
+
+# Self-consistency wrapper
+
 from collections import Counter
 
 def run_with_self_consistency(agent, task: str, num_paths=5):
