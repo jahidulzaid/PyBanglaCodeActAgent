@@ -414,7 +414,7 @@ def analysis_conditions(question):
     sampling_params = vllm.SamplingParams(
         temperature=0,
         # use_beam_search=True,
-        best_of=3,
+        best_of=1,
         max_tokens=2048,
     )
 
