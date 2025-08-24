@@ -458,7 +458,7 @@ def sc_codeact_with_thinker(question: str, num_agents: int, max_iterations: int)
     sampling_params_beam = vllm.SamplingParams(
         temperature=0,
         # use_beam_search=True,
-        best_of=3,
+        best_of=1,
         max_tokens=2048,
         stop=["</python>"],
         include_stop_str_in_output=True,
