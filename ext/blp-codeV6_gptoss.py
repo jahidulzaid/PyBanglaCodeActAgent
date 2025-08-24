@@ -11,7 +11,7 @@ model = "openai/gpt-oss-20b"
 
 llm = vllm.LLM(
     model,
-    # quantization="awq",
+    quantization="gguf",
     max_model_len=4096,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
@@ -432,7 +432,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
 
     
     response = agent.run(question)
-    
+
     # majorirty voting
     # response = run_with_self_consistency(agent, question, num_paths=5)
 
