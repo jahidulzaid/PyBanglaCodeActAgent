@@ -429,8 +429,21 @@ assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, i
 results = []
 for i, row in tqdm(df.iterrows(), total=len(df)):
     question = str(row["instruction"])
+
+    def safe_run(agent, task, retries=3):
+        for attempt in range(retries):
+            response = agent.run(task)
+            if isinstance(response, str) and response.strip():
+                return response
+            logger.warning(f"Empty response on attempt {attempt+1}, retrying...")
+        return ""  # fallback after retries
+
+
+
     
-    response = agent.run(question)
+    # response = agent.run(question)
+    response = safe_run(agent, question, retries=3)
+
     # response = run_with_self_consistency(agent, question, num_paths=5)
 
 
@@ -491,39 +504,6 @@ with open(SUB_PATH, "r", encoding="utf-8") as f:
 
 
 
-# # fence_pat = re.compile(r"^```python[\s\S]*```$", re.MULTILINE)
-# fence_pat = re.compile(r"^```python\s[\s\S]*?```$", re.MULTILINE)
-# valid_format = []
-# valid_fence  = []
-# valid_both   = []
-# def item_format_ok(item):
-#     return (
-#         isinstance(item, dict)
-#         and set(item.keys()) == {"id", "response"}
-#         and isinstance(item["id"], int)
-#         and isinstance(item["response"], str)
-#     )
-# for item in data:
-#     vfmt = item_format_ok(item)
-#     vf   = bool(fence_pat.match(item["response"])) if vfmt else False
-#     valid_format.append(vfmt)
-#     valid_fence.append(vf)
-#     valid_both.append(vfmt and vf)
-# nf = sum(valid_fence)
-# nm = sum(valid_format)
-# nb = sum(valid_both)
-# den = max(len(data), 1)
-# print(f"Fencing valid: {nf}/{len(data)} ({nf*100.0/den:.1f}%)")
-# print(f"Format valid:  {nm}/{len(data)} ({nm*100.0/den:.1f}%)")
-# print(f"Both valid:    {nb}/{len(data)} ({nb*100.0/den:.1f}%)")
-# for i, ok in enumerate(valid_both):
-#     if not ok and isinstance(data[i], dict) and "response" in data[i]:
-#         data[i]["response"] = ""
-
-
-
-
-
 # using encoding utf-8
 
 with open(SUB_PATH, "w", encoding="utf-8") as f:
@@ -531,21 +511,6 @@ with open(SUB_PATH, "w", encoding="utf-8") as f:
         [{"id": item["id"], "response": item["response"]} for item in data],
         f, ensure_ascii=False, indent=2
     )
-
-# using manual method for building json
-
-# output = '[\n'
-# for i, item in enumerate(results):
-#     output += f'  {{ "id": {item["id"]}, "response": "{item["response"].replace("\"", "\\\"")}" }}'
-#     if i != len(results) - 1:
-#         output += ',\n'
-#     else:
-#         output += '\n'
-# output += ']'
-
-
-# with open("submission.json", "w", encoding="utf-8") as f:
-#     f.write(output)
 
 
 
