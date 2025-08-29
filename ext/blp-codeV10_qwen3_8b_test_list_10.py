@@ -390,9 +390,10 @@ agent = CodeActAgent(
     max_iterations=4,
 )
 
+
 from collections import Counter
 
-def run_with_self_consistency(agent, task: str, num_paths=5):
+def run_with_self_consistency(agent, task: str, num_paths=5, retries=10):
     """
     Run the agent multiple times and pick the most common final answer.
     """
@@ -447,14 +448,11 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
                 return response
             logger.warning(f"Empty response on attempt {attempt+1}, retrying...")
         return ""  # fallback after retries
-
-
-
     
     # response = agent.run(question)
-    response = safe_run(agent, question, retries=3)
+    # response = safe_run(agent, question, retries=10)
 
-    # response = run_with_self_consistency(agent, question, num_paths=5)
+    response = run_with_self_consistency(agent, question, num_paths=10)
 
 
     # If agent.run returns None, blank the response
