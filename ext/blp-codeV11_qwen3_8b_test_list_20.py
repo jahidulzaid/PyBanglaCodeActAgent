@@ -442,7 +442,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     """
 
 
-    def safe_run(agent, task, retries=10):
+    def safe_run(agent, task, retries=15):
         for attempt in range(retries):
             response = agent.run(task)
             if isinstance(response, str) and response.strip():
@@ -454,7 +454,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
 
     
     # response = agent.run(question)
-    response = safe_run(agent, prompt, retries=10)
+    response = safe_run(agent, prompt, retries=15)
 
     # response = run_with_self_consistency(agent, question, num_paths=5)
 
