@@ -87,15 +87,7 @@ def cot_sc(question: str, num_paths=16):
 
     return answer
 
-CODEACT_PROMPT = f"""You are solving a coding task.
-Instruction: {question}
-
-Here are the test cases you must satisfy:
-{tests}
-
-Please return only the Python function/code solution, nothing else.
-"""
-
+CODEACT_PROMPT = ""
 
 
 import logging
