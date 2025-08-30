@@ -320,13 +320,16 @@ class CodeActAgent:
                 logger.error("Agent did not take any action.")
                 logger.log(36, f"Raw LLM response: {response}")
                 # Try to extract a Python function as a last resort
-                func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
-                if func_match:
-                    final_answer = func_match.group(1).strip()
-                    logger.log(33, "Fallback: Extracted function from raw response.")
-                    logger.log(32, final_answer)
-                    return final_answer
-                return None
+
+                # # func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
+                # func_match = re.search(r'def\s+\w+\(.*?\):(?:\n(?: {4}|\t).*)+', response)
+
+                # if func_match:
+                #     final_answer = func_match.group(1).strip()
+                #     logger.log(33, "Fallback: Extracted function from raw response.")
+                #     logger.log(32, final_answer)
+                #     return final_answer
+                # return None
 
             if thoughts:
                 logger.log(35, "=== Agent thoughts:")
@@ -362,18 +365,25 @@ class CodeActAgent:
                 messages.append({"role": "assistant", "content": response})
                 messages.append({"role": "user", "content": output})
 
-            # Prefer <answer> if present, else fallback to last <code> block
-            if answers and answers[0].strip():
-                final_answer = answers[0].strip()
-            else:
-                # As a last fallback, extract a Python function from the raw response
-                func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
-                if func_match:
-                    final_answer = func_match.group(1).strip()
-                else:
-                    final_answer = None
-            if final_answer:
+            final_answer = answers[0].strip() if answers else None
+
+            if final_answer is not None:
                 break
+
+            # # Prefer <answer> if present, else fallback to last <code> block
+            # if answers and answers[0].strip():
+            #     final_answer = answers[0].strip()
+            # else:
+            #     # As a last fallback, extract a Python function from the raw response
+
+            #     # func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
+            #     func_match = re.search(r'def\s+\w+\(.*?\):(?:\n(?: {4}|\t).*)+', response)
+            #     if func_match:
+            #         final_answer = func_match.group(1).strip()
+            #     else:
+            #         final_answer = None
+            # if final_answer:
+            #     break
 
         else:
             logger.error("Reached max iterations.")
@@ -457,8 +467,10 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
 
 
     # If agent.run returns None, blank the response
-    if not isinstance(response, str):
-        response = ""
+    
+    ###### for retires changed to above safe_run
+    # if not isinstance(response, str):
+    #     response = ""
     # if response is None:
     #     response = ""
     results.append({"id": int(row["id"]), "response": str(response)})
