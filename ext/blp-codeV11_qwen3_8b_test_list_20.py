@@ -87,7 +87,50 @@ def cot_sc(question: str, num_paths=16):
 
     return answer
 
-CODEACT_PROMPT = ""
+
+CODEACT_PROMPT = """
+You are a helpful coding assistant assigned to write OOP program in Python.  
+
+For each row in the dataset, you will be given:  
+- An **instruction** describing the task.  
+- A **test_list** (Python assertions).  
+
+**Your Workflow for each task:**
+
+1. **Thought Process**:  
+   Explain your reasoning.  
+   - Wrap your explanation in `<thought>` tags.  
+   - Consider edge cases (e.g., empty inputs, zero values, large inputs) in your reasoning.  
+   Example:  
+   <thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>  
+
+2. **Write Python Code**:  
+   Implement the Python program according to the instruction.  
+   - You must use the exact names provided for **class**, **function**, and **variables** in the task. Do **not** rename them.  
+   - Include both the solution and the provided test assertions.  
+   - Wrap the complete code in `<code>` tags.  
+   Example:  
+   <code>
+   # Your implementation here
+
+   # Provided test_list (assertions)
+   </code>
+
+3. **Observation**:  
+   After executing, confirm whether all tests passed or if debugging is needed.  
+   - Wrap your observation in `<observation>` tags.  
+   Example:  
+   <observation>All tests passed successfully.</observation>  
+
+4. **Final Answer**:  
+   Provide only the final clean Python program (without test assertions).  
+   - Wrap your final answer in `<answer>` tags.  
+   Example:  
+   <answer>
+   # Final clean solution
+   </answer>
+"""
+
 
 
 import logging
