@@ -294,7 +294,7 @@ class CodeActAgent:
             # If no action was taken, resample
             if len(codes) == 0 and len(answers) == 0:
                 logger.error("Agent did not take any action.")
-                logger.log(36, f"Raw LLM response: {response}")
+                # logger.log(36, f"Raw LLM response: {response}")
                 # Try to extract a Python function as a last resort
 
                 # # func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
