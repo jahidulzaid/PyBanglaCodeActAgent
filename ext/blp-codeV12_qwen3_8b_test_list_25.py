@@ -260,7 +260,7 @@ from pygments.lexers import PythonLexer
 
 
 class CodeActAgent:
-    def __init__(self, llm_engine, max_iterations=12):
+    def __init__(self, llm_engine, max_iterations=10):
         self.llm_engine = llm_engine
         self.max_iterations = max_iterations
         self.repl = PythonREPL(timeout=5)
