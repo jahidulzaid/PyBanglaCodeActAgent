@@ -1,26 +1,16 @@
-
-
-# Commented out IPython magic to ensure Python compatibility.
-# %%capture
-# pip install -U transformers==4.45.2
-# pip install -U torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu121
-# pip uninstall -y pynvml
-# pip install nvidia-ml-py
-# pip install vllm
-
 import re
 from collections import Counter
-
 import vllm
 import torch
 import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 
-model_id = "Qwen/Qwen2.5-32B-Instruct-AWQ"
+
+model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
 
 llm = vllm.LLM(
-    model_id,
+    model,
     quantization="awq",
     max_model_len=4096,
     enable_prefix_caching=True,
@@ -31,11 +21,12 @@ tokenizer = llm.get_tokenizer()
 
 def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
     sampling_params = vllm.SamplingParams(
-        temperature=0,
+        temperature=0.7,
+        top_p=0.9,
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=2048,
+        max_tokens=4096,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
@@ -69,7 +60,7 @@ def cot_sc(question: str, num_paths=16):
         temperature=0.7,
         top_p=0.8,
         repetition_penalty=1.05,
-        max_tokens=2048
+        max_tokens=4096
     )
 
     prompt = question
@@ -96,87 +87,51 @@ def cot_sc(question: str, num_paths=16):
 
     return answer
 
-CODEACT_PROMPT = """You are a helpful assistant assigned to solve mathematical and coding tasks.
-To achieve this, you'll use an interactive coding environment and work through each problem in structured steps: 'Thought:', 'Code:', and 'Observation:' sequences.
 
-**Instructions for each turn:**
-1. **Thought Process**: Start by explaining your step-by-step reasoning for solving the task.
-   - Enclose this in `<thought>` tags. For example: `<thought>I need to print "Hello World!"</thought>`.
+CODEACT_PROMPT = """
+You are a helpful coding assistant assigned to write OOP program in Python.  
 
-2. **Action Options**:
-   - **Option 1**: Execute code in a Python environment to obtain output.
-     - Enclose your code within `<code>` tags. For example: `<code>print("Hello World!")</code>`.
-   - **Option 2**: Provide a final answer directly if calculations are complete.
-     - Enclose your answer in `<answer>` tags. For example: `<answer>3.1415</answer>`.
+For each row in the dataset, you will be given:  
+- An **instruction** describing the task.  
+- A **test_list** (Python assertions).  
 
----
+**Your Workflow for each task:**
 
-**Example Tasks and Responses:**
+1. **Thought Process**:  
+   Explain your reasoning.  
+   - Wrap your explanation in `<thought>` tags.  
+   - Consider edge cases (e.g., empty inputs, zero values, large inputs) in your reasoning.  
+   Example:  
+   <thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>  
 
-Task: Convert the point \((0, -3 \sqrt{3}, 3)\) from rectangular to spherical coordinates, in the form \((\\rho, \\theta, \phi)\) where \(\\rho > 0\), \(0 \leq \\theta < 2\pi\), and \(0 \leq \phi \leq \pi\).
+2. **Write Python Code**:  
+   Implement the Python program according to the instruction.  
+   - You must use the exact names provided for **class**, **function**, and **variables** in the task. Do **not** rename them.  
+   - Include both the solution and the provided test assertions.  
+   - Wrap the complete code in `<code>` tags.  
+   Example:  
+   <code>
+   # Your implementation here
 
-<thought>
-To convert \((x, y, z)\) from rectangular to spherical coordinates \((\\rho, \\theta, \phi)\), use these formulas:
-1. \(\\rho = \sqrt{x^2 + y^2 + z^2}\)
-2. \(\\theta = \\arctan\\frac{y}{x}\)
-3. \(\phi = \\arccos\\frac{z}{\\rho}\)
+   # Provided test_list (assertions)
+   </code>
 
-I'll implement these calculations in code.
-</thought>
-<code>
-from sympy import sqrt, atan2, acos, pi
+3. **Observation**:  
+   After executing, confirm whether all tests passed or if debugging is needed.  
+   - Wrap your observation in `<observation>` tags.  
+   Example:  
+   <observation>All tests passed successfully.</observation>  
 
-def rectangular_to_spherical():
-    x, y, z = 0, -3*sqrt(3), 3
-    rho = sqrt(x**2 + y**2 + z**2)
-    theta = atan2(y, x)
-    phi = acos(z/rho)
-    return rho, theta, phi
-
-spherical_coordinates = rectangular_to_spherical()
-print(spherical_coordinates)
-</code><end_action/>
-<output>
-(6, -pi/2, pi/3)
-</output>
-<thought>
-To fit the required range for \(\\theta\), add \(2\pi\) to adjust \(\\theta = -\pi/2\). The spherical coordinates are \((6, \\frac{3\pi}{2}, \\frac{\pi}{3})\).
-</thought>
-<answer>
-(6, \\frac{3\pi}{2}, \\frac{\pi}{3})
-</answer><end_action/>
-
----
-
-Task: Calculate \(1011_2 + 101_2 - 1100_2 + 1101_2\) in binary.
-
-<thought>
-I'll define a function to handle binary operations by converting each value to decimal, performing the addition and subtraction, and converting the result back to binary.
-</thought>
-<code>
-def binary_sum_diff():
-    num1 = int("1011", 2)
-    num2 = int("101", 2)
-    num3 = int("1100", 2)
-    num4 = int("1101", 2)
-
-    result = num1 + num2 - num3 + num4
-    result_binary = format(result, "b")
-    return result_binary
-
-result = binary_sum_diff()
-print(result)
-</code><end_action/>
-<output>
-10001
-</output>
-<thought>
-The answer in base 2 is \(10001_2\).
-</thought>
-<answer>
-\(10001_2\)
-</answer><end_action/>
+4. **Final Answer**:  
+   Provide only the final clean Python program (without test assertions).  
+   - Wrap your final answer in `<answer>` tags.  
+   Example:  
+   <answer>
+   # Final clean solution
+   </answer>
 """
+
+
 
 import logging
 
@@ -305,7 +260,7 @@ from pygments.lexers import PythonLexer
 
 
 class CodeActAgent:
-    def __init__(self, llm_engine, max_iterations=4):
+    def __init__(self, llm_engine, max_iterations=15):
         self.llm_engine = llm_engine
         self.max_iterations = max_iterations
         self.repl = PythonREPL(timeout=5)
@@ -339,7 +294,18 @@ class CodeActAgent:
             # If no action was taken, resample
             if len(codes) == 0 and len(answers) == 0:
                 logger.error("Agent did not take any action.")
-                return None
+                # logger.log(36, f"Raw LLM response: {response}")
+                # Try to extract a Python function as a last resort
+
+                # # func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
+                # func_match = re.search(r'def\s+\w+\(.*?\):(?:\n(?: {4}|\t).*)+', response)
+
+                # if func_match:
+                #     final_answer = func_match.group(1).strip()
+                #     logger.log(33, "Fallback: Extracted function from raw response.")
+                #     logger.log(32, final_answer)
+                #     return final_answer
+                # return None
 
             if thoughts:
                 logger.log(35, "=== Agent thoughts:")
@@ -347,17 +313,17 @@ class CodeActAgent:
 
             if codes:
                 code = codes[0].strip()
-                code = highlight(
+                code_highlight = highlight(
                     code,
                     PythonLexer(ensurenl=False),
                     Terminal256Formatter(style="nord"),
                 )
 
                 logger.log(35, ">>> Agent is executing the code below:")
-                logger.log(31, code)
+                logger.log(31, code_highlight)
                 logger.log(35, "====")
 
-                final_output, print_output = self.repl.run(codes[0].strip())
+                final_output, print_output = self.repl.run(code)
                 logger.log(35, "Print outputs:")
 
                 total_output = ""
@@ -380,6 +346,21 @@ class CodeActAgent:
             if final_answer is not None:
                 break
 
+            # # Prefer <answer> if present, else fallback to last <code> block
+            # if answers and answers[0].strip():
+            #     final_answer = answers[0].strip()
+            # else:
+            #     # As a last fallback, extract a Python function from the raw response
+
+            #     # func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
+            #     func_match = re.search(r'def\s+\w+\(.*?\):(?:\n(?: {4}|\t).*)+', response)
+            #     if func_match:
+            #         final_answer = func_match.group(1).strip()
+            #     else:
+            #         final_answer = None
+            # if final_answer:
+            #     break
+
         else:
             logger.error("Reached max iterations.")
             return None
@@ -387,35 +368,169 @@ class CodeActAgent:
         logger.log(33, "Final answer:")
         logger.log(32, final_answer)
 
+
         return final_answer
 
 agent = CodeActAgent(
     llm_engine=llm_engine,
     max_iterations=4,
 )
+from collections import Counter
 
-test_df = pd.read_csv("test.csv", index_col="ID")
-test_df.head()
+def run_with_self_consistency(agent, task: str, num_paths=5):
+    """
+    Run the agent multiple times and pick the most common final answer.
+    """
+    answers = []
+
+    for _ in range(num_paths):
+        answer = agent.run(task)
+        if answer:
+            answers.append(answer.strip())
+
+    if not answers:
+        return None  # model failed every run
+
+    # majority voting
+    most_common, count = Counter(answers).most_common(1)[0]
+
+    # Optional: debug log all answers
+    logger.log(35, f"All candidate answers: {answers}")
+    logger.log(33, f"Final majority-voted answer (count={count}): {most_common}")
+
+    return most_common
+
+
+
+
+
+# === New logic: process dev.csv and output submission.json (id, response) ===
+import json, os, re, zipfile
 
 set_seed(42)
 
-data = []
+df = pd.read_csv("dev.csv")  # expects columns: id, instruction, test_list
+assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction, test_list"
 
-for id, row in tqdm(test_df.iterrows(), total=len(test_df)):
-    question = row["Problem"]
-    question += "\nEnsure that the final answer is an integer without any units."
+results = []
+for i, row in tqdm(df.iterrows(), total=len(df)):
+    # # question = str(row["instruction"])
+    # # including test_list for reference
+    # instruction = str(row["instruction"])
+    # test_list = str(row["test_list"]) if "test_list" in df.columns else ""
 
-    answer = agent.run(question)
+    # # Combine instruction + test_list
+    # if test_list.strip():
+    #     question = f"{instruction}\n\nReference test cases:\n{test_list}"
+    # else:
+    #     question = instruction
 
+
+
+
+
+
+    question = str(row["instruction"])
+    tests = str(row.get("test_list", ""))
+    prompt = f"""You are solving a coding task.
+    Instruction: {question}
+
+    Here are the test cases you must satisfy:
+    {tests}
+
+    Please return only the Python function/code solution, nothing else.
+    """
+
+
+    def safe_run(agent, task, retries=25):
+        for attempt in range(retries):
+            response = agent.run(task)
+            if isinstance(response, str) and response.strip():
+                return response
+            logger.warning(f"Empty response on attempt {attempt+1}, retrying...")
+        return ""  # fallback after retries
+
+
+
+    
+    # response = agent.run(question)
+    response = safe_run(agent, prompt, retries=25)
+
+    # response = run_with_self_consistency(agent, question, num_paths=5)
+
+
+    # If agent.run returns None, blank the response
+    
+    ###### for retires changed to above safe_run
+    # if not isinstance(response, str):
+    #     response = ""
+    # if response is None:
+    #     response = ""
+    results.append({"id": int(row["id"]), "response": str(response)})
+
+
+# Save as JSON list
+with open("submission.json", "w", encoding="utf-8") as f:
+    json.dump(results, f, ensure_ascii=False, indent=2)
+print(f"✅ Wrote submission.json with {len(results)} rows (id, response).")
+
+# --- Validation and zipping ( from prompt.py) ---
+SUB_PATH = "submission.json"
+def file_format_check(path: str) -> bool:
+    if os.path.basename(path) != "submission.json":
+        print("Error: File name must be exactly 'submission.json'")
+        return False
+    if not path.lower().endswith(".json"):
+        print("Error: File must have .json extension")
+        return False
     try:
-        answer = int(answer)
-    except (TypeError, ValueError):
-        answer = 0
+        with open(path, "r", encoding="utf-8") as f:
+            data = json.load(f)
+    except json.JSONDecodeError as e:
+        print(f"Error: Invalid JSON format - {e}")
+        print("Note: The file must be in proper JSON format (not JSONL)")
+        return False
+    if not isinstance(data, list):
+        print("Error: The root element should be a list of objects")
+        return False
+    for idx, item in enumerate(data):
+        if not isinstance(item, dict):
+            print(f"Error: Item at index {idx} is not a dictionary")
+            return False
+        keys = set(item.keys())
+        if keys != {"id", "response"}:
+            print(f"Error: Item at index {idx} must contain only keys 'id' and 'response', found: {keys}")
+            return False
+        if not isinstance(item["id"], int):
+            print(f"Error: 'id' field at index {idx} must be an integer")
+            return False
+        if not isinstance(item["response"], str):
+            print(f"Error: 'response' field at index {idx} must be a string")
+            return False
+    print("Format check passed successfully!")
+    return True
 
-    data.append({
-        "ID": id,
-        "Answer": answer
-    })
+# Fencing/format validation and blanking invalids
+with open(SUB_PATH, "r", encoding="utf-8") as f:
+    data = json.load(f)
 
-submit = pd.DataFrame.from_records(data)
-submit.to_csv("submission.csv", index=False)
+
+
+
+
+# using encoding utf-8
+
+with open(SUB_PATH, "w", encoding="utf-8") as f:
+    json.dump(
+        [{"id": item["id"], "response": item["response"]} for item in data],
+        f, ensure_ascii=False, indent=2
+    )
+
+
+
+
+print("✅ Updated submission.json after checks (invalid responses blanked).")
+_ = file_format_check(SUB_PATH)
+with zipfile.ZipFile("submission.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
+    zf.write(SUB_PATH)
+print("📦 Created submission.zip containing submission.json.")
