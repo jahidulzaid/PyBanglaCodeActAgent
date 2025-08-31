@@ -260,7 +260,7 @@ from pygments.lexers import PythonLexer
 
 
 class CodeActAgent:
-    def __init__(self, llm_engine, max_iterations=15):
+    def __init__(self, llm_engine, max_iterations=12):
         self.llm_engine = llm_engine
         self.max_iterations = max_iterations
         self.repl = PythonREPL(timeout=5)
@@ -442,7 +442,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     """
 
 
-    def safe_run(agent, task, retries=25):
+    def safe_run(agent, task, retries=20):
         for attempt in range(retries):
             response = agent.run(task)
             if isinstance(response, str) and response.strip():
@@ -454,7 +454,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
 
     
     # response = agent.run(question)
-    response = safe_run(agent, prompt, retries=25)
+    response = safe_run(agent, prompt, retries=20)
 
     # response = run_with_self_consistency(agent, question, num_paths=5)
 
