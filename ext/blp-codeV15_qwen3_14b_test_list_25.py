@@ -12,10 +12,8 @@ model = "Qwen/Qwen3-14B"
 llm = vllm.LLM(
     model,
     # quantization="awq",
-    max_model_len=2048,
+    max_model_len=4096,
     enable_prefix_caching=True,
-    # max_model_len=2048,
-    gpu_memory_utilization=0.85,
     tensor_parallel_size=torch.cuda.device_count(),
 )
 
@@ -28,7 +26,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=2048,
+        max_tokens=4096,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
@@ -56,13 +54,13 @@ def extract_answer(response):
     return answer
 
 
-def cot_sc(question: str, num_paths=16):
+def cot_sc(question: str, num_paths=10):
     sampling_params = vllm.SamplingParams(
         n=num_paths,
         temperature=0.7,
         top_p=0.8,
         repetition_penalty=1.05,
-        max_tokens=2048
+        max_tokens=4096
     )
 
     prompt = question
