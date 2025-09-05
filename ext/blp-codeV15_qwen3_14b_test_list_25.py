@@ -14,6 +14,8 @@ llm = vllm.LLM(
     # quantization="awq",
     max_model_len=2048,
     enable_prefix_caching=True,
+    # max_model_len=2048,
+    gpu_memory_utilization=0.85,
     tensor_parallel_size=torch.cuda.device_count(),
 )
 
