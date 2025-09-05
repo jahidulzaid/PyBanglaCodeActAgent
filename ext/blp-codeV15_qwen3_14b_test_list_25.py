@@ -28,7 +28,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=4096,
+        max_tokens=2048,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
@@ -62,7 +62,7 @@ def cot_sc(question: str, num_paths=16):
         temperature=0.7,
         top_p=0.8,
         repetition_penalty=1.05,
-        max_tokens=4096
+        max_tokens=2048
     )
 
     prompt = question
