@@ -54,7 +54,7 @@ def extract_answer(response):
     return answer
 
 
-def cot_sc(question: str, num_paths=10):
+def cot_sc(question: str, num_paths=16):
     sampling_params = vllm.SamplingParams(
         n=num_paths,
         temperature=0.7,
@@ -373,7 +373,7 @@ class CodeActAgent:
 
 agent = CodeActAgent(
     llm_engine=llm_engine,
-    max_iterations=7,
+    max_iterations=6,
 )
 from collections import Counter
 
