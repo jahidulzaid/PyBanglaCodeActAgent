@@ -6,7 +6,6 @@ import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 
-
 model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
 
 llm = vllm.LLM(
@@ -53,7 +52,6 @@ def extract_answer(response):
         answer = -1
     return answer
 
-
 def cot_sc(question: str, num_paths=10):
     sampling_params = vllm.SamplingParams(
         n=num_paths,
@@ -86,7 +84,6 @@ def cot_sc(question: str, num_paths=10):
         answer = 0
 
     return answer
-
 
 CODEACT_PROMPT = """
 You are a helpful coding assistant assigned to write OOP program in Python.  
@@ -131,10 +128,7 @@ For each row in the dataset, you will be given:
    </answer>
 """
 
-
-
 import logging
-
 
 class CustomFormatter(logging.Formatter):
     grey = "\x1b[38;20m"
@@ -168,7 +162,6 @@ class CustomFormatter(logging.Formatter):
         formatter = logging.Formatter(log_fmt)
         return formatter.format(record)
 
-
 logger = logging.getLogger(__name__)
 logger.propagate = False
 ch = logging.StreamHandler()
@@ -176,7 +169,6 @@ ch.setFormatter(CustomFormatter())
 logger.addHandler(ch)
 
 import ast
-
 
 def execute(script, globals=None, locals=None):
     """Execute a script and return the value of the last expression."""
@@ -203,7 +195,6 @@ def execute(script, globals=None, locals=None):
         return None
 
 import signal
-
 
 class PythonREPL:
     def __init__(self, timeout=None):
@@ -257,7 +248,6 @@ import re
 from pygments import highlight
 from pygments.formatters import Terminal256Formatter
 from pygments.lexers import PythonLexer
-
 
 class CodeActAgent:
     def __init__(self, llm_engine, max_iterations=10):
@@ -368,12 +358,11 @@ class CodeActAgent:
         logger.log(33, "Final answer:")
         logger.log(32, final_answer)
 
-
         return final_answer
 
 agent = CodeActAgent(
     llm_engine=llm_engine,
-    max_iterations=5,
+    max_iterations=2,
 )
 from collections import Counter
 
@@ -400,10 +389,6 @@ def run_with_self_consistency(agent, task: str, num_paths=5):
 
     return most_common
 
-
-
-
-
 # === New logic: process dev.csv and output submission.json (id, response) ===
 import json, os, re, zipfile
 
@@ -424,7 +409,6 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     #     question = f"{instruction}\n\nReference test cases:\n{test_list}"
     # else:
     #     question = instruction
-
 
     question = str(row["instruction"])
     tests = str(row.get("test_list", ""))
@@ -449,7 +433,6 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     response = safe_run(agent, prompt, retries=20)
 
     # response = run_with_self_consistency(agent, question, num_paths=5)
-
 
     # If agent.run returns None, blank the response
     
@@ -506,10 +489,6 @@ def file_format_check(path: str) -> bool:
 with open(SUB_PATH, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-
-
-
-
 # using encoding utf-8
 
 with open(SUB_PATH, "w", encoding="utf-8") as f:
@@ -517,9 +496,6 @@ with open(SUB_PATH, "w", encoding="utf-8") as f:
         [{"id": item["id"], "response": item["response"]} for item in data],
         f, ensure_ascii=False, indent=2
     )
-
-
-
 
 print("✅ Updated submission.json after checks (invalid responses blanked).")
 _ = file_format_check(SUB_PATH)
