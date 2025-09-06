@@ -11,7 +11,7 @@ model = "Qwen/Qwen2.5-Coder-14B-Instruct-AWQ"
 
 llm = vllm.LLM(
     model,
-    quantization="awq",
+    # quantization="awq",
     max_model_len=8192,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
