@@ -11,7 +11,7 @@ model = "Qwen/Qwen2.5-Coder-14B-Instruct-AWQ"
 
 llm = vllm.LLM(
     model,
-    # quantization="awq",
+    quantization="awq",
     max_model_len=8192,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
@@ -101,6 +101,7 @@ For each row in the dataset, you will be given:
    Explain your reasoning.  
    - Wrap your explanation in `<thought>` tags.  
    - Consider edge cases (e.g., empty inputs, zero values, large inputs) in your reasoning.  
+   - Consider corner cases that might not be explicitly mentioned in the instruction.
    Example:  
    <thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>  
 
