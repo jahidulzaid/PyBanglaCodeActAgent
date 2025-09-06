@@ -7,7 +7,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "unsloth/Qwen2.5-Coder-14B-bnb-4bit"
+model = "Qwen/Qwen3-8B"
 
 llm = vllm.LLM(
     model,
@@ -54,7 +54,7 @@ def extract_answer(response):
     return answer
 
 
-def cot_sc(question: str, num_paths=16):
+def cot_sc(question: str, num_paths=10):
     sampling_params = vllm.SamplingParams(
         n=num_paths,
         temperature=0.7,
@@ -101,6 +101,7 @@ For each row in the dataset, you will be given:
    Explain your reasoning.  
    - Wrap your explanation in `<thought>` tags.  
    - Consider edge cases (e.g., empty inputs, zero values, large inputs) in your reasoning.  
+   - Consider corner cases that might not be explicitly mentioned in the instruction.
    Example:  
    <thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>  
 
@@ -418,9 +419,13 @@ assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, i
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 # Load the translation model and tokenizer (inside the loop for simplicity, can be moved outside if performance is critical)
 
-translation_model_name = "md-nishat-008/TigerLLM-1B-it"  # Example Bengali to English model
+translation_model_name = "Helsinki-NLP/opus-mt-bn-en"  # Example Bengali to English model
 translator_tokenizer = AutoTokenizer.from_pretrained(translation_model_name)
 translator_model = AutoModelForSeq2SeqLM.from_pretrained(translation_model_name)
+
+
+# translator_tokenizer = AutoTokenizer.from_pretrained(translation_model_name)
+# translator_model = AutoModelForCausalLM.from_pretrained(translation_model_name)
 
 
 
@@ -439,6 +444,12 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     inputs = translator_tokenizer(bengali_instruction, return_tensors="pt", padding=True, truncation=True)
     translated_tokens = translator_model.generate(**inputs, max_length=512)
     english_instruction = translator_tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
+
+    # bengali_instruction = question
+    # prompt = f"Translate this from Bengali to English:\n{bengali_instruction}"
+    # inputs = translator_tokenizer(prompt, return_tensors="pt", padding=True, truncation=True)
+    # translated_tokens = translator_model.generate(**inputs, max_length=512)
+    # english_instruction = translator_tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
 
 
 
