@@ -54,7 +54,7 @@ def extract_answer(response):
     return answer
 
 
-def cot_sc(question: str, num_paths=16):
+def cot_sc(question: str, num_paths=10):
     sampling_params = vllm.SamplingParams(
         n=num_paths,
         temperature=0.7,
@@ -373,7 +373,7 @@ class CodeActAgent:
 
 agent = CodeActAgent(
     llm_engine=llm_engine,
-    max_iterations=6,
+    max_iterations=8,
 )
 from collections import Counter
 
@@ -399,9 +399,6 @@ def run_with_self_consistency(agent, task: str, num_paths=5):
     logger.log(33, f"Final majority-voted answer (count={count}): {most_common}")
 
     return most_common
-
-
-
 
 
 # === New logic: process dev.csv and output submission.json (id, response) ===
