@@ -418,13 +418,13 @@ assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, i
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 # Load the translation model and tokenizer (inside the loop for simplicity, can be moved outside if performance is critical)
 
-translation_model_name = "md-nishat-008/TigerLLM-1B-it"  # Example Bengali to English model
-# translator_tokenizer = AutoTokenizer.from_pretrained(translation_model_name)
-# translator_model = AutoModelForSeq2SeqLM.from_pretrained(translation_model_name)
-
-
+translation_model_name = "Helsinki-NLP/opus-mt-bn-en"  # Example Bengali to English model
 translator_tokenizer = AutoTokenizer.from_pretrained(translation_model_name)
-translator_model = AutoModelForCausalLM.from_pretrained(translation_model_name)
+translator_model = AutoModelForSeq2SeqLM.from_pretrained(translation_model_name)
+
+
+# translator_tokenizer = AutoTokenizer.from_pretrained(translation_model_name)
+# translator_model = AutoModelForCausalLM.from_pretrained(translation_model_name)
 
 
 
@@ -440,15 +440,15 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
 
     # Translate the Bengali instruction to English
     bengali_instruction = question  # Assuming 'question' still holds the original Bengali instruction
-    # inputs = translator_tokenizer(bengali_instruction, return_tensors="pt", padding=True, truncation=True)
-    # translated_tokens = translator_model.generate(**inputs, max_length=512)
-    # english_instruction = translator_tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
-
-    bengali_instruction = question
-    prompt = f"Translate this from Bengali to English:\n{bengali_instruction}"
-    inputs = translator_tokenizer(prompt, return_tensors="pt", padding=True, truncation=True)
+    inputs = translator_tokenizer(bengali_instruction, return_tensors="pt", padding=True, truncation=True)
     translated_tokens = translator_model.generate(**inputs, max_length=512)
     english_instruction = translator_tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
+
+    # bengali_instruction = question
+    # prompt = f"Translate this from Bengali to English:\n{bengali_instruction}"
+    # inputs = translator_tokenizer(prompt, return_tensors="pt", padding=True, truncation=True)
+    # translated_tokens = translator_model.generate(**inputs, max_length=512)
+    # english_instruction = translator_tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
 
 
 
