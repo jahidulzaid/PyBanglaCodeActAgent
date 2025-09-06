@@ -7,7 +7,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "Qwen/Qwen3-8B"
+model = "Qwen/Qwen3-Coder-30B-A3B-Instruct-FP8"
 
 llm = vllm.LLM(
     model,
@@ -414,10 +414,11 @@ assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, i
 
 
 
-
+#ADDING TRANSLATION en to bn
 from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+# Load the translation model and tokenizer (inside the loop for simplicity, can be moved outside if performance is critical)
 
-translation_model_name = "Helsinki-NLP/opus-mt-bn-en"  # Example Bengali to English model
+translation_model_name = "md-nishat-008/TigerLLM-1B-it"  # Example Bengali to English model
 translator_tokenizer = AutoTokenizer.from_pretrained(translation_model_name)
 translator_model = AutoModelForSeq2SeqLM.from_pretrained(translation_model_name)
 
@@ -432,8 +433,6 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
 
 
     #ADDING TRANSLATION en to bn
-    # Load the translation model and tokenizer (inside the loop for simplicity, can be moved outside if performance is critical)
-
 
     # Translate the Bengali instruction to English
     bengali_instruction = question  # Assuming 'question' still holds the original Bengali instruction
