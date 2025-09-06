@@ -7,11 +7,11 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "Qwen/Qwen3-14B"
+model = "Qwen/Qwen2.5-32B-Instruct-AWQ"
 
 llm = vllm.LLM(
     model,
-    # quantization="awq",
+    quantization="awq",
     max_model_len=4096,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
