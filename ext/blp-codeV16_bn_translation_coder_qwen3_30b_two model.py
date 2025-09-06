@@ -7,7 +7,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "lmstudio-community/Qwen2.5-Coder-14B-GGUF"
+model = "unsloth/Qwen2.5-Coder-14B-bnb-4bit"
 
 llm = vllm.LLM(
     model,
