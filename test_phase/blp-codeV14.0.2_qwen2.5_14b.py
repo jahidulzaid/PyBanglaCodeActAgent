@@ -54,7 +54,7 @@ def extract_answer(response):
     return answer
 
 
-def cot_sc(question: str, num_paths=10):
+def cot_sc(question: str, num_paths=16):
     sampling_params = vllm.SamplingParams(
         n=num_paths,
         temperature=0.7,
@@ -101,7 +101,6 @@ For each row in the dataset, you will be given:
    Explain your reasoning.  
    - Wrap your explanation in `<thought>` tags.  
    - Consider edge cases (e.g., empty inputs, zero values, large inputs) in your reasoning.  
-   - Consider corner cases that might not be explicitly mentioned in the instruction.
    Example:  
    <thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>  
 
@@ -413,48 +412,28 @@ set_seed(42)
 df = pd.read_csv("test_v1.csv")  # expects columns: id, instruction, test_list
 assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction, test_list"
 
-
-
-#ADDING TRANSLATION en to bn
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
-# Load the translation model and tokenizer (inside the loop for simplicity, can be moved outside if performance is critical)
-
-translation_model_name = "Helsinki-NLP/opus-mt-bn-en"  # Example Bengali to English model
-translator_tokenizer = AutoTokenizer.from_pretrained(translation_model_name)
-translator_model = AutoModelForSeq2SeqLM.from_pretrained(translation_model_name)
-
-
-# translator_tokenizer = AutoTokenizer.from_pretrained(translation_model_name)
-# translator_model = AutoModelForCausalLM.from_pretrained(translation_model_name)
-
-
-
 results = []
 for i, row in tqdm(df.iterrows(), total=len(df)):
+    # # question = str(row["instruction"])
+    # # including test_list for reference
+    # instruction = str(row["instruction"])
+    # test_list = str(row["test_list"]) if "test_list" in df.columns else ""
+
+    # # Combine instruction + test_list
+    # if test_list.strip():
+    #     question = f"{instruction}\n\nReference test cases:\n{test_list}"
+    # else:
+    #     question = instruction
+
+
+
+
 
 
     question = str(row["instruction"])
     tests = str(row.get("test_list", ""))
-
-
-    #ADDING TRANSLATION en to bn
-
-    # Translate the Bengali instruction to English
-    bengali_instruction = question  # Assuming 'question' still holds the original Bengali instruction
-    inputs = translator_tokenizer(bengali_instruction, return_tensors="pt", padding=True, truncation=True)
-    translated_tokens = translator_model.generate(**inputs, max_length=512)
-    english_instruction = translator_tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
-
-    # bengali_instruction = question
-    # prompt = f"Translate this from Bengali to English:\n{bengali_instruction}"
-    # inputs = translator_tokenizer(prompt, return_tensors="pt", padding=True, truncation=True)
-    # translated_tokens = translator_model.generate(**inputs, max_length=512)
-    # english_instruction = translator_tokenizer.decode(translated_tokens[0], skip_special_tokens=True)
-
-
-
     prompt = f"""You are solving a coding task.
-    Instruction: {english_instruction}
+    Instruction: {question}
 
     Here are the test cases you must satisfy:
     {tests}
