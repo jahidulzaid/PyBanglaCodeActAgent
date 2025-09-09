@@ -100,9 +100,9 @@ For each row in the dataset, you will be given:
 1. **Thought Process**:  
    Explain your reasoning.  
    - Wrap your explanation in `<thought>` tags.  
-   - Consider edge cases (e.g., empty inputs, zero values, large inputs) in your reasoning.  
+   - Consider edge cases (e.g., empty inputs, zero values, large inputs).  
    Example:  
-   <thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>  
+   <thought>I need to compute gcd.</thought>  
 
 2. **Write Python Code**:  
    Implement the Python program according to the instruction.  
