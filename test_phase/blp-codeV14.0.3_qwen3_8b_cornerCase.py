@@ -373,7 +373,7 @@ class CodeActAgent:
 
 agent = CodeActAgent(
     llm_engine=llm_engine,
-    max_iterations=6,
+    max_iterations=4,
 )
 from collections import Counter
 
