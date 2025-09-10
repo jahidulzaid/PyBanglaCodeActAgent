@@ -1,3 +1,5 @@
+# blp-codeV14.0.4_Qwen/Qwen2.5-Coder-32B-Instruct-GPTQ-Int8_cornerCase.py
+
 import re
 from collections import Counter
 import vllm
@@ -7,7 +9,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "Qwen/Qwen2.5-Coder-14B"
+model = "Qwen/Qwen2.5-Coder-32B-Instruct-GPTQ-Int8"
 
 llm = vllm.LLM(
     model,
