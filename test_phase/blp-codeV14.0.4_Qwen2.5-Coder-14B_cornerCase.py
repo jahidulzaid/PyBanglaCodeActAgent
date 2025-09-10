@@ -1,6 +1,3 @@
-# couldn't run on GPU, needed more memory
-
-
 import re
 from collections import Counter
 import vllm
@@ -10,7 +7,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "Qwen/Qwen3-8B"
+model = "Qwen/Qwen2.5-Coder-14B"
 
 llm = vllm.LLM(
     model,
