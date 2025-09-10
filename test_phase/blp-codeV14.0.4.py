@@ -9,7 +9,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "Qwen/Qwen2.5-Coder-32B-Instruct-GPTQ-Int8"
+model = "Qwen/Qwen2.5-Coder-32B-Instruct-AWQ"
 
 llm = vllm.LLM(
     model,
@@ -440,7 +440,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     Here are the test cases you must satisfy:
     {tests}
 
-    There will be hidden test cases as well. Consider edge and corner cases (e.g., empty inputs, zero values, large inputs) in your reasoning. 
+    There will be hidden test cases as well.
 
     Please return only the Python function/code solution, nothing else.
     """
