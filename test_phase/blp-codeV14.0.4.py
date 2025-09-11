@@ -14,7 +14,7 @@ model = "Qwen/Qwen2.5-Coder-32B-Instruct-AWQ"
 llm = vllm.LLM(
     model,
     # quantization="awq",
-    max_model_len=8192,
+    max_model_len=6500,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
 )
@@ -28,7 +28,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=8192,
+        max_tokens=6500,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
