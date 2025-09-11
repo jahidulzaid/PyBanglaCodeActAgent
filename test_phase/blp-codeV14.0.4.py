@@ -8,15 +8,15 @@ import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 
-
 model = "Qwen/Qwen2.5-Coder-32B-Instruct-AWQ"
 
 llm = vllm.LLM(
     model,
-    # quantization="awq",
-    max_model_len=6500,
+    quantization="awq",            # Enable quantization if possible
+    max_model_len=2048,            # Reduce context length unless needed
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
+    dtype=torch.float16,           # Use fp16 if supported
 )
 
 tokenizer = llm.get_tokenizer()
@@ -25,12 +25,10 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
     sampling_params = vllm.SamplingParams(
         temperature=0.7,
         top_p=0.9,
-        # use_beam_search=True,
-        # num_beams=3,
-        best_of=1,
-        max_tokens=6500,
+        max_tokens=512,              # Limit max tokens per generation to reasonable size
         stop=stop_sequences,
         include_stop_str_in_output=True,
+        best_of=1,                  # Consider small beam search for better quality
     )
     prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     if start_sequence:
@@ -41,6 +39,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
     if start_sequence:
         response = start_sequence + response
     return response
+
 
 def extract_answer(response):
     # Regex pattern to match content inside \boxed{...}
