@@ -1,4 +1,5 @@
-# blp-codeV14.0.4_Qwen/Qwen2.5-Coder-32B-Instruct-GPTQ-Int8_cornerCase.py
+# couldn't run on GPU, needed more memory
+
 
 import re
 from collections import Counter
@@ -9,12 +10,12 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "Qwen/Qwen2.5-Coder-32B-Instruct-AWQ"
+model = "codellama/CodeLlama-13b-Python-hf"
 
 llm = vllm.LLM(
     model,
     # quantization="awq",
-    max_model_len=6500,
+    max_model_len=8192,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
 )
@@ -28,7 +29,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=6500,
+        max_tokens=8192,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
@@ -440,7 +441,7 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
     Here are the test cases you must satisfy:
     {tests}
 
-    There will be hidden test cases as well.
+    There will be hidden test cases as well. Consider edge and corner cases (e.g., empty inputs, zero values, large inputs) in your reasoning. 
 
     Please return only the Python function/code solution, nothing else.
     """
