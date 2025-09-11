@@ -10,7 +10,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "codellama/CodeLlama-13b-Python-hf"
+model = "codellama/CodeLlama-7b-Python-hf"
 
 llm = vllm.LLM(
     model,
