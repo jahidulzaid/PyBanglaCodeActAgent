@@ -22,17 +22,12 @@ llm = LLM(
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),  # likely =1
     dtype="float16",   # vLLM may still need a higher precision dtype for non‑quantized parts
-    gpu_memory_utilization=0.9,
-    enforce_eager=True,
-    max_num_batched_tokens=8192,
-    disable_log_stats=True,
-    swap_space=1 << 32,
 )
 tokenizer = llm.get_tokenizer()
 
 def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
     sampling_params = vllm.SamplingParams(
-        temperature=0.7,
+        temperature=0.6,
         top_p=0.9,
         # use_beam_search=True,
         # num_beams=3,
