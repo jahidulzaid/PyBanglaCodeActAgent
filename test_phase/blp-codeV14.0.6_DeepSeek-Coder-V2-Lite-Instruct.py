@@ -10,7 +10,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct-AWQ"  # Use the quantized HF version
+model = "lmstudio-community/DeepSeek-Coder-V2-Lite-Instruct-GGUF"  # Use the quantized HF version
 
 llm = vllm.LLM(
     model=model,
