@@ -28,7 +28,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=6500,
+        max_tokens=16384,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
