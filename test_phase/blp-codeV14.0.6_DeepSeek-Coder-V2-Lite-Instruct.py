@@ -9,6 +9,7 @@ import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 
+from vllm import LLM
 
 model_id = "nm-testing/DeepSeek-Coder-V2-Lite-Instruct-FP8"
 
