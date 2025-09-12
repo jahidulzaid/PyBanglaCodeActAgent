@@ -10,14 +10,15 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "lmstudio-community/DeepSeek-Coder-V2-Lite-Instruct-GGUF"  # Use the quantized HF version
+model_id = "nm-testing/DeepSeek-Coder-V2-Lite-Instruct-FP8"
 
-llm = vllm.LLM(
-    model=model,
-    quantization="awq",
-    max_model_len=16384,
+llm = LLM(
+    model=model_id,
+    trust_remote_code=True,
+    max_model_len=16384,   # try 16k; should be safer than putting full 32‑128k
     enable_prefix_caching=True,
-    tensor_parallel_size=torch.cuda.device_count(),  # Should be 1 for single 4090
+    tensor_parallel_size=torch.cuda.device_count(),  # likely =1
+    dtype="float16",   # vLLM may still need a higher precision dtype for non‑quantized parts
 )
 tokenizer = llm.get_tokenizer()
 
