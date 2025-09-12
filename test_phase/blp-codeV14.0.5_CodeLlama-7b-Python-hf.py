@@ -40,7 +40,22 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
+    # prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+    if not hasattr(tokenizer, "chat_template") or tokenizer.chat_template is None:
+        tokenizer.chat_template = (
+            "{% for message in messages %}"
+            "{% if message['role'] == 'system' %}"
+            "<<SYS>>\n{{ message['content'] }}\n<</SYS>>\n\n"
+            "{% elif message['role'] == 'user' %}"
+            "[INST] {{ message['content'] }} [/INST]"
+            "{% elif message['role'] == 'assistant' %}"
+            "{{ message['content'] }}\n"
+            "{% endif %}"
+            "{% endfor %}"
+        )
+
     prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
+
     if start_sequence:
         prompt += start_sequence
     output = llm.generate([prompt], sampling_params, use_tqdm=False)
