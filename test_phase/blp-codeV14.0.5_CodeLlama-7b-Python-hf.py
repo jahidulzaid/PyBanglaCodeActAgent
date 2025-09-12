@@ -22,6 +22,13 @@ llm = vllm.LLM(
 
 tokenizer = llm.get_tokenizer()
 
+def fix_tokenizer_chat_template(tokenizer, template: str):
+    """
+    Sets a chat template on a tokenizer that is missing it.
+    """
+    tokenizer.chat_template = template
+    return tokenizer
+
 def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
     sampling_params = vllm.SamplingParams(
         temperature=0.7,
