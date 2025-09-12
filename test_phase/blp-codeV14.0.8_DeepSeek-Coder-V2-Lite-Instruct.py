@@ -1,4 +1,4 @@
-
+# couldn't run on GPU, needed more memory
 
 
 import re
@@ -8,18 +8,26 @@ import torch
 import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
+import json
 
 from vllm import LLM
-
-model_id = "nm-testing/DeepSeek-Coder-V2-Lite-Instruct-FP8"
+# ---------- CONFIG ----------
+NUM_PATHS = 10   # number of samples per problem
+MODEL_NAME = "nm-testing/DeepSeek-Coder-V2-Lite-Instruct-FP8"
 
 llm = LLM(
-    model=model_id,
+    model=MODEL_NAME,
     trust_remote_code=True,
-    max_model_len=16384,   # try 16k; should be safer than putting full 32‑128k
+    max_model_len=32768,   # try 16k; should be safer than putting full 32‑128k
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),  # likely =1
     dtype="float16",   # vLLM may still need a higher precision dtype for non‑quantized parts
+    gpu_memory_utilization=0.9,
+    enforce_eager=True,
+    max_num_batched_tokens=8192,
+    disable_log_stats=True,
+    max_model_len=8192,
+    swap_space=1 << 32,
 )
 tokenizer = llm.get_tokenizer()
 
@@ -30,7 +38,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=16384,
+        max_tokens=32768,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
@@ -44,52 +52,11 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         response = start_sequence + response
     return response
 
-def extract_answer(response):
-    # Regex pattern to match content inside \boxed{...}
-    pattern = r'\\boxed{(-?\d+)}'
-
-    # Search for the match
-    match = re.search(pattern, response)
-
-    if match:
-        answer = int(match.group(1))  # Get the content inside the curly braces
-    else:
-        answer = -1
-    return answer
+# ---------- CONFIG ----------
+NUM_PATHS = 10   # number of samples per problem
+MODEL_NAME = "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct-FP8"
 
 
-def cot_sc(question: str, num_paths=16):
-    sampling_params = vllm.SamplingParams(
-        n=num_paths,
-        temperature=0.7,
-        top_p=0.8,
-        repetition_penalty=1.05,
-        max_tokens=8192
-    )
-
-    prompt = question
-    messages = [
-        {"role": "system", "content": "Please reason step by step in English, and put your final answer within \\boxed{}."},
-        {"role": "user", "content": prompt}
-    ]
-
-    text = tokenizer.apply_chat_template(
-        messages,
-        tokenize=False,
-        add_generation_prompt=True
-    )
-
-    outputs = llm.generate([text], sampling_params, use_tqdm=False)
-    outputs = [output.text for output in outputs[0].outputs]
-    answers = [extract_answer(output) for output in outputs]
-    answers = [answer for answer in answers if answer >= 0]
-
-    if answers:
-        answer, _ = Counter(answers).most_common(1)[0]
-    else:
-        answer = 0
-
-    return answer
 
 
 CODEACT_PROMPT = """
@@ -256,6 +223,8 @@ class PythonREPL:
     def reset(self):
         self.state = {}
 
+
+
 import re
 
 from pygments import highlight
@@ -301,16 +270,6 @@ class CodeActAgent:
                 # logger.log(36, f"Raw LLM response: {response}")
                 # Try to extract a Python function as a last resort
 
-                # # func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
-                # func_match = re.search(r'def\s+\w+\(.*?\):(?:\n(?: {4}|\t).*)+', response)
-
-                # if func_match:
-                #     final_answer = func_match.group(1).strip()
-                #     logger.log(33, "Fallback: Extracted function from raw response.")
-                #     logger.log(32, final_answer)
-                #     return final_answer
-                # return None
-
             if thoughts:
                 logger.log(35, "=== Agent thoughts:")
                 logger.log(31, thoughts[0].strip())
@@ -350,21 +309,6 @@ class CodeActAgent:
             if final_answer is not None:
                 break
 
-            # # Prefer <answer> if present, else fallback to last <code> block
-            # if answers and answers[0].strip():
-            #     final_answer = answers[0].strip()
-            # else:
-            #     # As a last fallback, extract a Python function from the raw response
-
-            #     # func_match = re.search(r'(def [\s\S]+?\n)(?=\n|$)', response)
-            #     func_match = re.search(r'def\s+\w+\(.*?\):(?:\n(?: {4}|\t).*)+', response)
-            #     if func_match:
-            #         final_answer = func_match.group(1).strip()
-            #     else:
-            #         final_answer = None
-            # if final_answer:
-            #     break
-
         else:
             logger.error("Reached max iterations.")
             return None
@@ -377,166 +321,94 @@ class CodeActAgent:
 
 agent = CodeActAgent(
     llm_engine=llm_engine,
-    max_iterations=4,
+    max_iterations=8,
 )
-from collections import Counter
-
-def run_with_self_consistency(agent, task: str, num_paths=5):
-    """
-    Run the agent multiple times and pick the most common final answer.
-    """
-    answers = []
-
-    for _ in range(num_paths):
-        answer = agent.run(task)
-        if answer:
-            answers.append(answer.strip())
-
-    if not answers:
-        return None  # model failed every run
-
-    # majority voting
-    most_common, count = Counter(answers).most_common(1)[0]
-
-    # Optional: debug log all answers
-    logger.log(35, f"All candidate answers: {answers}")
-    logger.log(33, f"Final majority-voted answer (count={count}): {most_common}")
-
-    return most_common
 
 
+# ---------- run_codeact with majority voting ----------
+def run_codeact(agent, instruction: str, test_list: list[str]) -> str:
+    """Generate multiple candidates, test them, and pick by majority voting."""
+    candidates = []
 
+    for _ in range(NUM_PATHS):
+        # Step 1: Generate code
+        code = agent.run(instruction)
+        if not code:
+            continue
 
+        # Normalize candidate for voting
+        normalized_code = re.sub(r"\s+", " ", code.strip())
 
-# === New logic: process dev.csv and output submission.json (id, response) ===
-import json, os, re, zipfile
+        # Step 2: Run candidate with all visible tests
+        passed_all = True
+        for test_code in test_list:
+            final_output, _ = agent.repl.run(code + "\n" + test_code)
+            if final_output is None:
+                passed_all = False
+                break
 
-set_seed(42)
+        if passed_all:
+            candidates.append(normalized_code)
 
-df = pd.read_csv("test_v1.csv")  # expects columns: id, instruction, test_list
-assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction, test_list"
+    # Step 3: Majority voting
+    if candidates:
+        final = Counter(candidates).most_common(1)[0][0]
+    else:
+        # Fallback: generate one candidate (ignore tests)
+        code = agent.run(instruction)
+        final = code.strip() if code else ""
 
-results = []
-for i, row in tqdm(df.iterrows(), total=len(df)):
-    # # question = str(row["instruction"])
-    # # including test_list for reference
-    # instruction = str(row["instruction"])
-    # test_list = str(row["test_list"]) if "test_list" in df.columns else ""
-
-    # # Combine instruction + test_list
-    # if test_list.strip():
-    #     question = f"{instruction}\n\nReference test cases:\n{test_list}"
-    # else:
-    #     question = instruction
+    return final
 
 
 
+# ---------- Main ----------
+def main():
+    SUB_PATH = "submission.json"
+
+    if os.path.exists(SUB_PATH):
+        with open(SUB_PATH, "r", encoding="utf-8") as f:
+            existing = json.load(f)
+    else:
+        existing = []
+
+    # Load test dataset
+    test_df = pd.read_csv("test_v1.csv")
+    existing_ids = {item["id"] for item in existing}
+    test_df = test_df[~test_df["id"].isin(existing_ids)]
 
 
+    # Process problems
+    results = []
+    for _, row in tqdm(test_df.iterrows(), total=len(test_df)):
+        instruction = row["instruction"]
+        test_list = eval(row["test_list"]) if isinstance(row["test_list"], str) else []
 
-    question = str(row["instruction"])
-    tests = str(row.get("test_list", ""))
-    prompt = f"""You are solving a coding task.
-    Instruction: {question}
+        final_code = run_codeact(agent, instruction, test_list)
+        results.append({"id": row["id"], "response": final_code})
 
-    Here are the test cases you must satisfy:
-    {tests}
+        # Save incrementally
+        with open(SUB_PATH, "w", encoding="utf-8") as f:
+            json.dump(existing + results, f, ensure_ascii=False, indent=2)
 
-    There will be hidden test cases as well. Consider edge and corner cases (e.g., empty inputs, zero values, large inputs) in your reasoning. 
+    # Final cleaning
+    with open(SUB_PATH, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    Please return only the Python function/code solution, nothing else.
-    """
+    cleaned = []
+    for item in data:
+        try:
+            idx = int(item["id"])
+            resp = str(item["response"])
+            cleaned.append({"id": idx, "response": resp})
+        except Exception:
+            continue
 
+    with open(SUB_PATH, "w", encoding="utf-8") as f:
+        json.dump(cleaned, f, ensure_ascii=False, indent=2)
 
-    def safe_run(agent, task, retries=25):
-        for attempt in range(retries):
-            response = agent.run(task)
-            if isinstance(response, str) and response.strip():
-                return response
-            logger.warning(f"Empty response on attempt {attempt+1}, retrying...")
-        return ""  # fallback after retries
+    print(f"✅ Finished. Saved {len(cleaned)} results to {SUB_PATH}")
 
-
-
-    
-    # response = agent.run(question)
-    response = safe_run(agent, prompt, retries=25)
-
-    # response = run_with_self_consistency(agent, question, num_paths=5)
-
-
-    # If agent.run returns None, blank the response
-    
-    ###### for retires changed to above safe_run
-    # if not isinstance(response, str):
-    #     response = ""
-    # if response is None:
-    #     response = ""
-    results.append({"id": int(row["id"]), "response": str(response)})
-
-
-# Save as JSON list
-with open("submission.json", "w", encoding="utf-8") as f:
-    json.dump(results, f, ensure_ascii=False, indent=2)
-print(f"✅ Wrote submission.json with {len(results)} rows (id, response).")
-
-# --- Validation and zipping ( from prompt.py) ---
-SUB_PATH = "submission.json"
-def file_format_check(path: str) -> bool:
-    if os.path.basename(path) != "submission.json":
-        print("Error: File name must be exactly 'submission.json'")
-        return False
-    if not path.lower().endswith(".json"):
-        print("Error: File must have .json extension")
-        return False
-    try:
-        with open(path, "r", encoding="utf-8") as f:
-            data = json.load(f)
-    except json.JSONDecodeError as e:
-        print(f"Error: Invalid JSON format - {e}")
-        print("Note: The file must be in proper JSON format (not JSONL)")
-        return False
-    if not isinstance(data, list):
-        print("Error: The root element should be a list of objects")
-        return False
-    for idx, item in enumerate(data):
-        if not isinstance(item, dict):
-            print(f"Error: Item at index {idx} is not a dictionary")
-            return False
-        keys = set(item.keys())
-        if keys != {"id", "response"}:
-            print(f"Error: Item at index {idx} must contain only keys 'id' and 'response', found: {keys}")
-            return False
-        if not isinstance(item["id"], int):
-            print(f"Error: 'id' field at index {idx} must be an integer")
-            return False
-        if not isinstance(item["response"], str):
-            print(f"Error: 'response' field at index {idx} must be a string")
-            return False
-    print("Format check passed successfully!")
-    return True
-
-# Fencing/format validation and blanking invalids
-with open(SUB_PATH, "r", encoding="utf-8") as f:
-    data = json.load(f)
-
-
-
-
-
-# using encoding utf-8
-
-with open(SUB_PATH, "w", encoding="utf-8") as f:
-    json.dump(
-        [{"id": item["id"], "response": item["response"]} for item in data],
-        f, ensure_ascii=False, indent=2
-    )
-
-
-
-
-print("✅ Updated submission.json after checks (invalid responses blanked).")
-_ = file_format_check(SUB_PATH)
-with zipfile.ZipFile("submission.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
-    zf.write(SUB_PATH)
-print("📦 Created submission.zip containing submission.json.")
+# ---------- Entry ----------
+if __name__ == "__main__":
+    main()

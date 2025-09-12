@@ -1,5 +1,3 @@
-# couldn't run on GPU, needed more memory
-
 
 import re
 from collections import Counter

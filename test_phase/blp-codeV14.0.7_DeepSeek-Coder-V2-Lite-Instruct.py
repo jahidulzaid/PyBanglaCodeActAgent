@@ -1,4 +1,4 @@
-# couldn't run on GPU, needed more memory
+
 
 
 import re
