@@ -9,6 +9,7 @@ import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 import json
+import os
 
 from vllm import LLM
 # ---------- CONFIG ----------
