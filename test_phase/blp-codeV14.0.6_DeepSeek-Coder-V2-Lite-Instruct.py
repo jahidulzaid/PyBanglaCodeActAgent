@@ -10,16 +10,15 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "codellama/CodeLlama-13b-Python-hf"
+model = "deepseek-ai/DeepSeek-Coder-V2-Lite-Instruct-AWQ"  # Use the quantized HF version
 
 llm = vllm.LLM(
-    model,
-    # quantization="awq",
-    max_model_len=6500,
+    model=model,
+    quantization="awq",
+    max_model_len=16384,
     enable_prefix_caching=True,
-    tensor_parallel_size=torch.cuda.device_count(),
+    tensor_parallel_size=torch.cuda.device_count(),  # Should be 1 for single 4090
 )
-
 tokenizer = llm.get_tokenizer()
 
 def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
