@@ -368,9 +368,13 @@ def main():
         existing = []
 
     # Load test dataset
-    test_df = pd.read_csv("test_v1.csv")
-    existing_ids = {item["id"] for item in existing}
-    test_df = test_df[~test_df["id"].isin(existing_ids)]
+    # test_df = pd.read_csv("test_v1.csv")
+    # existing_ids = {item["id"] for item in existing}
+    # test_df = test_df[~test_df["id"].isin(existing_ids)]
+
+    test_df = pd.read_csv("test_v1.csv")  # expects columns: id, instruction, test_list
+    assert {"id", "instruction"}.issubset(test_df.columns), "CSV must have columns: id, instruction, test_list"
+
 
 
     # Process problems
