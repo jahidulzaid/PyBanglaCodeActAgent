@@ -26,7 +26,6 @@ llm = LLM(
     enforce_eager=True,
     max_num_batched_tokens=8192,
     disable_log_stats=True,
-    max_model_len=8192,
     swap_space=1 << 32,
 )
 tokenizer = llm.get_tokenizer()
