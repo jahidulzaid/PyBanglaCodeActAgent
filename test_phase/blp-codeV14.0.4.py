@@ -102,7 +102,7 @@ Only one test_case is given. Rest will be used to validate the solution.
 **Your Workflow for each task:**
 
 1. **Thought Process**:  
-   Explain your reasoning.  
+   Explain your reasoning in details considering all possible edge cases.  
    - Wrap your explanation in `<thought>` tags.  
    - Consider edge cases (e.g., empty inputs, zero values, large inputs).  
    Example:  
