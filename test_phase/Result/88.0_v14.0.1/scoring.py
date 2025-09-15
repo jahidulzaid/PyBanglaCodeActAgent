@@ -118,7 +118,7 @@ with open(os.path.join(prediction_dir,'submission.json'), 'r', encoding='utf-8')
 
 
 ref_df = pd.read_csv(
-    os.path.join(reference_dir, 'dev.csv'),
+    os.path.join(reference_dir, 'test_v1.csv'),
     dtype=str,                # keep everything as string to avoid NaN
     keep_default_na=False     # empty cells stay '', not NaN
 )
