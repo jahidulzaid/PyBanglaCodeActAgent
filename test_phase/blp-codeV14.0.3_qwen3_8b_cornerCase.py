@@ -534,7 +534,7 @@ with open(SUB_PATH, "w", encoding="utf-8") as f:
 
 
 
-print("✅ Updated submission.json after checks (invalid responses blanked).")
+print("Updated submission.json after checks (invalid responses blanked).")
 _ = file_format_check(SUB_PATH)
 with zipfile.ZipFile("submission.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
     zf.write(SUB_PATH)

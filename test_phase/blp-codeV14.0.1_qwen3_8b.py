@@ -92,7 +92,7 @@ CODEACT_PROMPT = """
 You are a helpful coding assistant assigned to write OOP program in Python.  
 
 For each row in the dataset, you will be given:  
-- An **instruction** describing the task.  
+- An **instruction** describing the task in Bangla.  
 - A **test_list** (Python assertions).  
 
 **Your Workflow for each task:**
@@ -414,21 +414,6 @@ assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, i
 
 results = []
 for i, row in tqdm(df.iterrows(), total=len(df)):
-    # # question = str(row["instruction"])
-    # # including test_list for reference
-    # instruction = str(row["instruction"])
-    # test_list = str(row["test_list"]) if "test_list" in df.columns else ""
-
-    # # Combine instruction + test_list
-    # if test_list.strip():
-    #     question = f"{instruction}\n\nReference test cases:\n{test_list}"
-    # else:
-    #     question = instruction
-
-
-
-
-
 
     question = str(row["instruction"])
     tests = str(row.get("test_list", ""))

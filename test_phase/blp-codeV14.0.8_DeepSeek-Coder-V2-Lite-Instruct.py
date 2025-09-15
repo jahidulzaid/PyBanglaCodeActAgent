@@ -40,7 +40,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
     prompt = tokenizer.apply_chat_template(messages, tokenize=False, add_generation_prompt=True)
     if start_sequence:
         prompt += start_sequence
-    output = llm.generate([prompt], sampling_params, use_tqdm=False)
+    output = llm.generate([prompt], sampling_params, use_tqdm=True)
     response = output[0].outputs[0].text
 
     if start_sequence:

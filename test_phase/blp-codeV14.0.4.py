@@ -1,4 +1,5 @@
-# blp-codeV14.0.4_Qwen/Qwen2.5-Coder-32B-Instruct-GPTQ-Int8_cornerCase.py
+# couldn't run on GPU, needed more memory
+
 
 import re
 from collections import Counter
@@ -9,12 +10,12 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "Qwen/Qwen2.5-Coder-32B-Instruct-AWQ"
+model = "Qwen/Qwen3-14B"
 
 llm = vllm.LLM(
     model,
     # quantization="awq",
-    max_model_len=6500,
+    max_model_len=8192,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
 )
@@ -28,7 +29,7 @@ def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=6500,
+        max_tokens=8192,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
@@ -91,11 +92,12 @@ def cot_sc(question: str, num_paths=16):
 
 
 CODEACT_PROMPT = """
-You are a helpful coding assistant assigned to write OOP program in Python.  
+You are a helpful coding assistant assigned to write python program  based on the all the instructions in Python. Ensuring the given and hidden possible test cases are satisfied is crucial.
 
 For each row in the dataset, you will be given:  
-- An **instruction** describing the task.  
+- An **instruction** describing the task in Bangla Language.  
 - A **test_list** (Python assertions).  
+Only one test_case is given. Rest will be used to validate the solution.
 
 **Your Workflow for each task:**
 
@@ -125,7 +127,8 @@ For each row in the dataset, you will be given:
    <observation>All tests passed successfully.</observation>  
 
 4. **Final Answer**:  
-   Provide only the final clean Python program (without test assertions).  
+   Provide only the final clean Python program (without test assertions).
+   Do **not** include any other text.
    - Wrap your final answer in `<answer>` tags.  
    Example:  
    <answer>
@@ -434,13 +437,14 @@ for i, row in tqdm(df.iterrows(), total=len(df)):
 
     question = str(row["instruction"])
     tests = str(row.get("test_list", ""))
-    prompt = f"""You are solving a coding task.
+    prompt = f"""You are a helpful coding assistant assigned to write python program based on the all the instructions in Python. Ensuring the given and hidden possible test cases are satisfied is crucial.
+
     Instruction: {question}
 
     Here are the test cases you must satisfy:
     {tests}
 
-    There will be hidden test cases as well.
+    There will be hidden test cases as well. Consider edge and corner cases (e.g., empty inputs, zero values, large inputs) in your reasoning. 
 
     Please return only the Python function/code solution, nothing else.
     """
@@ -533,7 +537,7 @@ with open(SUB_PATH, "w", encoding="utf-8") as f:
 
 
 
-print("✅ Updated submission.json after checks (invalid responses blanked).")
+print("Updated submission.json after checks (invalid responses blanked).")
 _ = file_format_check(SUB_PATH)
 with zipfile.ZipFile("submission.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
     zf.write(SUB_PATH)
