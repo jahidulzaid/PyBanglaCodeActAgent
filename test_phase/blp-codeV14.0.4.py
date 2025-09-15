@@ -10,7 +10,7 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
-model = "Qwen/Qwen3-14B"
+model = "Qwen/Qwen3-8B"
 
 llm = vllm.LLM(
     model,
