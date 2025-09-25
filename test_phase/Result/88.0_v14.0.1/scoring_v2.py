@@ -3,7 +3,7 @@ import pandas as pd
 from pathlib import Path
 
 # ---- paths (adjust if needed) ----
-CSV_PATH = Path("test_v1.csv")
+CSV_PATH = Path("test_full.csv")
 SUB_PATH = Path("submission.json")
 
 # ---- helpers (no intermediate prints/logs) ----
