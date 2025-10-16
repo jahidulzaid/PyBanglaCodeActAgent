@@ -1,5 +1,4 @@
-# PyBanglaCodeActAgent — Bangla → Python NL2Code with Iterative Self-Correction
-
+# PyBanglaCodeActAgent
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/711b6064-0844-490e-879d-697b12b0c488" alt="Profile image" width="200" height="200">
@@ -127,8 +126,6 @@ The paper reports experiments on the **mHumanEval** dataset for Bangla NL2Code a
 * **BanglaCodeAct (Qwen3-8B)** — pass@1 reported: **94.0%** (development) and **71.6%** (blind test set).
 * The paper compares Zero-Shot, Few-Shot, Self-Consistency, and other baselines across models (Llama-3.1-8B, Qwen variants, DeepSeek-Coder, TigerLLM, etc.). See the paper excerpt for the full table of results.
 
-These numbers came from the paper text supplied with the request and are reproduced here for convenience.
-
 ## How the agent works (concise)
 
 1. **Thought**: model writes its plan/intent in Bangla (explain reasoning).
@@ -145,7 +142,5 @@ The implementation includes retry/safe-run logic and timeout controls to prevent
 * `test.py` — quick-run harness / unit tests for the agent.
 * `dev.csv` / `trial.csv` — examples of input problem format (Bangla instruction + tests).
 * `Sample_Code_Prompting_v2.ipynb` — readable, runnable notebook for experimentation.
-
-(Use these filenames as your starting point — they were visible in the repository root). ([GitHub][1])
 
 ## Citation (paper)
