@@ -1,0 +1,16 @@
+# Core dependencies
+torch>=2.0.0
+vllm>=0.3.0
+transformers>=4.36.0
+pandas>=1.5.0
+numpy>=1.23.0
+
+# Progress tracking
+tqdm>=4.65.0
+
+# Code execution and syntax highlighting
+pygments>=2.15.0
+
+# Utility
+setuptools>=65.0.0
+wheel>=0.40.0
