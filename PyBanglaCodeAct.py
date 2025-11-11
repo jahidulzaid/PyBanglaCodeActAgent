@@ -7,19 +7,50 @@ from tqdm.auto import tqdm
 from transformers import set_seed
 
 
+# Global variables for model and tokenizer
 model = "Qwen/Qwen3-8B"
+llm = None
+tokenizer = None
 
-llm = vllm.LLM(
-    model,
-    # quantization="awq",
-    max_model_len=4096,
-    enable_prefix_caching=True,
-    tensor_parallel_size=torch.cuda.device_count(),
-)
 
-tokenizer = llm.get_tokenizer()
+def initialize_llm(model_name: str = "Qwen/Qwen3-8B"):
+    """
+    Initialize the LLM and tokenizer.
+    
+    Args:
+        model_name: Name of the model to load
+    
+    Returns:
+        tuple: (llm, tokenizer)
+    """
+    global llm, tokenizer, model
+    
+    model = model_name
+    llm = vllm.LLM(
+        model,
+        # quantization="awq",
+        max_model_len=4096,
+        enable_prefix_caching=True,
+        tensor_parallel_size=torch.cuda.device_count(),
+    )
+    tokenizer = llm.get_tokenizer()
+    return llm, tokenizer
+
 
 def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
+    """
+    Generate text using the LLM engine.
+    
+    Args:
+        messages: List of message dictionaries
+        stop_sequences: Optional list of stop sequences
+        start_sequence: Optional string to prepend to generation
+    
+    Returns:
+        str: Generated text
+    """
+    global llm, tokenizer
+    
     sampling_params = vllm.SamplingParams(
         temperature=0.7,
         top_p=0.9,
@@ -55,6 +86,18 @@ def extract_answer(response):
 
 
 def cot_sc(question: str, num_paths=16):
+    """
+    Chain-of-thought self-consistency generation.
+    
+    Args:
+        question: The question to answer
+        num_paths: Number of reasoning paths to generate
+    
+    Returns:
+        int: The most common answer
+    """
+    global llm, tokenizer
+    
     sampling_params = vllm.SamplingParams(
         n=num_paths,
         temperature=0.7,
@@ -345,10 +388,7 @@ class CodeActAgent:
 
         return final_answer
 
-agent = CodeActAgent(
-    llm_engine=llm_engine,
-    max_iterations=4,
-)
+
 from collections import Counter
 
 def run_with_self_consistency(agent, task: str, num_paths=5):
@@ -379,57 +419,37 @@ def run_with_self_consistency(agent, task: str, num_paths=5):
 # === New logic: process dev.csv and output submission.json (id, response) ===
 import json, os, re, zipfile
 
-set_seed(42)
 
-df = pd.read_csv("dev.csv")  # expects columns: id, instruction, test_list
-assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction, test_list"
-
-results = []
-for i, row in tqdm(df.iterrows(), total=len(df)):
-
-    question = str(row["instruction"])
-    tests = str(row.get("test_list", ""))
-    prompt = f"""You are solving a coding task.
-    Instruction: {question}
-
-    Here are the test cases you must satisfy:
-    {tests}
-
-    Please return only the Python function/code solution, nothing else.
+def safe_run(agent, task, retries=15):
     """
-
-
-    def safe_run(agent, task, retries=15):
-        for attempt in range(retries):
-            response = agent.run(task)
-            if isinstance(response, str) and response.strip():
-                return response
-            logger.warning(f"Empty response on attempt {attempt+1}, retrying...")
-        return ""  # fallback after retries
+    Safely run the agent with retry logic.
     
-    # response = agent.run(question)
-    response = safe_run(agent, prompt, retries=15)
-
-    # response = run_with_self_consistency(agent, question, num_paths=5)
-
-    # If agent.run returns None, blank the response
+    Args:
+        agent: The CodeActAgent instance
+        task: The task string to process
+        retries: Number of retry attempts
     
-    ###### for retires changed to above safe_run
-    # if not isinstance(response, str):
-    #     response = ""
-    # if response is None:
-    #     response = ""
-    results.append({"id": int(row["id"]), "response": str(response)})
+    Returns:
+        str: The agent's response or empty string on failure
+    """
+    for attempt in range(retries):
+        response = agent.run(task)
+        if isinstance(response, str) and response.strip():
+            return response
+        logger.warning(f"Empty response on attempt {attempt+1}, retrying...")
+    return ""  # fallback after retries
 
 
-# Save as JSON list
-with open("submission.json", "w", encoding="utf-8") as f:
-    json.dump(results, f, ensure_ascii=False, indent=2)
-print(f"✅ Wrote submission.json with {len(results)} rows (id, response).")
-
-# --- Validation and zipping ( from prompt.py) ---
-SUB_PATH = "submission.json"
 def file_format_check(path: str) -> bool:
+    """
+    Validate the submission JSON file format.
+    
+    Args:
+        path: Path to the submission JSON file
+    
+    Returns:
+        bool: True if valid, False otherwise
+    """
     if os.path.basename(path) != "submission.json":
         print("Error: File name must be exactly 'submission.json'")
         return False
@@ -463,20 +483,133 @@ def file_format_check(path: str) -> bool:
     print("Format check passed successfully!")
     return True
 
-# Fencing/format validation and blanking invalids
-with open(SUB_PATH, "r", encoding="utf-8") as f:
-    data = json.load(f)
 
-
-with open(SUB_PATH, "w", encoding="utf-8") as f:
-    json.dump(
-        [{"id": item["id"], "response": item["response"]} for item in data],
-        f, ensure_ascii=False, indent=2
+def process_dataset(input_csv: str, output_json: str = "submission.json", 
+                   model_name: str = "Qwen/Qwen3-8B", max_retries: int = 15,
+                   seed: int = 42):
+    """
+    Process the dataset and generate submission file.
+    
+    Args:
+        input_csv: Path to input CSV file
+        output_json: Path to output JSON file
+        model_name: Name of the model to use
+        max_retries: Maximum number of retries for each task
+        seed: Random seed for reproducibility
+    """
+    set_seed(seed)
+    
+    # Initialize LLM
+    initialize_llm(model_name)
+    
+    # Initialize agent
+    agent = CodeActAgent(
+        llm_engine=llm_engine,
+        max_iterations=4,
     )
+    
+    # Load dataset
+    df = pd.read_csv(input_csv)
+    assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction, test_list"
+    
+    results = []
+    for i, row in tqdm(df.iterrows(), total=len(df), desc="Processing tasks"):
+        question = str(row["instruction"])
+        tests = str(row.get("test_list", ""))
+        prompt = f"""You are solving a coding task.
+Instruction: {question}
+
+Here are the test cases you must satisfy:
+{tests}
+
+Please return only the Python function/code solution, nothing else.
+"""
+        response = safe_run(agent, prompt, retries=max_retries)
+        results.append({"id": int(row["id"]), "response": str(response)})
+    
+    # Save as JSON list
+    with open(output_json, "w", encoding="utf-8") as f:
+        json.dump(results, f, ensure_ascii=False, indent=2)
+    print(f"✅ Wrote {output_json} with {len(results)} rows (id, response).")
+    
+    # Validation
+    with open(output_json, "r", encoding="utf-8") as f:
+        data = json.load(f)
+    
+    with open(output_json, "w", encoding="utf-8") as f:
+        json.dump(
+            [{"id": item["id"], "response": item["response"]} for item in data],
+            f, ensure_ascii=False, indent=2
+        )
+    
+    print(f"✅ Updated {output_json} after checks (invalid responses blanked).")
+    _ = file_format_check(output_json)
+    
+    # Create zip file
+    zip_name = output_json.replace(".json", ".zip")
+    with zipfile.ZipFile(zip_name, "w", compression=zipfile.ZIP_DEFLATED) as zf:
+        zf.write(output_json)
+    print(f"📦 Created {zip_name} containing {output_json}.")
 
 
-print("✅ Updated submission.json after checks (invalid responses blanked).")
-_ = file_format_check(SUB_PATH)
-with zipfile.ZipFile("submission.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
-    zf.write(SUB_PATH)
-print("📦 Created submission.zip containing submission.json.")
+def main():
+    """Main entry point for the BanglaCodeAct agent."""
+    import argparse
+    
+    parser = argparse.ArgumentParser(
+        description="PyBanglaCodeAct: Code generation agent for Bangla programming tasks"
+    )
+    parser.add_argument(
+        "--input",
+        type=str,
+        default="dev.csv",
+        help="Input CSV file with columns: id, instruction, test_list"
+    )
+    parser.add_argument(
+        "--output",
+        type=str,
+        default="submission.json",
+        help="Output JSON file for submission"
+    )
+    parser.add_argument(
+        "--model",
+        type=str,
+        default="Qwen/Qwen3-8B",
+        help="Model name to use for code generation"
+    )
+    parser.add_argument(
+        "--retries",
+        type=int,
+        default=15,
+        help="Maximum number of retries for each task"
+    )
+    parser.add_argument(
+        "--seed",
+        type=int,
+        default=42,
+        help="Random seed for reproducibility"
+    )
+    
+    args = parser.parse_args()
+    
+    print(f"🚀 Starting PyBanglaCodeAct with model: {args.model}")
+    print(f"📂 Input: {args.input}")
+    print(f"📝 Output: {args.output}")
+    print(f"🔄 Max retries: {args.retries}")
+    print(f"🎲 Random seed: {args.seed}")
+    print("-" * 50)
+    
+    process_dataset(
+        input_csv=args.input,
+        output_json=args.output,
+        model_name=args.model,
+        max_retries=args.retries,
+        seed=args.seed
+    )
+    
+    print("-" * 50)
+    print("✅ Processing complete!")
+
+
+if __name__ == "__main__":
+    main()
