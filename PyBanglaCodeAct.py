@@ -6,11 +6,12 @@ import pandas as pd
 from tqdm.auto import tqdm
 from transformers import set_seed
 
-model = "md-nishat-008/TigerLLM-1B-it"
+
+model = "Qwen/Qwen3-8B"
 
 llm = vllm.LLM(
     model,
-    quantization="awq",
+    # quantization="awq",
     max_model_len=4096,
     enable_prefix_caching=True,
     tensor_parallel_size=torch.cuda.device_count(),
@@ -20,11 +21,12 @@ tokenizer = llm.get_tokenizer()
 
 def llm_engine(messages, stop_sequences=None, start_sequence=None) -> str:
     sampling_params = vllm.SamplingParams(
-        temperature=0,
+        temperature=0.7,
+        top_p=0.9,
         # use_beam_search=True,
         # num_beams=3,
         best_of=1,
-        max_tokens=2048,
+        max_tokens=4096,
         stop=stop_sequences,
         include_stop_str_in_output=True,
     )
@@ -58,7 +60,7 @@ def cot_sc(question: str, num_paths=16):
         temperature=0.7,
         top_p=0.8,
         repetition_penalty=1.05,
-        max_tokens=2048
+        max_tokens=4096
     )
 
     prompt = question
@@ -85,68 +87,50 @@ def cot_sc(question: str, num_paths=16):
 
     return answer
 
+
 CODEACT_PROMPT = """
-You are a helpful coding assistant assigned to solve algorithmic problems in Python.  
+You are a helpful coding assistant assigned to write OOP program in Python.  
 
 For each row in the dataset, you will be given:  
 - An **instruction** describing the task.  
-- A **response** (the reference Python solution).  
-- A **list of test cases** (Python assertions).  
+- A **test_list** (Python assertions).  
 
 **Your Workflow for each task:**
 
 1. **Thought Process**:  
-   Explain your reasoning step by step before coding.  
+   Explain your reasoning.  
    - Wrap your explanation in `<thought>` tags.  
-   Example: `<thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>`
+   - Consider edge cases (e.g., empty inputs, zero values, large inputs) in your reasoning.  
+   Example:  
+   <thought>I need to compute the smallest number divisible by all numbers from 1 to n. I can use LCM iteratively.</thought>  
 
 2. **Write Python Code**:  
-   Implement the function according to the instruction.  
-   - Place your implementation and provided tests in `<code>` tags.  
+   Implement the Python program according to the instruction.  
+   - You must use the exact names provided for **class**, **function**, and **variables** in the task. Do **not** rename them.  
+   - Include both the solution and the provided test assertions.  
+   - Wrap the complete code in `<code>` tags.  
    Example:  
-<code>
-def smallest_multiple(n):
-    if n <= 2:
-        return n
-    i = n * 2
-    factors = [number for number in range(n, 1, -1) if number * 2 > n]
-    while True:
-        for a in factors:
-            if i % a != 0:
-                i += n
-                break
-            if a == factors[-1] and i % a == 0:
-                return i
+   <code>
+   # Your implementation here
 
-# Run tests
-assert smallest_multiple(13) == 360360
-assert smallest_multiple(2) == 2
-assert smallest_multiple(1) == 1
-</code>
+   # Provided test_list (assertions)
+   </code>
 
 3. **Observation**:  
-After executing, confirm if all tests passed or debugging is needed.  
-Example: `<observation>All tests passed successfully.</observation>`
+   After executing, confirm whether all tests passed or if debugging is needed.  
+   - Wrap your observation in `<observation>` tags.  
+   Example:  
+   <observation>All tests passed successfully.</observation>  
 
 4. **Final Answer**:  
-Provide only the clean function (without test assertions).  
-- Wrap in `<answer>` tags.  
-Example:  
-<answer>
-def smallest_multiple(n):
-    if n <= 2:
-        return n
-    i = n * 2
-    factors = [number for number in range(n, 1, -1) if number * 2 > n]
-    while True:
-        for a in factors:
-            if i % a != 0:
-                i += n
-                break
-            if a == factors[-1] and i % a == 0:
-                return i
-</answer>
+   Provide only the final clean Python program (without test assertions).  
+   - Wrap your final answer in `<answer>` tags.  
+   Example:  
+   <answer>
+   # Final clean solution
+   </answer>
 """
+
 
 
 import logging
@@ -276,7 +260,7 @@ from pygments.lexers import PythonLexer
 
 
 class CodeActAgent:
-    def __init__(self, llm_engine, max_iterations=4):
+    def __init__(self, llm_engine, max_iterations=10):
         self.llm_engine = llm_engine
         self.max_iterations = max_iterations
         self.repl = PythonREPL(timeout=5)
@@ -310,7 +294,7 @@ class CodeActAgent:
             # If no action was taken, resample
             if len(codes) == 0 and len(answers) == 0:
                 logger.error("Agent did not take any action.")
-                return None
+                logger.log(36, f"Raw LLM response: {response}")
 
             if thoughts:
                 logger.log(35, "=== Agent thoughts:")
@@ -318,17 +302,17 @@ class CodeActAgent:
 
             if codes:
                 code = codes[0].strip()
-                code = highlight(
+                code_highlight = highlight(
                     code,
                     PythonLexer(ensurenl=False),
                     Terminal256Formatter(style="nord"),
                 )
 
                 logger.log(35, ">>> Agent is executing the code below:")
-                logger.log(31, code)
+                logger.log(31, code_highlight)
                 logger.log(35, "====")
 
-                final_output, print_output = self.repl.run(codes[0].strip())
+                final_output, print_output = self.repl.run(code)
                 logger.log(35, "Print outputs:")
 
                 total_output = ""
@@ -358,12 +342,38 @@ class CodeActAgent:
         logger.log(33, "Final answer:")
         logger.log(32, final_answer)
 
+
         return final_answer
 
 agent = CodeActAgent(
     llm_engine=llm_engine,
     max_iterations=4,
 )
+from collections import Counter
+
+def run_with_self_consistency(agent, task: str, num_paths=5):
+    """
+    Run the agent multiple times and pick the most common final answer.
+    """
+    answers = []
+
+    for _ in range(num_paths):
+        answer = agent.run(task)
+        if answer:
+            answers.append(answer.strip())
+
+    if not answers:
+        return None  # model failed every run
+
+    # majority voting
+    most_common, count = Counter(answers).most_common(1)[0]
+
+    # Optional: debug log all answers
+    logger.log(35, f"All candidate answers: {answers}")
+    logger.log(33, f"Final majority-voted answer (count={count}): {most_common}")
+
+    return most_common
+
 
 
 # === New logic: process dev.csv and output submission.json (id, response) ===
@@ -371,24 +381,53 @@ import json, os, re, zipfile
 
 set_seed(42)
 
-df = pd.read_csv("dev.csv")  # expects columns: id, instruction
-assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction"
+df = pd.read_csv("dev.csv")  # expects columns: id, instruction, test_list
+assert {"id", "instruction"}.issubset(df.columns), "CSV must have columns: id, instruction, test_list"
 
 results = []
 for i, row in tqdm(df.iterrows(), total=len(df)):
+
     question = str(row["instruction"])
-    response = agent.run(question)
+    tests = str(row.get("test_list", ""))
+    prompt = f"""You are solving a coding task.
+    Instruction: {question}
+
+    Here are the test cases you must satisfy:
+    {tests}
+
+    Please return only the Python function/code solution, nothing else.
+    """
+
+
+    def safe_run(agent, task, retries=15):
+        for attempt in range(retries):
+            response = agent.run(task)
+            if isinstance(response, str) and response.strip():
+                return response
+            logger.warning(f"Empty response on attempt {attempt+1}, retrying...")
+        return ""  # fallback after retries
+    
+    # response = agent.run(question)
+    response = safe_run(agent, prompt, retries=15)
+
+    # response = run_with_self_consistency(agent, question, num_paths=5)
+
     # If agent.run returns None, blank the response
-    if response is None:
-        response = ""
+    
+    ###### for retires changed to above safe_run
+    # if not isinstance(response, str):
+    #     response = ""
+    # if response is None:
+    #     response = ""
     results.append({"id": int(row["id"]), "response": str(response)})
+
 
 # Save as JSON list
 with open("submission.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 print(f"✅ Wrote submission.json with {len(results)} rows (id, response).")
 
-# --- Validation and zipping (copied from prompt.py) ---
+# --- Validation and zipping ( from prompt.py) ---
 SUB_PATH = "submission.json"
 def file_format_check(path: str) -> bool:
     if os.path.basename(path) != "submission.json":
@@ -428,38 +467,14 @@ def file_format_check(path: str) -> bool:
 with open(SUB_PATH, "r", encoding="utf-8") as f:
     data = json.load(f)
 
-fence_pat = re.compile(r"^```python[\s\S]*```$", re.MULTILINE)
-valid_format = []
-valid_fence  = []
-valid_both   = []
-def item_format_ok(item):
-    return (
-        isinstance(item, dict)
-        and set(item.keys()) == {"id", "response"}
-        and isinstance(item["id"], int)
-        and isinstance(item["response"], str)
-    )
-for item in data:
-    vfmt = item_format_ok(item)
-    vf   = bool(fence_pat.match(item["response"])) if vfmt else False
-    valid_format.append(vfmt)
-    valid_fence.append(vf)
-    valid_both.append(vfmt and vf)
-nf = sum(valid_fence)
-nm = sum(valid_format)
-nb = sum(valid_both)
-den = max(len(data), 1)
-print(f"Fencing valid: {nf}/{len(data)} ({nf*100.0/den:.1f}%)")
-print(f"Format valid:  {nm}/{len(data)} ({nm*100.0/den:.1f}%)")
-print(f"Both valid:    {nb}/{len(data)} ({nb*100.0/den:.1f}%)")
-for i, ok in enumerate(valid_both):
-    if not ok and isinstance(data[i], dict) and "response" in data[i]:
-        data[i]["response"] = ""
+
 with open(SUB_PATH, "w", encoding="utf-8") as f:
     json.dump(
         [{"id": item["id"], "response": item["response"]} for item in data],
         f, ensure_ascii=False, indent=2
     )
+
+
 print("✅ Updated submission.json after checks (invalid responses blanked).")
 _ = file_format_check(SUB_PATH)
 with zipfile.ZipFile("submission.zip", "w", compression=zipfile.ZIP_DEFLATED) as zf:
