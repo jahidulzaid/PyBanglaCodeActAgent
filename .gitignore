@@ -42,8 +42,6 @@ ENV/
 *.ipynb_checkpoints/
 
 # Model outputs and submissions
-submission.json
-submission.zip
 *.csv
 !dev.csv
 !trial.csv
