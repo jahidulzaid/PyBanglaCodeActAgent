@@ -24,7 +24,7 @@ PyBanglaCodeAct is a CodeAct/REACT-style agent for Bangla (Bengali) programming 
 
 ## Architecture
 <p align="center">
-  <img src="docs/architecture.jpg" alt="Architecture diagram" width="720">
+  <img src="docs/architecture.jpg" alt="Architecture diagram" width="360">
 </p>
 
 ## Install
