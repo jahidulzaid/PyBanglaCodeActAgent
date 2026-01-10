@@ -24,12 +24,16 @@ PyBanglaCodeAct is a CodeAct/REACT-style agent for Bangla (Bengali) programming 
 
 ## Citation
 ```bibtex
-@article{islam2025pybangla,
-  title={PyBangla at BLP-2025 Task 2: Enhancing Bangla-to-Python Code Generation with Iterative Self-Correction and Multilingual Agents},
-  author={Islam, Jahidul and Ataullha, Md and Azad, Saiful},
-  journal={arXiv preprint arXiv:2512.23713},
-  year={2025}
+@inproceedings{islam2025pybangla,
+  title     = {PyBangla at BLP-2025 Task 2: Enhancing Bangla-to-Python Code Generation with Iterative Self-Correction and Multilingual Agents},
+  author    = {Islam, Jahidul and Ataullha, Md and Azad, Saiful},
+  booktitle = {Proceedings of the 2nd Workshop on Bangla Language Processing (BLP 2025)},
+  month     = Nov,
+  year      = {2025},
+  address   = {Mumbai, India},
+  publisher = {Association for Computational Linguistics}
 }
+
 ```
 
 

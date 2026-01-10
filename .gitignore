@@ -30,7 +30,6 @@ ENV/
 .venv/
 
 # IDEs
-.vscode/
 .idea/
 *.swp
 *.swo
@@ -65,3 +64,7 @@ zero-result/
 .cache/
 *.bak
 *.tmp
+temp_auto_push.bat
+temp_interactive_push.bat
+.gitignore
+branch_structure.json
