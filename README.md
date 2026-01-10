@@ -23,7 +23,9 @@
 PyBanglaCodeAct is a CodeAct/REACT-style agent for Bangla (Bengali) programming tasks. It accepts Bangla instructions, plans, generates Python code with multilingual LLMs (for example, Qwen3-8B), executes that code in a sandboxed REPL, and iteratively self-corrects through a Thought -> Code -> Observation loop. The agent reaches 94.0% pass@1 on the mHumanEval Bangla development set and demonstrates the effectiveness of execution-aware generation for low-resource languages.
 
 ## Architecture
-![Architecture diagram](docs/architecture.jpg)
+<p align="center">
+  <img src="docs/architecture.jpg" alt="Architecture diagram" width="220">
+</p>
 
 ## Install
 ```bash
