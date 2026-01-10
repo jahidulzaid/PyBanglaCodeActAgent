@@ -8,12 +8,32 @@ import signal
 reference_dir = "" #replace with the path to the reference data (dev.csv)
 prediction_dir = "" #replace with the path to the prediction data (submission.json)
 
+# Default to the directory containing this script when no paths are provided
+script_dir = os.path.dirname(os.path.abspath(__file__))
+if not reference_dir:
+    reference_dir = script_dir
+if not prediction_dir:
+    prediction_dir = script_dir
+
+SUPPORTS_ALARM = hasattr(signal, "SIGALRM") and hasattr(signal, "alarm")
+
 
 #Do not modify anything below this part
 
 # Timeout handler
 def handler(signum, frame):
     raise TimeoutError("Execution timed out")
+
+
+def start_alarm(seconds: int):
+    if SUPPORTS_ALARM:
+        signal.signal(signal.SIGALRM, handler)
+        signal.alarm(seconds)
+
+
+def cancel_alarm():
+    if SUPPORTS_ALARM:
+        signal.alarm(0)
 
 
 def evaluate_combined_data(res_data, ref_data):
@@ -37,15 +57,19 @@ def evaluate_combined_data(res_data, ref_data):
         entry_id = entry['id']
         response_code = entry.get('response', '')  # Use empty string if response missing
         test_list_raw = entry['test_list']
-        if response_code is not None:
+        if response_code is None or (isinstance(response_code, float) and pd.isna(response_code)):
+            response_code = ''
+        elif isinstance(response_code, str):
             response_code = response_code.strip('` \n').replace('python\n', '').strip()
+        else:
+            response_code = str(response_code)
         
         
         print(f"Executing Sample ID: {entry_id}")
         
-        # 🚫 Skip code if it contains time.sleep (case-insensitive)
+        # Skip code if it contains time.sleep (case-insensitive)
         if "time.sleep" in response_code.lower():
-            print(f"⏭️ Skipping Code Execution: contains time.sleep()")
+            print("Skipping code execution: contains time.sleep()")
             continue
 
         correct = 0
@@ -56,7 +80,7 @@ def evaluate_combined_data(res_data, ref_data):
             inner_str = ast.literal_eval(test_list_raw)
             test_cases = ast.literal_eval(inner_str)
         except Exception as e:
-            print(f"❌❌❌❌ Failed to parse test_list: {e} ❌❌❌")
+            print(f"Failed to parse test_list: {e}")
             continue
 
         # Create a shared namespace for exec
@@ -64,43 +88,42 @@ def evaluate_combined_data(res_data, ref_data):
 
         try:
             # Set timeout for function definition
-            signal.signal(signal.SIGALRM, handler)
-            signal.alarm(30)
+            start_alarm(30)
             exec(response_code, namespace)
-            signal.alarm(0)  # cancel timer if finished early
+            cancel_alarm()  # cancel timer if finished early
         except TimeoutError:
-            print(f"⏱️ Timeout in function definition. Skipping test case execution for this ID.\n")
+            print("Timeout in function definition. Skipping test case execution for this ID.\n")
             continue
         except Exception as e:
-            print(f"❌ Error in function definition: {e}. Skipping test case execution for this ID.\n")
+            print(f"Error in function definition: {e}. Skipping test case execution for this ID.\n")
             continue
 
         passed = True
         # Run each assert statement
         for i, assert_stmt in enumerate(test_cases):
             try:
-                signal.alarm(30)  # 30 seconds per test case
+                start_alarm(30)  # 30 seconds per test case
                 exec(assert_stmt, namespace)
-                signal.alarm(0)
+                cancel_alarm()
                 correct += 1
             except TimeoutError:
-                print(f"⏱️ Test case {i + 1} timed out. Skipping all remaining test cases for this ID.")
+                print(f"Test case {i + 1} timed out. Skipping all remaining test cases for this ID.")
                 passed = False
                 break  # Exit loop on timeout
             except AssertionError:
-                print(f"❌ Test case {i + 1} failed: assertion error. Skipping all remaining test cases for this ID.")
+                print(f"Test case {i + 1} failed: assertion error. Skipping all remaining test cases for this ID.")
                 passed = False
                 break  # Exit loop on timeout
             except Exception as e:
-                print(f"⚠️ Test case {i + 1} exception: {e}. Skipping all remaining test cases for this ID.")
+                print(f"Test case {i + 1} exception: {e}. Skipping all remaining test cases for this ID.")
                 passed = False
                 break  # Exit loop on timeout
             finally:
-                signal.alarm(0)
+                cancel_alarm()
         if passed:
-            print(f"✅ ID {entry_id} Passed all test cases.\n")
+            print(f"ID {entry_id} passed all test cases.\n")
         else:
-            print(f"❌ ID {entry_id} Failed some test cases.\n")
+            print(f"ID {entry_id} failed some test cases.\n")
 
         total = len(test_cases)
         if correct == total:
@@ -135,5 +158,3 @@ scores = {
 }
 
 print(f"\nPass@1: {correct}/{all} = {scores['accuracy']:.2f}")
-
-
