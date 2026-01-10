@@ -1,0 +1,1201 @@
+id,instruction,test_list
+1,"একটি ফাংশন লিখুন যা দিয়ে দেওয়া জোড়া থেকে তৈরি করা সবচেয়ে দীর্ঘতম চেইন খুঁজে বের করতে হবে।
+Exammple:
+max_chain_length(lst, n)","""['assert max_chain_length([Pair(5, 24), Pair(15, 25),Pair(27, 40), Pair(50, 60)], 4) == 3', 'assert max_chain_length([Pair(1, 2), Pair(3, 4),Pair(5, 6), Pair(7, 8)], 4) == 4', 'assert max_chain_length([Pair(19, 10), Pair(11, 12),Pair(13, 14), Pair(15, 16), Pair(31, 54)], 5) == 5']"""
+2,"একটি প্রদত্ত স্ট্রিং-এ প্রথম পুনরাবৃত্ত অক্ষর খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+first_repeated_char(s)","""['assert first_repeated_char(\""abcabc\"") == \""a\""', 'assert first_repeated_char(\""abc\"") == \""None\""', 'assert first_repeated_char(\""123123\"") == \""1\""']"""
+3,"একটি ফাংশন লিখুন যা n এর চেয়ে ছোট বা সমান একটি স্বচ্ছ সংখ্যা পেতে পারে।
+Exammple:
+get_ludic(n)","""['assert get_ludic(10) == [1, 2, 3, 5, 7]', 'assert get_ludic(25) == [1, 2, 3, 5, 7, 11, 13, 17, 23, 25]', 'assert get_ludic(45) == [1, 2, 3, 5, 7, 11, 13, 17, 23, 25, 29, 37, 41, 43]']"""
+4,"একটি প্রদত্ত স্ট্রিং এর শব্দগুলোকে বিপরীত করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+reverse_words(s)","""['assert reverse_words(\""python program\"")==(\""program python\"")', 'assert reverse_words(\""java language\"")==(\""language java\"")', 'assert reverse_words(\""indian man\"")==(\""man indian\"")']"""
+5,"প্রদত্ত পূর্ণসংখ্যাটি একটি মৌলিক সংখ্যা কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+prime_num(n)","""['assert prime_num(13)==True', 'assert prime_num(7)==True', 'assert prime_num(-1010)==False']"""
+6,"ডিগ্রিকে রেডিয়ান রূপান্তর করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+radian_degree(n)","""['assert radian_degree(90)==1.5707963267948966', 'assert radian_degree(60)==1.0471975511965976', 'assert radian_degree(120)==2.0943951023931953']"""
+7,"একটি স্ট্রিং-এ একটি আক্ষরিক স্ট্রিং অনুসন্ধান করার জন্য একটি ফাংশন লিখুন এবং রেজেক্স ব্যবহার করে মূল স্ট্রিং-এর মধ্যে অবস্থানটি খুঁজে বের করুন যেখানে প্যাটার্নটি ঘটে।
+Exammple:
+find_literals(s, s2)","""[\""assert find_literals('The quick brown fox jumps over the lazy dog.', 'fox') == ('fox', 16, 19)\"", \""assert find_literals('Its been a very crazy procedure right', 'crazy') == ('crazy', 16, 21)\"", \""assert find_literals('Hardest choices required strongest will', 'will') == ('will', 35, 39)\""]"""
+8,"একটি পাইথন ফাংশন লিখুন nth বেল নম্বর খুঁজে পেতে।
+Exammple:
+bell_Number(n)","""['assert bell_Number(2) == 2', 'assert bell_Number(3) == 5', 'assert bell_Number(4) == 15']"""
+9,"প্রদত্ত পর্যায়ক্রমিক ফাংশনের জন্য সর্বনিম্ন সম্ভাব্য মান খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+floor_Min(n, n2, n3)","""['assert floor_Min(10,20,30) == 15', 'assert floor_Min(1,2,1) == 0', 'assert floor_Min(11,10,9) == 9']"""
+10,"একটি প্রদত্ত তালিকা থেকে k'th উপাদান অপসারণের জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+remove_kth_element(lst, n)","""['assert remove_kth_element([1,1,2,3,4,4,5,1],3)==[1, 1, 3, 4, 4, 5, 1]', 'assert remove_kth_element([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4],4)==[0, 0, 1, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4]', 'assert remove_kth_element([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10],5)==[10,10,15,19, 18, 17, 26, 26, 17, 18, 10]']"""
+11,"প্রদত্ত টিপল তালিকা থেকে n-তম কলামের সর্বোচ্চ সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+max_of_nth(lst, n)","""['assert max_of_nth([(5, 6, 7), (1, 3, 5), (8, 9, 19)], 2) == 19', 'assert max_of_nth([(6, 7, 8), (2, 4, 6), (9, 10, 20)], 1) == 10', 'assert max_of_nth([(7, 8, 9), (3, 5, 7), (10, 11, 21)], 1) == 11']"""
+12,"একটি পাইথন ফাংশন লিখুন যা প্রথম এবং শেষ উপাদানগুলিকে আলাদাভাবে তালিকার তালিকায় একত্রিত করে।
+Exammple:
+merge(lst)","""[\""assert merge([['x', 'y'], ['a', 'b'], ['m', 'n']]) == [['x', 'a', 'm'], ['y', 'b', 'n']]\"", 'assert merge([[1, 2], [3, 4], [5, 6], [7, 8]]) == [[1, 3, 5, 7], [2, 4, 6, 8]]', \""assert merge([['x', 'y','z' ], ['a', 'b','c'], ['m', 'n','o']]) == [['x', 'a', 'm'], ['y', 'b', 'n'],['z', 'c','o']]\""]"""
+13,"প্রদত্ত তালিকায় টুপল বৈশিষ্ট্য হিসাবে রেকর্ড তালিকার সর্বাধিক মান খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+maximum_value(lst)","""[\""assert maximum_value([('key1', [3, 4, 5]), ('key2', [1, 4, 2]), ('key3', [9, 3])]) == [('key1', 5), ('key2', 4), ('key3', 9)]\"", \""assert maximum_value([('key1', [4, 5, 6]), ('key2', [2, 5, 3]), ('key3', [10, 4])]) == [('key1', 6), ('key2', 5), ('key3', 10)]\"", \""assert maximum_value([('key1', [5, 6, 7]), ('key2', [3, 6, 4]), ('key3', [11, 5])]) == [('key1', 7), ('key2', 6), ('key3', 11)]\""]"""
+14,"প্রদত্ত টিপল তালিকায় উপস্থিত সমস্ত মানের ক্রমিক যোগফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+cummulative_sum(lst)","""['assert cummulative_sum([(1, 3), (5, 6, 7), (2, 6)]) == 30', 'assert cummulative_sum([(2, 4), (6, 7, 8), (3, 7)]) == 37', 'assert cummulative_sum([(3, 5), (7, 8, 9), (4, 8)]) == 44']"""
+15,"একটি প্রদত্ত টুপল টুপল এর সংখ্যার গড় মান খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+average_tuple(tup)","""['assert average_tuple(((10, 10, 10, 12), (30, 45, 56, 45), (81, 80, 39, 32), (1, 2, 3, 4)))==[30.5, 34.25, 27.0, 23.25]', 'assert average_tuple(((1, 1, -5), (30, -15, 56), (81, -60, -39), (-10, 2, 3)))== [25.5, -18.0, 3.75]', 'assert average_tuple( ((100, 100, 100, 120), (300, 450, 560, 450), (810, 800, 390, 320), (10, 20, 30, 40)))==[305.0, 342.5, 270.0, 232.5]']"""
+16,"প্রদত্ত দুটি টুপলে টুপল উপাদানগুলির মডুলো সম্পাদন করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+tuple_modulo(tup, tup2)","""['assert tuple_modulo((10, 4, 5, 6), (5, 6, 7, 5)) == (0, 4, 5, 1)', 'assert tuple_modulo((11, 5, 6, 7), (6, 7, 8, 6)) == (5, 5, 6, 1)', 'assert tuple_modulo((12, 6, 7, 8), (7, 8, 9, 7)) == (5, 6, 7, 1)']"""
+17,"একটি 2 ডি সমতল থেকে উৎপত্তি থেকে একটি ফর্ম (d, 0) এর একটি বিন্দুতে পৌঁছানোর জন্য প্রদত্ত দৈর্ঘ্যের প্রয়োজনীয় জাম্পের সংখ্যা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+min_Jumps(n, n2, n3)","""['assert min_Jumps(3,4,11)==3.5', 'assert min_Jumps(3,4,0)==0', 'assert min_Jumps(11,14,11)==1']"""
+18,"মানচিত্র এবং ল্যাম্বদা ফাংশন ব্যবহার করে দুটি তালিকা ভাগ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+div_list(lst, lst2)","""['assert div_list([4,5,6],[1, 2, 3])==[4.0,2.5,2.0]', 'assert div_list([3,2],[1,4])==[3.0, 0.5]', 'assert div_list([90,120],[50,70])==[1.8, 1.7142857142857142]']"""
+19,"একটি ফাংশন লিখুন যাতে সবগুলো সংখ্যাকে দেওয়া স্ট্রিংয়ে স্থানান্তর করা যায়।
+Exammple:
+move_num(s)","""[\""assert move_num('I1love143you55three3000thousand') == 'Iloveyouthreethousand1143553000'\"", \""assert move_num('Avengers124Assemble') == 'AvengersAssemble124'\"", \""assert move_num('Its11our12path13to14see15things16do17things') == 'Itsourpathtoseethingsdothings11121314151617'\""]"""
+20,"একটি ফাংশন লিখুন যেখানে প্রতিটি জোড়া বিভাজ্য হয়।
+Exammple:
+largest_subset(lst, n)","""['assert largest_subset([ 1, 3, 6, 13, 17, 18 ], 6) == 4', 'assert largest_subset([10, 5, 3, 15, 20], 5) == 3', 'assert largest_subset([18, 1, 3, 6, 13, 17], 6) == 4']"""
+21,"একটি ফাংশন লিখুন যা প্রদত্ত স্ট্রিংগুলিতে k দ্বারা সংখ্যাসূচক মান বৃদ্ধি করে।
+Exammple:
+increment_numerics(lst, n)","""['assert increment_numerics([\""MSM\"", \""234\"", \""is\"", \""98\"", \""123\"", \""best\"", \""4\""] , 6) == [\\'MSM\\', \\'240\\', \\'is\\', \\'104\\', \\'129\\', \\'best\\', \\'10\\']', 'assert increment_numerics([\""Dart\"", \""356\"", \""is\"", \""88\"", \""169\"", \""Super\"", \""6\""] , 12) == [\\'Dart\\', \\'368\\', \\'is\\', \\'100\\', \\'181\\', \\'Super\\', \\'18\\']', 'assert increment_numerics([\""Flutter\"", \""451\"", \""is\"", \""44\"", \""96\"", \""Magnificent\"", \""12\""] , 33) == [\\'Flutter\\', \\'484\\', \\'is\\', \\'77\\', \\'129\\', \\'Magnificent\\', \\'45\\']']"""
+22,"একই আকারের দুটি সাজানো অ্যারের মধ্যমা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+get_median(lst, lst2, n)","""['assert get_median([1, 12, 15, 26, 38], [2, 13, 17, 30, 45], 5) == 16.0', 'assert get_median([2, 4, 8, 9], [7, 13, 19, 28], 4) == 8.5', 'assert get_median([3, 6, 14, 23, 36, 42], [2, 18, 27, 39, 49, 55], 6) == 25.0']"""
+23,"ল্যাম্বদা ফাংশন ব্যবহার করে একটি তালিকার পৃথক উপাদানগুলির n-তম শক্তি খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+nth_nums(lst, n)","""['assert nth_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],2)==[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]', 'assert nth_nums([10,20,30],3)==([1000, 8000, 27000])', 'assert nth_nums([12,15],5)==([248832, 759375])']"""
+24,"প্রদত্ত স্ট্রিংকে বড় হাতের অক্ষরে রূপান্তর করতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+is_upper(s)","""['assert is_upper(\""person\"") ==\""PERSON\""', 'assert is_upper(\""final\"") == \""FINAL\""', 'assert is_upper(\""Valid\"") == \""VALID\""']"""
+25,"একটি প্রদত্ত তালিকার প্রথম এবং শেষ উপাদান বিনিময় করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+swap_List(lst)","""['assert swap_List([1,2,3]) == [3,2,1]', 'assert swap_List([1,2,3,4,4]) == [4,2,3,4,1]', 'assert swap_List([4,5,6]) == [6,5,4]']"""
+26,"একটি পাইথন ফাংশন লিখুন যাতে সেমি সার্কেলে যে বৃহত্তম ত্রিভুজটি লেখা যায় তা খুঁজে পাওয়া যায়।
+Exammple:
+triangle_area(n)","""['assert triangle_area(0) == 0', 'assert triangle_area(-1) == -1', 'assert triangle_area(2) == 4']"""
+27,"প্রদত্ত অ্যারে থেকে ক্ষুদ্রতম অনুপস্থিত সংখ্যা খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_First_Missing(lst, n, n2)","""['assert find_First_Missing([0,1,2,3],0,3) == 4', 'assert find_First_Missing([0,1,2,6,9],0,4) == 3', 'assert find_First_Missing([2,3,5,8,9],0,4) == 0']"""
+28,"প্রদত্ত স্ট্রিং-এর সমস্ত স্পেসকে অক্ষর * তালিকা আইটেম * তালিকা আইটেম * তালিকা আইটেম * তালিকা আইটেম '%20' দিয়ে প্রতিস্থাপনের জন্য একটি ফাংশন লিখুন।
+Exammple:
+replace_spaces(s)","""['assert replace_spaces(\""My Name is Dawood\"") == \\'My%20Name%20is%20Dawood\\'', 'assert replace_spaces(\""I am a Programmer\"") == \\'I%20am%20a%20Programmer\\'', 'assert replace_spaces(\""I love Coding\"") == \\'I%20love%20Coding\\'']"""
+29,"একটি মিশ্র তালিকা থেকে এমনকি সংখ্যা খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Split(lst)","""['assert Split([1,2,3,4,5]) == [2,4]', 'assert Split([4,5,6,7,8,0,1]) == [4,6,8,0]', 'assert Split ([8,12,15,19]) == [8,12]']"""
+30,"একটি ফাংশন লিখুন যা প্রদত্ত সমন্বয় টুপলের সমস্ত সংলগ্ন সমন্বয়গুলি বের করে।
+Exammple:
+get_coordinates(tup)","""['assert get_coordinates((3, 4)) == [[2, 3], [2, 4], [2, 5], [3, 3], [3, 4], [3, 5], [4, 3], [4, 4], [4, 5]]', 'assert get_coordinates((4, 5)) ==[[3, 4], [3, 5], [3, 6], [4, 4], [4, 5], [4, 6], [5, 4], [5, 5], [5, 6]]', 'assert get_coordinates((5, 6)) == [[4, 5], [4, 6], [4, 7], [5, 5], [5, 6], [5, 7], [6, 5], [6, 6], [6, 7]]']"""
+31,"রেজেক্স ব্যবহার করে একটি প্রদত্ত স্ট্রিংয়ে হোয়াইটস্পেসগুলিকে একটি আন্ডারস্কোর এবং বিপরীতভাবে প্রতিস্থাপনের জন্য একটি ফাংশন লিখুন।
+Exammple:
+replace_spaces(s)","""[\""assert replace_spaces('Jumanji The Jungle') == 'Jumanji_The_Jungle'\"", \""assert replace_spaces('The Avengers') == 'The_Avengers'\"", \""assert replace_spaces('Fast and Furious') == 'Fast_and_Furious'\""]"""
+32,"একটি পাইথন ফাংশন লিখুন যাতে সব শূন্যকে দেওয়া তালিকার শেষে সরানো যায়।
+Exammple:
+move_zero(lst)","""['assert move_zero([1,0,2,0,3,4]) == [1,2,3,4,0,0]', 'assert move_zero([2,3,2,0,0,4,0,5,0]) == [2,3,2,4,5,0,0,0,0]', 'assert move_zero([0,1,0,1,1]) == [1,1,1,0,0]']"""
+33,"প্রদত্ত অ্যারেতে সমস্ত সংখ্যার জোড়ার xor এর যোগফল খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+pair_OR_Sum(lst, n)","""['assert pair_OR_Sum([5,9,7,6],4) == 47', 'assert pair_OR_Sum([7,3,5],3) == 12', 'assert pair_OR_Sum([7,3],2) == 4']"""
+34,"প্রথম n টি সম সংখ্যাগুলির চতুর্থ ক্ষমতার যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+even_Power_Sum(n)","""['assert even_Power_Sum(2) == 272', 'assert even_Power_Sum(3) == 1568', 'assert even_Power_Sum(4) == 5664']"""
+35,"একটি ফাংশন লিখুন যাতে সবগুলো ভ্যালু এক হিপে ঢুকিয়ে দেওয়া হয় এবং তারপর ছোট ভ্যালুগুলো একের পর এক বের করে দেওয়া হয়।
+Exammple:
+heap_sort(lst)","""['assert heap_sort([1, 3, 5, 7, 9, 2, 4, 6, 8, 0])==[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]', 'assert heap_sort([25, 35, 22, 85, 14, 65, 75, 25, 58])==[14, 22, 25, 25, 35, 58, 65, 75, 85]', 'assert heap_sort( [7, 1, 9, 5])==[1,5,7,9]']"""
+36,"একটি চতুর্ভুজ সমীকরণের মূলগুলি একে অপরের প্রতিদ্বন্দ্বিতা কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Check_Solution(n, n2, n3)","""['assert Check_Solution(2,0,2) == \""Yes\""', 'assert Check_Solution(2,-5,2) == \""Yes\""', 'assert Check_Solution(1,2,3) == \""No\""']"""
+37,"একটি ফাংশন লিখুন যা দিয়ে চেক করা যায় যে প্রদত্ত পরিমাণে কোন লাভ এবং কোন ক্ষতি নেই
+Exammple:
+noprofit_noloss(n, n2)","""['assert noprofit_noloss(1500,1200)==False', 'assert noprofit_noloss(100,100)==True', 'assert noprofit_noloss(2000,5000)==False']"""
+38,"বায়ু শীতলতা সূচক গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+wind_chill(n, n2)","""['assert wind_chill(120,35)==40', 'assert wind_chill(40,70)==86', 'assert wind_chill(10,100)==116']"""
+39,"একটি ফাংশন লিখুন যা একটি নামের তালিকা থেকে ছোট অক্ষর দিয়ে শুরু হওয়া নামগুলি সরিয়ে দেওয়ার পরে নামের দৈর্ঘ্যের যোগফল দেয়।
+Exammple:
+sample_nam(lst)","""[\""assert sample_nam(['sally', 'Dylan', 'rebecca', 'Diana', 'Joanne', 'keith'])==16\"", 'assert sample_nam([\""php\"", \""res\"", \""Python\"", \""abcd\"", \""Java\"", \""aaa\""])==10', 'assert sample_nam([\""abcd\"", \""Python\"", \""abba\"", \""aba\""])==6']"""
+40,"একটি স্ট্রিংয়ে বন্ধনী এলাকা অপসারণের জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_parenthesis(lst)","""['assert remove_parenthesis([\""python (chrome)\""])==(\""python\"")', 'assert remove_parenthesis([\""string(.abc)\""])==(\""string\"")', 'assert remove_parenthesis([\""alpha(num)\""])==(\""alpha\"")']"""
+41,"nth অ-অনুভূমিক সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+is_nonagonal(n)","""['assert is_nonagonal(10) == 325', 'assert is_nonagonal(15) == 750', 'assert is_nonagonal(18) == 1089']"""
+42,"প্রদত্ত টিপল ম্যাট্রিক্স থেকে অনুরূপ সারিগুলি সরিয়ে ফেলার জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_similar_row(lst)","""['assert remove_similar_row([[(4, 5), (3, 2)], [(2, 2), (4, 6)], [(3, 2), (4, 5)]] ) == {((2, 2), (4, 6)), ((3, 2), (4, 5))}', 'assert remove_similar_row([[(5, 6), (4, 3)], [(3, 3), (5, 7)], [(4, 3), (5, 6)]] ) == {((4, 3), (5, 6)), ((3, 3), (5, 7))}', 'assert remove_similar_row([[(6, 7), (5, 4)], [(4, 4), (6, 8)], [(5, 4), (6, 7)]] ) =={((4, 4), (6, 8)), ((5, 4), (6, 7))}']"""
+43,"এমন একটি ফাংশন লিখুন যা শব্দের শুরু বা শেষে নয়, 'z' যুক্ত একটি শব্দের সাথে মিলবে।
+Exammple:
+text_match_wordz_middle(s)","""['assert text_match_wordz_middle(\""pythonzabc.\"")==(\\'Found a match!\\')', 'assert text_match_wordz_middle(\""xyzabc.\"")==(\\'Found a match!\\')', 'assert text_match_wordz_middle(\""  lang  .\"")==(\\'Not matched!\\')']"""
+44,"একটি প্রদত্ত অবস্থানে একটি অ্যারেকে বিপরীত করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+reverse_Array_Upto_K(lst, n)","""['assert reverse_Array_Upto_K([1, 2, 3, 4, 5, 6],4) == [4, 3, 2, 1, 5, 6]', 'assert reverse_Array_Upto_K([4, 5, 6, 7], 2) == [5, 4, 6, 7]', 'assert reverse_Array_Upto_K([9, 8, 7, 6, 5],3) == [7, 8, 9, 6, 5]']"""
+45,"প্রদত্ত টুপলগুলিতে এটির kth সূচকের পণ্য খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+find_k_product(lst, n)","""['assert find_k_product([(5, 6, 7), (1, 3, 5), (8, 9, 19)], 2) == 665', 'assert find_k_product([(6, 7, 8), (2, 4, 6), (9, 10, 20)], 1) == 280', 'assert find_k_product([(7, 8, 9), (3, 5, 7), (10, 11, 21)], 0) == 210']"""
+46,"একটি পাইথন ফাংশন লিখুন যা n আকারের একটি ঘনক্ষেত্রে k আকারের ঘনক্ষেত্রের সংখ্যা গণনা করে।
+Exammple:
+No_of_cubes(n, n2)","""['assert No_of_cubes(2,1) == 8', 'assert No_of_cubes(5,2) == 64', 'assert No_of_cubes(1,1) == 1']"""
+47,"একটি স্ট্রিংকে বড় অক্ষরে বিভক্ত করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+split_upperstring(s)","""['assert split_upperstring(\""PythonProgramLanguage\"")==[\\'Python\\',\\'Program\\',\\'Language\\']', 'assert split_upperstring(\""PythonProgram\"")==[\\'Python\\',\\'Program\\']', 'assert split_upperstring(\""ProgrammingLanguage\"")==[\\'Programming\\',\\'Language\\']']"""
+48,"একটি প্রদত্ত তালিকায় প্রতিটি n-তম মানের অবস্থান (n+1) তম মান এবং (n+1) তম মানের সাথে n- তম মানের সাথে বিনিময় করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+exchange_elements(lst)","""['assert exchange_elements([0,1,2,3,4,5])==[1, 0, 3, 2, 5, 4] ', 'assert exchange_elements([5,6,7,8,9,10])==[6,5,8,7,10,9] ', 'assert exchange_elements([25,35,45,55,75,95])==[35,25,55,45,95,75] ']"""
+49,"একটি নির্দিষ্ট পরিসরের সূচকের মধ্যে একটি তালিকার সংখ্যার যোগফল গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+sum_Range_list(lst, n, n2)","""['assert sum_Range_list([2, 1, 5, 6, 8, 3, 4, 9, 10, 11, 8, 12],8,10) == 29', 'assert sum_Range_list([1,2,3,4,5],1,2) == 5', 'assert sum_Range_list([1,0,1,2,5,6],4,5) == 11']"""
+50,"প্রদত্ত দুটি অ্যারে সমান কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+are_Equal(lst, lst2, n, n2)","""['assert are_Equal([1,2,3],[3,2,1],3,3) == True', 'assert are_Equal([1,1,1],[2,2,2],3,3) == False', 'assert are_Equal([8,9],[4,5,6],2,3) == False']"""
+51,"একটি টিপল অন্য টিপলের উপসেট কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_subset(tup, tup2)","""['assert check_subset((10, 4, 5, 6), (5, 10)) == True', 'assert check_subset((1, 2, 3, 4), (5, 6)) == False', 'assert check_subset((7, 8, 9, 10), (10, 8)) == True']"""
+52,"একটি ফাংশন লিখুন যাতে প্রদত্ত টিপল ম্যাট্রিক্সটি টিপল তালিকায় সমতল করা যায় যেখানে প্রতিটি টিপল প্রতিটি কলামকে প্রতিনিধিত্ব করে।
+Exammple:
+matrix_to_list(lst)","""[\""assert matrix_to_list([[(4, 5), (7, 8)], [(10, 13), (18, 17)], [(0, 4), (10, 1)]]) == '[(4, 7, 10, 18, 0, 10), (5, 8, 13, 17, 4, 1)]'\"", \""assert matrix_to_list([[(5, 6), (8, 9)], [(11, 14), (19, 18)], [(1, 5), (11, 2)]]) == '[(5, 8, 11, 19, 1, 11), (6, 9, 14, 18, 5, 2)]'\"", \""assert matrix_to_list([[(6, 7), (9, 10)], [(12, 15), (20, 21)], [(23, 7), (15, 8)]]) == '[(6, 9, 12, 20, 23, 15), (7, 10, 15, 21, 7, 8)]'\""]"""
+53,"একটি ফাংশন লিখুন যা সংগ্রহ মডিউল ব্যবহার করে একটি কী-মান জোড়ার ক্রমকে একটি তালিকার অভিধানে গোষ্ঠীভুক্ত করে।
+Exammple:
+grouping_dictionary(lst)","""[\""assert grouping_dictionary([('yellow', 1), ('blue', 2), ('yellow', 3), ('blue', 4), ('red', 1)])== ({'yellow': [1, 3], 'blue': [2, 4], 'red': [1]})\"", \""assert grouping_dictionary([('yellow', 10), ('blue', 20), ('yellow', 30), ('blue', 40), ('red', 10)])== ({'yellow': [10, 30], 'blue': [20, 40], 'red': [10]})\"", \""assert grouping_dictionary([('yellow', 15), ('blue', 25), ('yellow', 35), ('blue', 45), ('red', 15)])== ({'yellow': [15, 35], 'blue': [25, 45], 'red': [15]})\""]"""
+54,"একটি আয়তক্ষেত্রের পরিধি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+rectangle_perimeter(n, n2)","""['assert rectangle_perimeter(10,20)==60', 'assert rectangle_perimeter(10,5)==30', 'assert rectangle_perimeter(4,2)==12']"""
+55,"একটি পাইথন ফাংশন লিখুন যা n প্রাকৃতিক সংখ্যার পঞ্চম শক্তির যোগফল খুঁজে বের করবে।
+Exammple:
+fifth_Power_Sum(n)","""['assert fifth_Power_Sum(2) == 33', 'assert fifth_Power_Sum(4) == 1300', 'assert fifth_Power_Sum(3) == 276']"""
+56,"দুটি অ্যারের পরম পার্থক্যের সর্বনিম্ন যোগফল খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Min_Sum(lst, lst2, n)","""['assert find_Min_Sum([3,2,1],[2,1,3],3) == 0', 'assert find_Min_Sum([1,2,3],[4,5,6],3) == 9', 'assert find_Min_Sum([4,1,8,7],[2,3,6,5],4) == 6']"""
+57,"একটি প্রদত্ত সংখ্যার ফ্যাক্টরিয়ালের প্রথম অঙ্কটি খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+first_Digit(n)","""['assert first_Digit(5) == 1', 'assert first_Digit(10) == 3', 'assert first_Digit(7) == 5']"""
+58,"একটি প্রদত্ত তালিকায় সর্বোচ্চ সংখ্যক বার প্রদর্শিত আইটেমটি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+max_occurrences(lst)","""['assert max_occurrences([2,3,8,4,7,9,8,2,6,5,1,6,1,2,3,4,6,9,1,2])==2', 'assert max_occurrences([1, 3,5, 7,1, 3,13, 15, 17,5, 7,9,1, 11])==1', 'assert max_occurrences([1, 2, 3,2, 4, 5,1, 1, 1])==1']"""
+59,"পূর্ণসংখ্যার তালিকা থেকে ডুপ্লিকেট মুদ্রণ করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Repeat(lst)","""['assert Repeat([10, 20, 30, 20, 20, 30, 40, 50, -20, 60, 60, -20, -20]) == [20, 30, -20, 60]', 'assert Repeat([-1, 1, -1, 8]) == [-1]', 'assert Repeat([1, 2, 3, 1, 2,]) == [1, 2]']"""
+60,"একটি পাইথন ফাংশন লিখুন যাতে দুটি রেঞ্জের মধ্যে থেকে পয়েন্ট নির্বাচন করতে পারে যাতে উভয় রেঞ্জের মধ্যে কোন পয়েন্ট থাকে না।
+Exammple:
+find_Points(n, n2, n3, n4)","""['assert find_Points(5,10,1,5) == (1,10)', 'assert find_Points(3,5,7,9) == (3,9)', 'assert find_Points(1,5,2,8) == (1,8)']"""
+61,"একটি ফাংশন লিখুন যাতে সর্বোচ্চ যোগফল পাওয়া যায় যা তিনটি পরপর উপাদান উপস্থিত না থাকলে গঠন করা যায়।
+Exammple:
+max_sum_of_three_consecutive(lst, n)","""['assert max_sum_of_three_consecutive([100, 1000, 100, 1000, 1], 5) == 2101', 'assert max_sum_of_three_consecutive([3000, 2000, 1000, 3, 10], 5) == 5013', 'assert max_sum_of_three_consecutive([1, 2, 3, 4, 5, 6, 7, 8], 8) == 27']"""
+62,"একটি অভিধানে একটি তালিকা বাছাই করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+sorted_dict(dct)","""[\""assert sorted_dict({'n1': [2, 3, 1], 'n2': [5, 1, 2], 'n3': [3, 2, 4]})=={'n1': [1, 2, 3], 'n2': [1, 2, 5], 'n3': [2, 3, 4]}\"", \""assert sorted_dict({'n1': [25,37,41], 'n2': [41,54,63], 'n3': [29,38,93]})=={'n1': [25, 37, 41], 'n2': [41, 54, 63], 'n3': [29, 38, 93]}\"", \""assert sorted_dict({'n1': [58,44,56], 'n2': [91,34,58], 'n3': [100,200,300]})=={'n1': [44, 56, 58], 'n2': [34, 58, 91], 'n3': [100, 200, 300]}\""]"""
+63,"একটি ফাংশন লিখুন k এর বৃহত্তম সম্ভাব্য মান খুঁজে বের করতে যাতে k মডুলাস x হল y।
+Exammple:
+find_max_val(n, n2, n3)","""['assert find_max_val(15, 10, 5) == 15', 'assert find_max_val(187, 10, 5) == 185', 'assert find_max_val(16, 11, 1) == 12']"""
+64,"একটি নির্দিষ্ট সংখ্যার মধ্যবর্তী সংখ্যার গড় খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+average_Even(n)","""['assert average_Even(2) == 2', 'assert average_Even(4) == 3', 'assert average_Even(100) == 51']"""
+65,"প্রদত্ত তালিকার শেষে প্রথম উপাদান স্থানান্তর করতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+move_last(lst)","""['assert move_last([1,2,3,4]) == [2,3,4,1]', 'assert move_last([2,3,4,1,5,0]) == [3,4,1,5,0,2]', 'assert move_last([5,4,3,2,1]) == [4,3,2,1,5]']"""
+66,"একটি স্ট্রিংয়ে অক্ষরের উপস্থিতি গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+count_char(s, s2)","""['assert count_char(\""Python\"",\\'o\\')==1', 'assert count_char(\""little\"",\\'t\\')==2', 'assert count_char(\""assert\"",\\'s\\')==2']"""
+67,"স্ট্রিংয়ে স্বরবর্ণের সংখ্যা গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Check_Vow(s, s2)","""[\""assert Check_Vow('corner','AaEeIiOoUu') == 2\"", \""assert Check_Vow('valid','AaEeIiOoUu') == 2\"", \""assert Check_Vow('true','AaEeIiOoUu') ==2\""]"""
+68,"একটি পাইথন ফাংশন লিখুন যাতে অক্ষরের একাধিক উপস্থিতি একক দ্বারা প্রতিস্থাপিত হয়।
+Exammple:
+replace(s, s2)","""[\""assert replace('peep','e') == 'pep'\"", \""assert replace('Greek','e') == 'Grek'\"", \""assert replace('Moon','o') == 'Mon'\""]"""
+69,"রেজেক্স ব্যবহার করে প্রদত্ত আইপি ঠিকানাটি বৈধ কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_IP(s)","""['assert check_IP(\""192.168.0.1\"") == \\'Valid IP address\\'', 'assert check_IP(\""110.234.52.124\"") == \\'Valid IP address\\'', 'assert check_IP(\""366.1.2.2\"") == \\'Invalid IP address\\'']"""
+70,"একটি সংখ্যা ক্রমের প্রবণতা হ্রাস পাচ্ছে কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+decreasing_trend(lst)","""['assert decreasing_trend([-4,-3,-2,-1]) == True', 'assert decreasing_trend([1,2,3]) == True', 'assert decreasing_trend([3,2,1]) == False']"""
+71,"ডানদিকে সবচেয়ে বেশি বিট সেট না করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+set_Right_most_Unset_Bit(n)","""['assert set_Right_most_Unset_Bit(21) == 23', 'assert set_Right_most_Unset_Bit(11) == 15', 'assert set_Right_most_Unset_Bit(15) == 15']"""
+72,"একটি ফাংশন লিখুন যাতে সর্বোচ্চ তিনটি সংখ্যা পাওয়া যায়।
+Exammple:
+max_of_three(n, n2, n3)","""['assert max_of_three(10,20,30)==30', 'assert max_of_three(55,47,39)==55', 'assert max_of_three(10,49,30)==49']"""
+73,"একাধিক পূর্ণসংখ্যার একটি তালিকাকে একটি একক পূর্ণসংখ্যায় রূপান্তর করতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+convert(lst)","""['assert convert([1,2,3]) == 123', 'assert convert([4,5,6]) == 456', 'assert convert([7,8,9]) == 789']"""
+74,"একটি প্রদত্ত স্ট্রিং থেকে ডুপ্লিকেট শব্দ অপসারণের জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_duplicate(s)","""['assert remove_duplicate(\""Python Exercises Practice Solution Exercises\"")==(\""Python Exercises Practice Solution\"")', 'assert remove_duplicate(\""Python Exercises Practice Solution Python\"")==(\""Python Exercises Practice Solution\"")', 'assert remove_duplicate(\""Python Exercises Practice Solution Practice\"")==(\""Python Exercises Practice Solution\"")']"""
+75,"দুটি পূর্ণসংখ্যার যোগ করার জন্য একটি ফাংশন লিখুন। তবে, যদি যোগফল প্রদত্ত পরিসরের মধ্যে থাকে তবে এটি 20 প্রদান করবে।
+Exammple:
+sum_nums(n, n2, n3, n4)","""['assert sum_nums(2,10,11,20)==20', 'assert sum_nums(15,17,1,10)==32', 'assert sum_nums(10,15,5,30)==20']"""
+76,"একটি ফাংশন লিখুন যা রেজেক্স ব্যবহার করে প্রদত্ত স্ট্রিং থেকে আলফানিউমেরিক অক্ষর ছাড়া অন্য সব কিছু সরিয়ে ফেলবে।
+Exammple:
+remove_extra_char(s)","""[\""assert remove_extra_char('**//Google Android// - 12. ') == 'GoogleAndroid12'\"", \""assert remove_extra_char('****//Google Flutter//*** - 36. ') == 'GoogleFlutter36'\"", \""assert remove_extra_char('**//Google Firebase// - 478. ') == 'GoogleFirebase478'\""]"""
+77,"একটি ফাংশন লিখুন যাতে ত্রিভুজটি বৈধ কিনা তা পরীক্ষা করা যায়।
+Exammple:
+validity_triangle(n, n2, n3)","""['assert validity_triangle(60,50,90)==False', 'assert validity_triangle(45,75,60)==True', 'assert validity_triangle(30,50,100)==True']"""
+78,"একটি প্রদত্ত স্ট্রিং থেকে স্পেস অপসারণের জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+remove_spaces(s)","""['assert remove_spaces(\""a b c\"") == \""abc\""', 'assert remove_spaces(\""1 2 3\"") == \""123\""', 'assert remove_spaces(\"" b c\"") == \""bc\""']"""
+79,"একটি ফাংশন লিখুন যা ডিকশনারি কী এর উপাদানগুলিকে সূচক অনুসারে অ্যাক্সেস করে।
+Exammple:
+access_key(dct, n)","""[\""assert access_key({'physics': 80, 'math': 90, 'chemistry': 86},0)== 'physics'\"", \""assert access_key({'python':10, 'java': 20, 'C++':30},2)== 'C++'\"", \""assert access_key({'program':15,'computer':45},1)== 'computer'\""]"""
+80,"একটি সংখ্যা ক্রমের প্রবণতা বাড়ছে কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+increasing_trend(lst)","""['assert increasing_trend([1,2,3,4]) == True', 'assert increasing_trend([4,3,2,1]) == False', 'assert increasing_trend([0,1,4,9]) == True']"""
+81,"একটি সংখ্যার ক্ষুদ্রতম অক্ষরের বিভাজক খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+smallest_Divisor(n)","""['assert smallest_Divisor(10) == 2', 'assert smallest_Divisor(25) == 5', 'assert smallest_Divisor(31) == 31']"""
+82,"মানচিত্র এবং ল্যাম্বদা ফাংশন ব্যবহার করে দুটি তালিকার গুণ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+mul_list(lst, lst2)","""['assert mul_list([1, 2, 3],[4,5,6])==[4,10,18]', 'assert mul_list([1,2],[3,4])==[3,8]', 'assert mul_list([90,120],[50,70])==[4500,8400]']"""
+83,"একটি পাইথন ফাংশন লিখুন যা দিয়ে পরীক্ষা করা যায় যে, প্রদত্ত সংখ্যাটি দুইটি বর্গক্ষেত্রের যোগফল দ্বারা উপস্থাপিত হতে পারে কি না।
+Exammple:
+sum_Square(n)","""['assert sum_Square(25) == True', 'assert sum_Square(24) == False', 'assert sum_Square(17) == True']"""
+84,"একটি পুনরাবৃত্ত স্ট্রিংয়ে অক্ষরের উপস্থিতি গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+count_Char(s, s2)","""['assert count_Char(\""abcac\"",\\'a\\') == 4', 'assert count_Char(\""abca\"",\\'c\\') == 2', 'assert count_Char(\""aba\"",\\'a\\') == 7']"""
+85,"১ থেকে এন এর মধ্যে মৌলিক সংখ্যার যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+sum_Of_Primes(n)","""['assert sum_Of_Primes(10) == 17', 'assert sum_Of_Primes(20) == 77', 'assert sum_Of_Primes(5) == 10']"""
+86,"প্রদত্ত তালিকার প্রতিটি উপাদানের ফ্রিকোয়েন্সি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+freq_element(tup)","""[\""assert freq_element((4, 5, 4, 5, 6, 6, 5, 5, 4) ) == '{4: 3, 5: 4, 6: 2}'\"", \""assert freq_element((7, 8, 8, 9, 4, 7, 6, 5, 4) ) == '{7: 2, 8: 2, 9: 1, 4: 2, 6: 1, 5: 1}'\"", \""assert freq_element((1, 4, 3, 1, 4, 5, 2, 6, 2, 7) ) == '{1: 2, 4: 2, 3: 1, 5: 1, 2: 2, 6: 1, 7: 1}'\""]"""
+87,"পুনরাবৃত্তি ব্যবহার করে দুটি পূর্ণসংখ্যার বৃহত্তম সাধারণ বিভাজক (জিসিডি) খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+recur_gcd(n, n2)","""['assert recur_gcd(12,14) == 2', 'assert recur_gcd(13,17) == 1', 'assert recur_gcd(9, 3) == 3']"""
+88,"একটি জটিল সংখ্যার দৈর্ঘ্য পেতে একটি ফাংশন লিখুন।
+Exammple:
+len_complex(n, n2)","""['assert len_complex(3,4)==5.0', 'assert len_complex(9,10)==13.45362404707371', 'assert len_complex(7,9)==11.40175425099138']"""
+89,"## একটি ফাংশন লিখুন যাতে প্রদত্ত পূর্ণসংখ্যা অ্যারের জন্য অ্যারের শেষে পৌঁছানোর জন্য সর্বনিম্ন সংখ্যক লাফ খুঁজে পাওয়া যায় যেখানে প্রতিটি উপাদান সেই উপাদান থেকে এগিয়ে যেতে পারে এমন সর্বোচ্চ সংখ্যক পদক্ষেপের প্রতিনিধিত্ব করে। > ইন্ডেন্টড ব্লক > ইন্ডেন্টড ব্লক
+Exammple:
+min_jumps(lst, n)","""['assert min_jumps([1, 3, 6, 1, 0, 9], 6) == 3', 'assert min_jumps([1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9], 11) == 3', 'assert min_jumps([1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1], 11) == 10']"""
+90,"একটি প্রদত্ত তালিকার পরপর সংখ্যাকে গুণ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+mul_consecutive_nums(lst)","""['assert mul_consecutive_nums([1, 1, 3, 4, 4, 5, 6, 7])==[1, 3, 12, 16, 20, 30, 42]', 'assert mul_consecutive_nums([4, 5, 8, 9, 6, 10])==[20, 40, 72, 54, 60]', 'assert mul_consecutive_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[2, 6, 12, 20, 30, 42, 56, 72, 90]']"""
+91,"প্রদত্ত টিপল তালিকার ২য় উপাদানগুলির উপর ভিত্তি করে 1ম উপাদানগুলিকে গ্রুপ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+group_element(lst)","""['assert group_element([(6, 5), (2, 7), (2, 5), (8, 7), (9, 8), (3, 7)]) == {5: [6, 2], 7: [2, 8, 3], 8: [9]}', 'assert group_element([(7, 6), (3, 8), (3, 6), (9, 8), (10, 9), (4, 8)]) == {6: [7, 3], 8: [3, 9, 4], 9: [10]}', 'assert group_element([(8, 7), (4, 9), (4, 7), (10, 9), (11, 10), (5, 9)]) == {7: [8, 4], 9: [4, 10, 5], 10: [11]}']"""
+92,"একটি প্রদত্ত সংখ্যার ফ্যাক্টরিয়ালের শেষ দুটি অঙ্ক খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+last_Two_Digits(n)","""['assert last_Two_Digits(7) == 40', 'assert last_Two_Digits(5) == 20', 'assert last_Two_Digits(2) == 2']"""
+93,"রেজেক্স ব্যবহার করে স্ট্রিংয়ে একাধিক স্পেস অপসারণের জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_multiple_spaces(s)","""[\""assert remove_multiple_spaces('Google      Assistant') == 'Google Assistant'\"", \""assert remove_multiple_spaces('Quad      Core') == 'Quad Core'\"", \""assert remove_multiple_spaces('ChromeCast      Built-in') == 'ChromeCast Built-in'\""]"""
+94,"প্রদত্ত অভিধানের মান থেকে অনন্য মান বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+extract_unique(dct)","""[\""assert extract_unique({'msm' : [5, 6, 7, 8],'is' : [10, 11, 7, 5],'best' : [6, 12, 10, 8],'for' : [1, 2, 5]} ) == [1, 2, 5, 6, 7, 8, 10, 11, 12]\"", \""assert extract_unique({'Built' : [7, 1, 9, 4],'for' : [11, 21, 36, 14, 9],'ISP' : [4, 1, 21, 39, 47],'TV' : [1, 32, 38]} ) == [1, 4, 7, 9, 11, 14, 21, 32, 36, 38, 39, 47]\"", \""assert extract_unique({'F' : [11, 13, 14, 17],'A' : [12, 11, 15, 18],'N' : [19, 21, 15, 36],'G' : [37, 36, 35]}) == [11, 12, 13, 14, 15, 17, 18, 19, 21, 35, 36, 37]\""]"""
+95,"দ্বিতীয় টিপলের প্রতিটি উপাদান প্রথম টিপলের সংশ্লিষ্ট সূচকের চেয়ে বড় কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_greater(tup, tup2)","""['assert check_greater((10, 4, 5), (13, 5, 18)) == True', 'assert check_greater((1, 2, 3), (2, 1, 4)) == False', 'assert check_greater((4, 5, 6), (5, 6, 7)) == True']"""
+96,"একটি ফাংশন লিখুন যা দুইটি তালিকাকে একসাথে সংযুক্ত করে।
+Exammple:
+zip_list(lst, lst2)","""['assert zip_list([[1, 3], [5, 7], [9, 11]] ,[[2, 4], [6, 8], [10, 12, 14]] )==[[1, 3, 2, 4], [5, 7, 6, 8], [9, 11, 10, 12, 14]]', 'assert zip_list([[1, 2], [3, 4], [5, 6]] ,[[7, 8], [9, 10], [11, 12]] )==[[1, 2, 7, 8], [3, 4, 9, 10], [5, 6, 11, 12]]', \""assert zip_list([['a','b'],['c','d']] , [['e','f'],['g','h']] )==[['a','b','e','f'],['c','d','g','h']]\""]"""
+97,"ল্যাম্বদা ফাংশন ব্যবহার করে প্রদত্ত তালিকার সমসংখ্যক উপাদান খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+count_even(lst)","""['assert count_even([1, 2, 3, 5, 7, 8, 9, 10])==3', 'assert count_even([10,15,14,13,-18,12,-20])==5', 'assert count_even([1, 2, 4, 8, 9])==3']"""
+98,"একটি ফাংশন লিখুন যা একটি নির্দিষ্ট অভিধানের জন্য টিপল কীগুলির টুপল পণ্য দ্বারা অভিধানের আইটেমগুলি বাছাই করে।
+Exammple:
+sort_dict_item(dct)","""['assert sort_dict_item({(5, 6) : 3, (2, 3) : 9, (8, 4): 10, (6, 4): 12} ) == {(2, 3): 9, (6, 4): 12, (5, 6): 3, (8, 4): 10}', 'assert sort_dict_item({(6, 7) : 4, (3, 4) : 10, (9, 5): 11, (7, 5): 13} ) == {(3, 4): 10, (7, 5): 13, (6, 7): 4, (9, 5): 11}', 'assert sort_dict_item({(7, 8) : 5, (4, 5) : 11, (10, 6): 12, (8, 6): 14} ) == {(4, 5): 11, (8, 6): 14, (7, 8): 5, (10, 6): 12}']"""
+99,"একটি বাইনারি স্ট্রিংকে অন্য একটিতে রূপান্তর করতে প্রয়োজনীয় ন্যূনতম সংখ্যক সোয়্যাপের জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+min_Swaps(s, s2)","""['assert min_Swaps(\""1101\"",\""1110\"") == 1', 'assert min_Swaps(\""1111\"",\""0100\"") == \""Not Possible\""', 'assert min_Swaps(\""1110000\"",\""0001101\"") == 3']"""
+100,"একটি নির্দিষ্ট পরিসরের মধ্যে থাকা একটি তালিকার উপাদানগুলির সংখ্যা গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+count_range_in_list(lst, n, n2)","""['assert count_range_in_list([10,20,30,40,40,40,70,80,99],40,100)==6', \""assert count_range_in_list(['a','b','c','d','e','f'],'a','e')==5\"", 'assert count_range_in_list([7,8,9,15,17,19,45],15,20)==3']"""
+101,"প্রদত্ত অ্যারের ভারসাম্য সূচক খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+equilibrium_index(lst)","""['assert equilibrium_index([1, 2, 3, 4, 1, 2, 3]) == 3', 'assert equilibrium_index([-7, 1, 5, 2, -4, 3, 0]) == 3', 'assert equilibrium_index([1, 2, 3]) == -1']"""
+102,"এমন একটি ফাংশন লিখুন যাতে অ্যামাক্স-অ্যামিন <= কে এর মতো সরিয়ে ফেলা উচিত এমন উপাদানগুলির সর্বনিম্ন সংখ্যা খুঁজে পাওয়া যায়।
+Exammple:
+removals(lst, n, n2)","""['assert removals([1, 3, 4, 9, 10,11, 12, 17, 20], 9, 4) == 5', 'assert removals([1, 5, 6, 2, 8], 5, 2) == 3', 'assert removals([1, 2, 3 ,4, 5, 6], 6, 3) == 2']"""
+103,"একটি ফাংশন লিখুন যা দিয়ে যাচাই করা যায় যে প্রদত্ত কীটি অভিধানে আছে কি না।
+Exammple:
+is_key_present(dct, n)","""['assert is_key_present({1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60},5)==True', 'assert is_key_present({1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60},6)==True', 'assert is_key_present({1: 10, 2: 20, 3: 30, 4: 40, 5: 50, 6: 60},10)==False']"""
+104,"n-1 এর হারমোনিক সমষ্টি গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+harmonic_sum(n)","""['assert harmonic_sum(10)==2.9289682539682538', 'assert harmonic_sum(4)==2.083333333333333', 'assert harmonic_sum(7)==2.5928571428571425 ']"""
+105,"একটি ফাংশন লিখুন যাতে তালিকাটি দৈর্ঘ্য এবং মান অনুযায়ী বাছাই করা যায়।
+Exammple:
+sort_sublists(lst)","""['assert sort_sublists([[2], [0], [1, 3], [0, 7], [9, 11], [13, 15, 17]])==[[0], [2], [0, 7], [1, 3], [9, 11], [13, 15, 17]]', 'assert sort_sublists([[1], [2, 3], [4, 5, 6], [7], [10, 11]])==[[1], [7], [2, 3], [10, 11], [4, 5, 6]]', 'assert sort_sublists([[\""python\""],[\""java\"",\""C\"",\""C++\""],[\""DBMS\""],[\""SQL\"",\""HTML\""]])==[[\\'DBMS\\'], [\\'python\\'], [\\'SQL\\', \\'HTML\\'], [\\'java\\', \\'C\\', \\'C++\\']]']"""
+106,"একটি অ্যারে অন্য অ্যারের উপসেট কিনা তা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+is_subset(lst, n, lst2, n2)","""['assert is_subset([11, 1, 13, 21, 3, 7], 6, [11, 3, 7, 1], 4) == True', 'assert is_subset([1, 2, 3, 4, 5, 6], 6, [1, 2, 4], 3) == True', 'assert is_subset([10, 5, 2, 23, 19], 5, [19, 5, 3], 3) == False']"""
+107,"১ থেকে এন পর্যন্ত মোট সেট বিট গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+count_Set_Bits(n)","""['assert count_Set_Bits(16) == 33', 'assert count_Set_Bits(2) == 2', 'assert count_Set_Bits(14) == 28']"""
+108,"একটি স্ট্রিংকে একটি তালিকায় রূপান্তর করতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Convert(s)","""[\""assert Convert('python program') == ['python','program']\"", \""assert Convert('Data Analysis') ==['Data','Analysis']\"", \""assert Convert('Hadoop Training') == ['Hadoop','Training']\""]"""
+109,"একটি ফাংশন লিখুন যাতে টিপলটিতে উপস্থিত প্রতিটি মানের জন্য অনন্য কী গণনা করা যায়।
+Exammple:
+get_unique(lst)","""[\""assert get_unique([(3, 4), (1, 2), (2, 4), (8, 2), (7, 2), (8, 1), (9, 1), (8, 4), (10, 4)] ) == '{4: 4, 2: 3, 1: 2}'\"", \""assert get_unique([(4, 5), (2, 3), (3, 5), (9, 3), (8, 3), (9, 2), (10, 2), (9, 5), (11, 5)] ) == '{5: 4, 3: 3, 2: 2}'\"", \""assert get_unique([(6, 5), (3, 4), (2, 6), (11, 1), (8, 22), (8, 11), (4, 3), (14, 3), (11, 6)] ) == '{5: 1, 4: 1, 6: 2, 1: 1, 22: 1, 11: 1, 3: 2}'\""]"""
+110,"প্রদত্ত টিউপল রেকর্ডের প্রাথমিক এবং শেষ ডেটা অ্যাক্সেস করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+front_and_rear(tup)","""['assert front_and_rear((10, 4, 5, 6, 7)) == (10, 7)', 'assert front_and_rear((1, 2, 3, 4, 5)) == (1, 5)', 'assert front_and_rear((6, 7, 8, 9, 10)) == (6, 10)']"""
+111,"একটি পাইথন ফাংশন লিখুন যা পরীক্ষা করে যে একটি সংখ্যার অক্ষরগুলির গুণফল এমনকি এবং অদ্ভুত স্থানে সমান কিনা।
+Exammple:
+product_Equal(n)","""['assert product_Equal(2841) == True', 'assert product_Equal(1234) == False', 'assert product_Equal(1212) == False']"""
+112,"একটি ফাংশন লিখুন যা তালিকা থেকে ডুপ্লিকেট অপসারণ করে।
+Exammple:
+remove_duplicate(lst)","""['assert remove_duplicate([[10, 20], [40], [30, 56, 25], [10, 20], [33], [40]])==[[10, 20], [30, 56, 25], [33], [40]] ', 'assert remove_duplicate([\""a\"", \""b\"", \""a\"", \""c\"", \""c\""] )==[\""a\"", \""b\"", \""c\""]', 'assert remove_duplicate([1, 3, 5, 6, 3, 5, 6, 1] )==[1, 3, 5, 6]']"""
+113,"প্রদত্ত টিউপলে সমস্ত বৈধ মান রয়েছে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_valid(tup)","""['assert check_valid((True, True, True, True) ) == True', 'assert check_valid((True, False, True, True) ) == False', 'assert check_valid((True, True, True, True) ) == True']"""
+114,"একটি পাইথন ফাংশন লিখুন যা প্রদত্ত সংখ্যার প্রধান ফ্যাক্টরের স্বতন্ত্র শক্তির সংখ্যা গণনা করে।
+Exammple:
+count_Fac(n)","""['assert count_Fac(24) == 3', 'assert count_Fac(12) == 2', 'assert count_Fac(4) == 1']"""
+115,"একটি ফাংশন লিখুন যা পূর্ণসংখ্যার প্রদত্ত স্ট্রিংকে একটি টিপলে রূপান্তর করে।
+Exammple:
+str_to_tuple(s)","""['assert str_to_tuple(\""1, -5, 4, 6, 7\"") == (1, -5, 4, 6, 7)', 'assert str_to_tuple(\""1, 2, 3, 4, 5\"") == (1, 2, 3, 4, 5)', 'assert str_to_tuple(\""4, 6, 9, 11, 13, 14\"") == (4, 6, 9, 11, 13, 14)']"""
+116,"একটি রম্বসের পরিধি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+rombus_perimeter(n)","""['assert rombus_perimeter(10)==40', 'assert rombus_perimeter(5)==20', 'assert rombus_perimeter(4)==16']"""
+117,"স্ট্যান্ডার্ড ডিভিয়েশন গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+sd_calc(lst)","""['assert sd_calc([4, 2, 5, 8, 6])== 2.23606797749979', 'assert sd_calc([1,2,3,4,5,6,7])==2.160246899469287', 'assert sd_calc([5,9,10,15,6,4])==4.070217029430577']"""
+118,"একটি তালিকা তৈরি করতে একটি ফাংশন লিখুন যা অন্য তালিকা থেকে বিকল্প উপাদান গ্রহণ করে।
+Exammple:
+alternate_elements(lst)","""['assert alternate_elements([\""red\"", \""black\"", \""white\"", \""green\"", \""orange\""])==[\\'red\\', \\'white\\', \\'orange\\']', 'assert alternate_elements([2, 0, 3, 4, 0, 2, 8, 3, 4, 2])==[2, 3, 0, 8, 4]', 'assert alternate_elements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[1,3,5,7,9]']"""
+119,"একটি ফাংশন লিখুন যা একটি স্ট্রিংয়ের সাথে মিলে যায় যার মধ্যে একটি a এর পরে শূন্য বা আরও b রয়েছে।
+Exammple:
+text_match(s)","""['assert text_match(\""ac\"")==(\\'Found a match!\\')', 'assert text_match(\""dc\"")==(\\'Not matched!\\')', 'assert text_match(\""abba\"")==(\\'Found a match!\\')']"""
+120,"একটি ফাংশন লিখুন যাতে টিপলটিতে একটি অভিধান যোগ করা যায়।
+Exammple:
+add_dict_to_tuple(tup, dct)","""['assert add_dict_to_tuple((4, 5, 6), {\""MSAM\"" : 1, \""is\"" : 2, \""best\"" : 3} ) == (4, 5, 6, {\\'MSAM\\': 1, \\'is\\': 2, \\'best\\': 3})', 'assert add_dict_to_tuple((1, 2, 3), {\""UTS\"" : 2, \""is\"" : 3, \""Worst\"" : 4} ) == (1, 2, 3, {\\'UTS\\': 2, \\'is\\': 3, \\'Worst\\': 4})', 'assert add_dict_to_tuple((8, 9, 10), {\""POS\"" : 3, \""is\"" : 4, \""Okay\"" : 5} ) == (8, 9, 10, {\\'POS\\': 3, \\'is\\': 4, \\'Okay\\': 5})']"""
+121,"একটি ফাংশন লিখুন যা n*n আকারের প্রদত্ত বর্গক্ষেত্র ম্যাট্রিক্সের জন্য সমস্ত বিদ্যমান পথের সর্বাধিক গড়ের সাথে একটি পথ খুঁজে বের করে।
+Exammple:
+maxAverageOfPath(lst, n)","""['assert maxAverageOfPath([[1, 2, 3], [6, 5, 4], [7, 3, 9]], 3) == 5.2', 'assert maxAverageOfPath([[2, 3, 4], [7, 6, 5], [8, 4, 10]], 3) == 6.2', 'assert maxAverageOfPath([[3, 4, 5], [8, 7, 6], [9, 5, 11]], 3) == 7.2 ']"""
+122,"একটি ফাংশন লিখুন যা শিক্ষার্থীদের উচ্চতা এবং প্রস্থ ফিল্টার করে যা একটি অভিধানে সংরক্ষিত থাকে।
+Exammple:
+filter_data(dct, n, n2)","""[\""assert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},6.0,70)=={'Cierra Vega': (6.2, 70)}\"", \""assert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},5.9,67)=={'Cierra Vega': (6.2, 70),'Kierra Gentry': (6.0, 68)}\"", \""assert filter_data({'Cierra Vega': (6.2, 70), 'Alden Cantrell': (5.9, 65), 'Kierra Gentry': (6.0, 68), 'Pierre Cox': (5.8, 66)},5.7,64)=={'Cierra Vega': (6.2, 70),'Alden Cantrell': (5.9, 65),'Kierra Gentry': (6.0, 68),'Pierre Cox': (5.8, 66)}\""]"""
+123,"মানচিত্র ফাংশন ব্যবহার করে দুটি তালিকায় একই জোড়া গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+count_same_pair(lst, lst2)","""['assert count_same_pair([1, 2, 3, 4, 5, 6, 7, 8],[2, 2, 3, 1, 2, 6, 7, 9])==4', 'assert count_same_pair([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8],[2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8])==11', 'assert count_same_pair([2, 4, -6, -9, 11, -12, 14, -5, 17],[2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8])==1']"""
+124,"একটি ফাংশন লিখুন যা বেসের সমস্ত অঙ্কের যোগফলকে নির্দিষ্ট শক্তিতে গণনা করে।
+Exammple:
+power_base_sum(n, n2)","""['assert power_base_sum(2,100)==115', 'assert power_base_sum(8,10)==37', 'assert power_base_sum(8,15)==62']"""
+125,"রেজেক্স ব্যবহার করে প্রদত্ত স্ট্রিংয়ের উদ্ধৃতি চিহ্নের মধ্যে মানগুলি বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+extract_quotation(s)","""['assert extract_quotation(\\'Cortex \""A53\"" Based \""multi\"" tasking \""Processor\""\\') == [\\'A53\\', \\'multi\\', \\'Processor\\']', 'assert extract_quotation(\\'Cast your \""favorite\"" entertainment \""apps\""\\') == [\\'favorite\\', \\'apps\\']', 'assert extract_quotation(\\'Watch content \""4k Ultra HD\"" resolution with \""HDR 10\"" Support\\') == [\\'4k Ultra HD\\', \\'HDR 10\\']']"""
+126,"প্রদত্ত টিপলের সংলগ্ন উপাদানগুলিকে গুণ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+multiply_elements(tup)","""['assert multiply_elements((1, 5, 7, 8, 10)) == (5, 35, 56, 80)', 'assert multiply_elements((2, 4, 5, 6, 7)) == (8, 20, 30, 42)', 'assert multiply_elements((12, 13, 14, 9, 15)) == (156, 182, 126, 135)']"""
+127,"রেজেক্স ব্যবহার করে অক্ষর এবং সংখ্যা ছাড়া সমস্ত অক্ষর সরানোর জন্য একটি ফাংশন লিখুন
+Exammple:
+remove_char(s)","""['assert remove_char(\""123abcjw:, .@! eiw\"") == \\'123abcjweiw\\'', 'assert remove_char(\""Hello1234:, ! Howare33u\"") == \\'Hello1234Howare33u\\'', 'assert remove_char(\""Cool543Triks@:, Make@987Trips\"") == \\'Cool543TriksMake987Trips\\' ']"""
+128,"দুটি তালিকার উপাদান যোগ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+sum_list(lst, lst2)","""['assert sum_list([10,20,30],[15,25,35])==[25,45,65]', 'assert sum_list([1,2,3],[5,6,7])==[6,8,10]', 'assert sum_list([15,20,30],[15,45,75])==[30,65,105]']"""
+129,"মানচিত্র এবং ল্যাম্বদা ফাংশন ব্যবহার করে দুটি তালিকা যোগ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+add_list(lst, lst2)","""['assert add_list([1, 2, 3],[4,5,6])==[5, 7, 9]', 'assert add_list([1,2],[3,4])==[4,6]', 'assert add_list([10,20],[50,70])==[60,90]']"""
+130,"একটি প্রদত্ত তালিকার পরপর ডুপ্লিকেট অপসারণের জন্য একটি ফাংশন লিখুন।
+Exammple:
+consecutive_duplicates(lst)","""['assert consecutive_duplicates([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4 ])==[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 4]', 'assert consecutive_duplicates([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10])==[10, 15, 19, 18, 17, 26, 17, 18, 10]', \""assert consecutive_duplicates(['a', 'a', 'b', 'c', 'd', 'd'])==['a', 'b', 'c', 'd']\""]"""
+131,"একটি শঙ্কুর পার্শ্বীয় পৃষ্ঠতল এলাকা খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+lateralsurface_cone(n, n2)","""['assert lateralsurface_cone(5,12)==204.20352248333654', 'assert lateralsurface_cone(10,15)==566.3586699569488', 'assert lateralsurface_cone(19,17)==1521.8090132193388']"""
+132,"একটি ফাংশন লিখুন যাতে স্পেস, কমা বা বিন্দুগুলির সমস্ত ঘটনাকে একটি কলোনে প্রতিস্থাপন করা যায়।
+Exammple:
+replace_specialchar(s)","""[\""assert replace_specialchar('Python language, Programming language.')==('Python:language::Programming:language:')\"", \""assert replace_specialchar('a b c,d e f')==('a:b:c:d:e:f')\"", \""assert replace_specialchar('ram reshma,ram rahim')==('ram:reshma:ram:rahim')\""]"""
+133,"একটি সাজানো অ্যারেতে প্রদত্ত সংখ্যার প্রথম উপস্থিতির সূচক খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+find_first_occurrence(lst, n)","""['assert find_first_occurrence([2, 5, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 1', 'assert find_first_occurrence([2, 3, 5, 5, 6, 6, 8, 9, 9, 9], 5) == 2', 'assert find_first_occurrence([2, 4, 1, 5, 6, 6, 8, 9, 9, 9], 6) == 4']"""
+134,"একটি পাইথন ফাংশন লিখুন যাতে সব সম্ভাব্য সাব-রে এর উৎপাদিতের যোগফল পাওয়া যায়।
+Exammple:
+sum_Of_Subarray_Prod(lst, n)","""['assert sum_Of_Subarray_Prod([1,2,3],3) == 20', 'assert sum_Of_Subarray_Prod([1,2],2) == 5', 'assert sum_Of_Subarray_Prod([1,2,3,4],4) == 84']"""
+135,"একটি পাইথন ফাংশন লিখুন যাতে প্রথম এবং শেষ বিট ছাড়া সংখ্যার বিট টগল করা যায়।
+Exammple:
+toggle_middle_bits(n)","""['assert toggle_middle_bits(9) == 15', 'assert toggle_middle_bits(10) == 12', 'assert toggle_middle_bits(11) == 13']"""
+136,"একটি নির্দিষ্ট মানের বাম সন্নিবেশ পয়েন্ট সনাক্ত করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+left_insertion(lst, n)","""['assert left_insertion([1,2,4,5],6)==4', 'assert left_insertion([1,2,4,5],3)==2', 'assert left_insertion([1,2,4,5],7)==4']"""
+137,"একটি ফাংশন লিখুন যা দিয়ে চেক করা যায় যে প্রদত্ত স্ট্রিংটি স্বরবর্ণ দিয়ে শুরু হচ্ছে কিনা বা রেজেক্স ব্যবহার করে না।
+Exammple:
+check_str(s)","""['assert check_str(\""annie\"") == \\'Valid\\'', 'assert check_str(\""dawood\"") == \\'Invalid\\'', 'assert check_str(\""Else\"") == \\'Valid\\'']"""
+138,"n-1 এর জ্যামিতিক যোগফল গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+geometric_sum(n)","""['assert geometric_sum(7) == 1.9921875', 'assert geometric_sum(4) == 1.9375', 'assert geometric_sum(8) == 1.99609375']"""
+139,"একটি পাইথন ফাংশন লিখুন যাতে n অঙ্কযুক্ত ক্ষুদ্রতম ত্রিভুজাকার সংখ্যার সূচক পাওয়া যায়।
+Exammple:
+find_Index(n)","""['assert find_Index(2) == 4', 'assert find_Index(3) == 14', 'assert find_Index(4) == 45']"""
+140,"একটি ফাংশন লিখুন যা দেওয়া টিপলকে সংলগ্ন উপাদান ব্যবহার করে একটি কী-মান অভিধানে রূপান্তর করে।
+Exammple:
+tuple_to_dict(tup)","""['assert tuple_to_dict((1, 5, 7, 10, 13, 5)) == {1: 5, 7: 10, 13: 5}', 'assert tuple_to_dict((1, 2, 3, 4, 5, 6)) == {1: 2, 3: 4, 5: 6}', 'assert tuple_to_dict((7, 8, 9, 10, 11, 12)) == {7: 8, 9: 10, 11: 12}']"""
+141,"সমস্ত অক্ষর একই কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+all_Characters_Same(s)","""['assert all_Characters_Same(\""python\"") == False', 'assert all_Characters_Same(\""aaa\"") == True', 'assert all_Characters_Same(\""data\"") == False']"""
+142,"একটি টেট্রাহেড্রনের ক্ষেত্রফল নির্ণয়ের জন্য একটি ফাংশন লিখুন।
+Exammple:
+area_tetrahedron(n)","""['assert area_tetrahedron(3)==15.588457268119894', 'assert area_tetrahedron(20)==692.8203230275509', 'assert area_tetrahedron(10)==173.20508075688772']"""
+143,"একটি নির্দিষ্ট তালিকা নির্দিষ্ট সংখ্যক আইটেম দ্বারা সঠিক দিকের দিকে ঘোরানোর জন্য একটি ফাংশন লিখুন।
+Exammple:
+rotate_right(lst, n, n2)","""['assert rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],3,4)==[8, 9, 10, 1, 2, 3, 4, 5, 6]', 'assert rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],2,2)==[9, 10, 1, 2, 3, 4, 5, 6, 7, 8]', 'assert rotate_right([1, 2, 3, 4, 5, 6, 7, 8, 9, 10],5,2)==[6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8]']"""
+144,"প্রদত্ত টিপলটির কোন শূন্য মান আছে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_none(tup)","""['assert check_none((10, 4, 5, 6, None)) == True', 'assert check_none((7, 8, 9, 11, 14)) == False', 'assert check_none((1, 2, 3, 4, None)) == True']"""
+145,"একটি নির্দিষ্ট পরিসরের মধ্যে সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন যেখানে প্রতিটি সংখ্যা তার মধ্যে থাকা প্রতিটি অঙ্কের দ্বারা বিভাজ্য।
+Exammple:
+divisible_by_digits(n, n2)","""['assert divisible_by_digits(1,22)==[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15, 22]', 'assert divisible_by_digits(1,15)==[1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 15]', 'assert divisible_by_digits(20,25)==[22, 24]']"""
+146,"একটি সেক্টরের এলাকা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+sector_area(n, n2)","""['assert sector_area(4,45)==6.285714285714286', 'assert sector_area(9,45)==31.82142857142857', 'assert sector_area(9,360)==None']"""
+147,"একটি ফাংশন লিখুন যা প্রদত্ত তিনটি স্ট্রিং ক্রমের জন্য দীর্ঘতম সাধারণ উপসারণ খুঁজে বের করে।
+Exammple:
+lcs_of_three(s, s2, s3, n, n2, n3)","""[\""assert lcs_of_three('AGGT12', '12TXAYB', '12XBA', 6, 7, 5) == 2\"", \""assert lcs_of_three('Reels', 'Reelsfor', 'ReelsforReels', 5, 8, 13) == 5 \"", \""assert lcs_of_three('abcd1e2', 'bc12ea', 'bd1ea', 7, 6, 5) == 3\""]"""
+148,"একটি প্রদত্ত স্ট্রিং-এ বড় অক্ষর দিয়ে শুরু হওয়া শব্দের মধ্যে স্পেস রাখার জন্য একটি ফাংশন লিখুন।
+Exammple:
+capital_words_spaces(s)","""['assert capital_words_spaces(\""Python\"") == \\'Python\\'', 'assert capital_words_spaces(\""PythonProgrammingExamples\"") == \\'Python Programming Examples\\'', 'assert capital_words_spaces(\""GetReadyToBeCodingFreak\"") == \\'Get Ready To Be Coding Freak\\'']"""
+149,"একটি ফাংশন লিখুন যা সংখ্যার একটি প্রদত্ত স্ট্রিংকে সংখ্যাসূচকভাবে সাজায়।
+Exammple:
+sort_numeric_strings(lst)","""[\""assert sort_numeric_strings( ['4','12','45','7','0','100','200','-12','-500'])==[-500, -12, 0, 4, 7, 12, 45, 100, 200]\"", \""assert sort_numeric_strings(['2','3','8','4','7','9','8','2','6','5','1','6','1','2','3','4','6','9','1','2'])==[1, 1, 1, 2, 2, 2, 2, 3, 3, 4, 4, 5, 6, 6, 6, 7, 8, 8, 9, 9]\"", \""assert sort_numeric_strings(['1','3','5','7','1', '3','13', '15', '17','5', '7 ','9','1', '11'])==[1, 1, 1, 3, 3, 5, 5, 7, 7, 9, 11, 13, 15, 17]\""]"""
+150,"একটি ফাংশন লিখুন যাতে প্রদত্ত তালিকায় প্রদত্ত টিউপেল যোগ করা যায়।
+Exammple:
+add_tuple(lst, tup)","""['assert add_tuple([5, 6, 7], (9, 10)) == [5, 6, 7, 9, 10]', 'assert add_tuple([6, 7, 8], (10, 11)) == [6, 7, 8, 10, 11]', 'assert add_tuple([7, 8, 9], (11, 12)) == [7, 8, 9, 11, 12]']"""
+151,"প্রদত্ত অ্যারেটি min heap প্রতিনিধিত্ব করে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_min_heap(lst, n)","""['assert check_min_heap([1, 2, 3, 4, 5, 6], 0) == True', 'assert check_min_heap([2, 3, 4, 5, 10, 15], 0) == True', 'assert check_min_heap([2, 10, 4, 5, 3, 15], 0) == False']"""
+152,"nth জ্যাকবস্টাল সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+jacobsthal_num(n)","""['assert jacobsthal_num(5) == 11', 'assert jacobsthal_num(2) == 1', 'assert jacobsthal_num(4) == 5']"""
+153,"একটি ফাংশন লিখুন যাতে টুপল তালিকা থেকে সর্বনিম্ন k রেকর্ড পাওয়া যায়।
+Exammple:
+min_k(lst, n)","""[\""assert min_k([('Manjeet', 10), ('Akshat', 4), ('Akash', 2), ('Nikhil', 8)], 2) == [('Akash', 2), ('Akshat', 4)]\"", \""assert min_k([('Sanjeev', 11), ('Angat', 5), ('Akash', 3), ('Nepin', 9)], 3) == [('Akash', 3), ('Angat', 5), ('Nepin', 9)]\"", \""assert min_k([('tanmay', 14), ('Amer', 11), ('Ayesha', 9), ('SKD', 16)], 1) == [('Ayesha', 9)]\""]"""
+154,"তিনটি তালিকা থেকে সাধারণ সূচক উপাদান খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+extract_index_list(lst, lst2, lst3)","""['assert extract_index_list([1, 1, 3, 4, 5, 6, 7],[0, 1, 2, 3, 4, 5, 7],[0, 1, 2, 3, 4, 5, 7])==[1, 7]', 'assert extract_index_list([1, 1, 3, 4, 5, 6, 7],[0, 1, 2, 3, 4, 6, 5],[0, 1, 2, 3, 4, 6, 7])==[1, 6]', 'assert extract_index_list([1, 1, 3, 4, 6, 5, 6],[0, 1, 2, 3, 4, 5, 7],[0, 1, 2, 3, 4, 5, 7])==[1, 5]']"""
+155,"একটি তালিকার দ্বিতীয় ক্ষুদ্রতম সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+second_smallest(lst)","""['assert second_smallest([1, 2, -8, -2, 0, -2])==-2', 'assert second_smallest([1, 1, -0.5, 0, 2, -2, -2])==-0.5', 'assert second_smallest([2,2])==None']"""
+156,"একটি ফাংশন লিখুন যা একটি স্ট্রিংয়ের সাথে মিলে যায় যার মধ্যে একটি শূন্য বা একটি 'বি' থাকে।
+Exammple:
+text_match_zero_one(s)","""['assert text_match_zero_one(\""ac\"")==(\\'Found a match!\\')', 'assert text_match_zero_one(\""dc\"")==(\\'Not matched!\\')', 'assert text_match_zero_one(\""abbbba\"")==(\\'Found a match!\\')']"""
+157,"প্রদত্ত স্ট্রিং তালিকায় বিপরীত স্ট্রিংগুলির জোড়া গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+count_reverse_pairs(lst)","""['assert count_reverse_pairs([\""julia\"", \""best\"", \""tseb\"", \""for\"", \""ailuj\""])== \\'2\\'', 'assert count_reverse_pairs([\""geeks\"", \""best\"", \""for\"", \""skeeg\""]) == \\'1\\'', 'assert count_reverse_pairs([\""makes\"", \""best\"", \""sekam\"", \""for\"", \""rof\""]) == \\'2\\' ']"""
+158,"একটি তালিকার মধ্যে অনন্য তালিকার সংখ্যা গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+unique_sublists(lst)","""['assert unique_sublists([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]] )=={(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}', \""assert unique_sublists([['green', 'orange'], ['black'], ['green', 'orange'], ['white']])=={('green', 'orange'): 2, ('black',): 1, ('white',): 1}\"", 'assert unique_sublists([[10, 20, 30, 40], [60, 70, 50, 50], [90, 100, 200]])=={(10, 20, 30, 40): 1, (60, 70, 50, 50): 1, (90, 100, 200): 1}']"""
+159,"একটি ফাংশন লিখুন যা 2 এর নির্ভুলতার সাথে একটি দশমিক পরীক্ষা করে।
+Exammple:
+is_decimal(s)","""[\""assert is_decimal('123.11')==True\"", \""assert is_decimal('e666.86')==False\"", \""assert is_decimal('3.124587')==False\""]"""
+160,"একটি অ্যারেতে শুধুমাত্র একটি পৃথক উপাদান আছে কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+unique_Element(lst, n)","""[\""assert unique_Element([1,1,1],3) == 'YES'\"", \""assert unique_Element([1,2,1,2],4) == 'NO'\"", \""assert unique_Element([1,2,3,4,5],5) == 'NO'\""]"""
+161,"একটি কোণের আর্ক দৈর্ঘ্য গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+arc_length(n, n2)","""['assert arc_length(9,45)==3.5357142857142856', 'assert arc_length(9,480)==None', 'assert arc_length(5,270)==11.785714285714285']"""
+162,"একটি ফাংশন লিখুন যা দিয়ে পরীক্ষা করা যায় যে, প্রদত্ত মাসের সংখ্যাটিতে ৩০ দিন আছে কি না।
+Exammple:
+check_monthnumber_number(n)","""['assert check_monthnumber_number(6)==True', 'assert check_monthnumber_number(2)==False', 'assert check_monthnumber_number(12)==False']"""
+163,"একটি প্রদত্ত অ্যারেতে যে কোন দুটি উপাদানের মধ্যে সর্বনিম্ন পার্থক্য খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Min_Diff(tup, n)","""['assert find_Min_Diff((1,5,3,19,18,25),6) == 1', 'assert find_Min_Diff((4,3,2,6),4) == 1', 'assert find_Min_Diff((30,5,20,9),4) == 4']"""
+164,"একটি প্রদত্ত স্ট্রিং-এ সংখ্যাসূচক মান গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+number_ctr(s)","""[\""assert number_ctr('program2bedone') == 1\"", \""assert number_ctr('3wonders') ==1\"", \""assert number_ctr('123') == 3\""]"""
+165,"nth বিনয়ী সংখ্যা খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+is_polite(n)","""['assert is_polite(7) == 11', 'assert is_polite(4) == 7', 'assert is_polite(9) == 13']"""
+166,"একটি প্রদত্ত তালিকার সমস্ত পরপর আইটেম জুড়ি উপর পুনরাবৃত্তি করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+pair_wise(lst)","""['assert pair_wise([1,1,2,3,3,4,4,5])==[(1, 1), (1, 2), (2, 3), (3, 3), (3, 4), (4, 4), (4, 5)]', 'assert pair_wise([1,5,7,9,10])==[(1, 5), (5, 7), (7, 9), (9, 10)]', 'assert pair_wise([1,2,3,4,5,6,7,8,9,10])==[(1, 2), (2, 3), (3, 4), (4, 5), (5, 6), (6, 7), (7, 8), (8, 9), (9, 10)]']"""
+167,"একটি পাইথন ফাংশন লিখুন যাতে জোড়ার সংখ্যা গণনা করা যায় যার যোগফল sum এর সমান।
+Exammple:
+get_Pairs_Count(lst, n, n2)","""['assert get_Pairs_Count([1,1,1,1],4,2) == 6', 'assert get_Pairs_Count([1,5,7,-1,5],5,6) == 3', 'assert get_Pairs_Count([1,-2,3],3,1) == 1']"""
+168,"একটি প্রদত্ত সংখ্যার অদ্ভুত সমতা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+check_Odd_Parity(n)","""['assert check_Odd_Parity(13) == True', 'assert check_Odd_Parity(21) == True', 'assert check_Odd_Parity(18) == False']"""
+169,"দুটি তালিকার মধ্যে পার্থক্য পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Diff(lst, lst2)","""['assert (Diff([10, 15, 20, 25, 30, 35, 40], [25, 40, 35])) == [10, 20, 30, 15]', 'assert (Diff([1,2,3,4,5], [6,7,1])) == [2,3,4,5,6,7]', 'assert (Diff([1,2,3], [6,7,1])) == [2,3,6,7]']"""
+170,"প্রথম n অদ্ভুত প্রাকৃতিক সংখ্যার চতুর্থ ক্ষমতার যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+odd_Num_Sum(n)","""['assert odd_Num_Sum(2) == 82', 'assert odd_Num_Sum(3) == 707', 'assert odd_Num_Sum(4) == 3108']"""
+171,"প্রদত্ত এক্সপ্রেশনটি ভারসাম্যপূর্ণ কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_expression(s)","""['assert check_expression(\""{()}[{}]\"") == True', 'assert check_expression(\""{()}[{]\"") == False', 'assert check_expression(\""{()}[{}][]({})\"") == True']"""
+172,"একটি ফাংশন লিখুন যা প্রদত্ত স্ট্রিংয়ের k দৈর্ঘ্যের সমস্ত শব্দকে সরিয়ে দেয়।
+Exammple:
+remove_length(s, n)","""[\""assert remove_length('The person is most value tet', 3) == 'person is most value'\"", \""assert remove_length('If you told me about this ok', 4) == 'If you me about ok'\"", \""assert remove_length('Forces of darkeness is come into the play', 4) == 'Forces of darkeness is the'\""]"""
+173,"একটি স্ট্রিংয়ের মধ্যে সাবস্ট্রিংয়ের উপস্থিতি এবং অবস্থান খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+occurance_substring(s, s2)","""[\""assert occurance_substring('python programming, python language','python')==('python', 0, 6)\"", \""assert occurance_substring('python programming,programming language','programming')==('programming', 7, 18)\"", \""assert occurance_substring('python programming,programming language','language')==('language', 31, 39)\""]"""
+174,"স্ট্রিংটি বৈধ ইমেইল ঠিকানা কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন অথবা রেজেক্স ব্যবহার করবেন না।
+Exammple:
+check_email(s)","""['assert check_email(\""ankitrai326@gmail.com\"") == \\'Valid Email\\'', 'assert check_email(\""my.ownsite@ourearth.org\"") == \\'Valid Email\\'', 'assert check_email(\""ankitaoie326.com\"") == \\'Invalid Email\\'']"""
+175,"একটি পাইথন ফাংশন লিখুন যা প্রতিটি অদ্ভুত সূচক প্রদত্ত তালিকার অদ্ভুত সংখ্যা ধারণ করে কিনা তা পরীক্ষা করে।
+Exammple:
+odd_position(lst)","""['assert odd_position([2,1,4,3,6,7,6,3]) == True', 'assert odd_position([4,1,2]) == True', 'assert odd_position([1,2,3]) == False']"""
+176,"একটি ফাংশন লিখুন যাতে সেই অক্ষরগুলিকে গণনা করা যায় যার দেওয়া স্ট্রিংয়ের প্রতিবেশী স্বরবর্ণ রয়েছে।
+Exammple:
+count_vowels(s)","""[\""assert count_vowels('bestinstareels') == 7\"", \""assert count_vowels('partofthejourneyistheend') == 12\"", \""assert count_vowels('amazonprime') == 5\""]"""
+177,"একটি প্রদত্ত অ্যারেতে পুনরাবৃত্তি না হওয়া উপাদানগুলির যোগফল খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Sum(lst, n)","""['assert find_Sum([1,2,3,1,1,4,5,6],8) == 21', 'assert find_Sum([1,10,9,4,2,10,10,45,4],9) == 71', 'assert find_Sum([12,10,9,45,2,10,10,45,10],9) == 78']"""
+178,"একটি প্রদত্ত তালিকার উপাদানগুলির পরপর ডুপ্লিকেটগুলিকে উপ-তালিকাগুলিতে প্যাক করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+pack_consecutive_duplicates(lst)","""['assert pack_consecutive_duplicates([0, 0, 1, 2, 3, 4, 4, 5, 6, 6, 6, 7, 8, 9, 4, 4])==[[0, 0], [1], [2], [3], [4, 4], [5], [6, 6, 6], [7], [8], [9], [4, 4]]', 'assert pack_consecutive_duplicates([10, 10, 15, 19, 18, 18, 17, 26, 26, 17, 18, 10])==[[10, 10], [15], [19], [18, 18], [17], [26, 26], [17], [18], [10]]', \""assert pack_consecutive_duplicates(['a', 'a', 'b', 'c', 'd', 'd'])==[['a', 'a'], ['b'], ['c'], ['d', 'd']]\""]"""
+179,"একটি তালিকার মধ্যে অনন্য তালিকার সংখ্যা গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+unique_sublists(lst)","""['assert unique_sublists([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]])=={(1, 3): 2, (5, 7): 2, (13, 15, 17): 1, (9, 11): 1}', \""assert unique_sublists([['green', 'orange'], ['black'], ['green', 'orange'], ['white']])=={('green', 'orange'): 2, ('black',): 1, ('white',): 1}\"", 'assert unique_sublists([[1, 2], [3, 4], [4, 5], [6, 7]])=={(1, 2): 1, (3, 4): 1, (4, 5): 1, (6, 7): 1}']"""
+180,"প্রদত্ত টিপল তালিকায় টিপল সহ সমষ্টিগুলির সমন্বয় খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+find_combinations(lst)","""['assert find_combinations([(2, 4), (6, 7), (5, 1), (6, 10)]) == [(8, 11), (7, 5), (8, 14), (11, 8), (12, 17), (11, 11)]', 'assert find_combinations([(3, 5), (7, 8), (6, 2), (7, 11)]) == [(10, 13), (9, 7), (10, 16), (13, 10), (14, 19), (13, 13)]', 'assert find_combinations([(4, 6), (8, 9), (7, 3), (8, 12)]) == [(12, 15), (11, 9), (12, 18), (15, 12), (16, 21), (15, 15)]']"""
+181,"একটি পাইথন ফাংশন লিখুন যাচাই করতে হবে যে বিভাজক সংখ্যাটি জোড়া বা অজোড়া কিনা।
+Exammple:
+count_Divisors(n)","""['assert count_Divisors(10) == \""Even\""', 'assert count_Divisors(100) == \""Odd\""', 'assert count_Divisors(125) == \""Even\""']"""
+182,"সমস্ত অদ্ভুত দৈর্ঘ্যের উপ-রেগুলির যোগফল খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Odd_Length_Sum(lst)","""['assert Odd_Length_Sum([1,2,4]) == 14', 'assert Odd_Length_Sum([1,2,1,2]) == 15', 'assert Odd_Length_Sum([1,7]) == 8']"""
+183,"একটি ফাংশন লিখুন যা rgb রঙকে hsv রঙে রূপান্তর করে।
+Exammple:
+rgb_to_hsv(n, n2, n3)","""['assert rgb_to_hsv(255, 255, 255)==(0, 0.0, 100.0)', 'assert rgb_to_hsv(0, 215, 0)==(120.0, 100.0, 84.31372549019608)', 'assert rgb_to_hsv(10, 215, 110)==(149.26829268292684, 95.34883720930233, 84.31372549019608)']"""
+184,"একটি প্রদত্ত তালিকার প্রথম সম সংখ্যা এবং অদ্ভুত সংখ্যার গুণফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+mul_even_odd(lst)","""['assert mul_even_odd([1,3,5,7,4,1,6,8])==4', 'assert mul_even_odd([1,2,3,4,5,6,7,8,9,10])==2', 'assert mul_even_odd([1,5,7,9,10])==10']"""
+185,"একটি ফাংশন লিখুন যা টুপল স্ট্রিংকে পূর্ণসংখ্যা টুপলে রূপান্তর করে।
+Exammple:
+tuple_str_int(s)","""['assert tuple_str_int(\""(7, 8, 9)\"") == (7, 8, 9)', 'assert tuple_str_int(\""(1, 2, 3)\"") == (1, 2, 3)', 'assert tuple_str_int(\""(4, 5, 6)\"") == (4, 5, 6)']"""
+186,"একটি নির্দিষ্ট মানের জন্য সঠিক সন্নিবেশ পয়েন্ট সনাক্ত করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+right_insertion(lst, n)","""['assert right_insertion([1,2,4,5],6)==4', 'assert right_insertion([1,2,4,5],3)==2', 'assert right_insertion([1,2,4,5],7)==4']"""
+187,"একটি ফাংশন লিখুন যা একটি স্ট্রিংয়ের সাথে মিলে যায় যার মধ্যে একটি 'a' থাকে যার পরে তিনটি 'b' থাকে।
+Exammple:
+text_match_three(s)","""['assert text_match_three(\""ac\"")==(\\'Not matched!\\')', 'assert text_match_three(\""dc\"")==(\\'Not matched!\\')', 'assert text_match_three(\""abbbba\"")==(\\'Found a match!\\')']"""
+188,"প্রদত্ত স্ট্রিং এবং তালিকা থেকে একটি নতুন টিউপল তৈরি করতে একটি ফাংশন লিখুন।
+Exammple:
+new_tuple(lst, s)","""['assert new_tuple([\""WEB\"", \""is\""], \""best\"") == (\\'WEB\\', \\'is\\', \\'best\\')', 'assert new_tuple([\""We\"", \""are\""], \""Developers\"") == (\\'We\\', \\'are\\', \\'Developers\\')', 'assert new_tuple([\""Part\"", \""is\""], \""Wrong\"") == (\\'Part\\', \\'is\\', \\'Wrong\\')']"""
+189,"একটি নিয়মিত বহুভুজের পরিধি গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+perimeter_polygon(n, n2)","""['assert perimeter_polygon(4,20)==80', 'assert perimeter_polygon(10,15)==150', 'assert perimeter_polygon(9,7)==63']"""
+190,"একটি পাইথন ফাংশন লিখুন যা প্রতিটি জোড় সূচক প্রদত্ত তালিকার জোড় সংখ্যা ধারণ করে কিনা তা পরীক্ষা করে।
+Exammple:
+even_position(lst)","""['assert even_position([3,2,1]) == False', 'assert even_position([1,2,3]) == False', 'assert even_position([2,1,4]) == True']"""
+191,"প্রদত্ত টিউপেল থেকে নেস্টেড রেকর্ড সরানোর জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_nested(tup)","""['assert remove_nested((1, 5, 7, (4, 6), 10)) == (1, 5, 7, 10)', 'assert remove_nested((2, 6, 8, (5, 7), 11)) == (2, 6, 8, 11)', 'assert remove_nested((3, 7, 9, (6, 8), 12)) == (3, 7, 9, 12)']"""
+192,"একটি নির্দিষ্ট সংখ্যক তালিকায় তালিকা গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+count_list(lst)","""['assert count_list([[1, 3], [5, 7], [9, 11], [13, 15, 17]]) == 4', 'assert count_list([[1,2],[2,3],[4,5]]) == 3', 'assert count_list([[1,0],[2,0]]) == 2']"""
+193,"একটি সাজানো অ্যারেতে একটি উপাদানটির শেষ অবস্থান খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+last(lst, n, n2)","""['assert last([1,2,3],1,3) == 0', 'assert last([1,1,1,2,3,4],1,6) == 2', 'assert last([2,3,2,3,6,8,9],3,8) == 3']"""
+194,"একটি ফাংশন লিখুন যা একটি স্ট্রিংয়ের সাথে মিলে যায় যার 'a' এর পরে কিছু আছে, যা 'b' দিয়ে শেষ হয়।
+Exammple:
+text_starta_endb(s)","""['assert text_starta_endb(\""aabbbb\"")==(\\'Found a match!\\')', 'assert text_starta_endb(\""aabAbbbc\"")==(\\'Not matched!\\')', 'assert text_starta_endb(\""accddbbjjj\"")==(\\'Not matched!\\')']"""
+195,"একটি ডেটাসেট থেকে n - সস্তা মূল্যের আইটেমগুলি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+cheap_items(lst, n)","""[\""assert cheap_items([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}],1)==[{'name': 'Item-1', 'price': 101.1}]\"", \""assert cheap_items([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}],2)==[{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}]\"", \""assert cheap_items([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}, {'name': 'Item-3', 'price': 45.09},{'name': 'Item-4', 'price': 22.75}],1)==[{'name': 'Item-4', 'price': 22.75}]\""]"""
+196,"প্রদত্ত অভিধানে সমস্ত আইটেমের যোগফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+return_sum(dct)","""[\""assert return_sum({'a': 100, 'b':200, 'c':300}) == 600\"", \""assert return_sum({'a': 25, 'b':18, 'c':45}) == 88\"", \""assert return_sum({'a': 36, 'b':39, 'c':49}) == 124\""]"""
+197,"l এবং r এর মধ্যে থাকা সমস্ত বিজোড় প্রাকৃতিক সংখ্যার যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+sum_in_Range(n, n2)","""['assert sum_in_Range(2,5) == 8', 'assert sum_in_Range(5,7) == 12', 'assert sum_in_Range(7,13) == 40']"""
+198,"একটি অ্যারের যোগফল খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+_sum(lst)","""['assert _sum([1, 2, 3]) == 6', 'assert _sum([15, 12, 13, 10]) == 50', 'assert _sum([0, 1, 2]) == 3']"""
+199,"একটি পাইথন ফাংশন লিখুন যা একটি প্রদত্ত সংখ্যার বিটগুলিকে বাম দিকে ঘোরায়।
+Exammple:
+left_Rotate(n, n2)","""['assert left_Rotate(16,2) == 64', 'assert left_Rotate(10,2) == 40', 'assert left_Rotate(99,3) == 792']"""
+200,"একটি স্ট্রিং থেকে সব হোয়াইটস্পেস অপসারণ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_all_spaces(s)","""[\""assert remove_all_spaces('python  program')==('pythonprogram')\"", \""assert remove_all_spaces('python   programming    language')==('pythonprogramminglanguage')\"", \""assert remove_all_spaces('python                     program')==('pythonprogram')\""]"""
+201,"একটি পাইথন ফাংশন লিখুন যা তিনটি পূর্ণসংখ্যা থেকে সমান সংখ্যার সংখ্যা গণনা করে।
+Exammple:
+test_three_equal(n, n2, n3)","""['assert test_three_equal(1,1,1) == 3', 'assert test_three_equal(-1,-2,-3) == 0', 'assert test_three_equal(1,2,2) == 2']"""
+202,"একটি সাজানো অ্যারে তৈরি করতে প্রয়োজনীয় ঘূর্ণন সংখ্যা গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+count_Rotation(lst, n)","""['assert count_Rotation([3,2,1],3) == 1', 'assert count_Rotation([4,5,1,2,3],5) == 2', 'assert count_Rotation([7,8,9,1,2,3],6) == 3']"""
+203,"প্রদত্ত সংখ্যাটি একটি নিখুঁত বর্গক্ষেত্র কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+is_Perfect_Square(n)","""['assert is_Perfect_Square(10) == False', 'assert is_Perfect_Square(36) == True', 'assert is_Perfect_Square(14) == False']"""
+204,"সংখ্যাগুলির গুণফল জোড়া কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+is_Product_Even(lst, n)","""['assert is_Product_Even([1,2,3],3) == True', 'assert is_Product_Even([1,2,1,4],4) == True', 'assert is_Product_Even([1,1],2) == False']"""
+205,"একটি ফাংশন লিখুন যাতে এমন তালিকার তালিকা খুঁজে পাওয়া যায় যার উপাদানগুলির যোগফল সর্বোচ্চ।
+Exammple:
+max_sum_list(lst)","""['assert max_sum_list([[1,2,3], [4,5,6], [10,11,12], [7,8,9]])==[10, 11, 12] ', 'assert max_sum_list([[3,2,1], [6,5,4], [12,11,10]])==[12,11,10] ', 'assert max_sum_list([[2,3,1]])==[2,3,1] ']"""
+206,"প্রদত্ত স্ট্রিং-এ বড় অক্ষরের সর্বোচ্চ সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+max_run_uppercase(s)","""[\""assert max_run_uppercase('GeMKSForGERksISBESt') == 5\"", \""assert max_run_uppercase('PrECIOusMOVemENTSYT') == 6\"", \""assert max_run_uppercase('GooGLEFluTTER') == 4\""]"""
+207,"একটি পাইথন ফাংশন লিখুন যাতে একটি প্রদত্ত সংখ্যার তালিকায় প্রথম অদ্ভুত সংখ্যাটি পাওয়া যায়।
+Exammple:
+first_odd(lst)","""['assert first_odd([1,3,5]) == 1', 'assert first_odd([2,4,1,3]) == 1', 'assert first_odd ([8,9,1]) == 9']"""
+208,"একটি ফাংশন লিখুন যা দিয়ে চেক করা যায় যে, প্রদত্ত টুপলগুলোতে k আছে কি না।
+Exammple:
+check_K(tup, n)","""['assert check_K((10, 4, 5, 6, 8), 6) == True', 'assert check_K((1, 2, 3, 4, 5, 6), 7) == False', 'assert check_K((7, 8, 9, 44, 11, 12), 11) == True']"""
+209,"দ্বিতীয় টিপলের প্রতিটি উপাদান প্রথম টিপলের সংশ্লিষ্ট সূচকের চেয়ে ছোট কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_smaller(tup, tup2)","""['assert check_smaller((1, 2, 3), (2, 3, 4)) == False', 'assert check_smaller((4, 5, 6), (3, 4, 5)) == True', 'assert check_smaller((11, 12, 13), (10, 11, 12)) == True']"""
+210,"একটি ফাংশন লিখুন যাতে উপাদানগুলো পুনরাবৃত্তি করে যার সংখ্যা যতবার হয়।
+Exammple:
+count_variable(n, n2, n3, n4)","""[\""assert count_variable(4,2,0,-2)==['p', 'p', 'p', 'p', 'q', 'q'] \"", \""assert count_variable(0,1,2,3)==['q', 'r', 'r', 's', 's', 's'] \"", \""assert count_variable(11,15,12,23)==['p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'p', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'q', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 'r', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's', 's']\""]"""
+211,"একটি ফাংশন লিখুন যা দুটি তালিকার টুপলগুলি একই রকম কিনা তা পরীক্ষা করে।
+Exammple:
+check_identical(lst, lst2)","""['assert check_identical([(10, 4), (2, 5)], [(10, 4), (2, 5)]) == True', 'assert check_identical([(1, 2), (3, 7)], [(12, 14), (12, 45)]) == False', 'assert check_identical([(2, 14), (12, 25)], [(2, 14), (12, 25)]) == True']"""
+212,"একটি প্রদত্ত স্ট্রিংয়ে 'road' কে 'rd.' হিসেবে সংক্ষিপ্ত করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+road_rd(s)","""['assert road_rd(\""ravipadu Road\"")==(\\'ravipadu Rd.\\')', 'assert road_rd(\""palnadu Road\"")==(\\'palnadu Rd.\\')', 'assert road_rd(\""eshwar enclave Road\"")==(\\'eshwar enclave Rd.\\')']"""
+213,"স্ট্রিং এর দৈর্ঘ্য খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+string_length(s)","""[\""assert string_length('python')==6\"", \""assert string_length('program')==7\"", \""assert string_length('language')==8\""]"""
+214,"একটি রম্বসের ক্ষেত্রফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+rombus_area(n, n2)","""['assert rombus_area(10,20)==100', 'assert rombus_area(10,5)==25', 'assert rombus_area(4,2)==4']"""
+215,"কোনো সাজানোর অ্যালগরিদম ব্যবহার না করে প্রদত্ত অ্যারে বাছাই করার জন্য একটি ফাংশন লিখুন। প্রদত্ত অ্যারে কেবলমাত্র 0, 1, এবং 2 দিয়ে গঠিত।
+Exammple:
+sort_by_dnf(lst, n)","""['assert sort_by_dnf([1,2,0,1,0,1,2,1,1], 9) == [0, 0, 1, 1, 1, 1, 1, 2, 2]', 'assert sort_by_dnf([1,0,0,1,2,1,2,2,1,0], 10) == [0, 0, 0, 1, 1, 1, 1, 2, 2, 2]', 'assert sort_by_dnf([2,2,1,0,0,0,1,1,2,1], 10) == [0, 0, 0, 1, 1, 1, 1, 2, 2, 2]']"""
+216,"প্রদত্ত টুপলগুলির মানগুলি সাফ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+clear_tuple(tup)","""['assert clear_tuple((1, 5, 3, 6, 8)) == ()', 'assert clear_tuple((2, 1, 4 ,5 ,6)) == ()', 'assert clear_tuple((3, 2, 5, 6, 8)) == ()']"""
+217,"ল্যাম্বদা ফাংশন ব্যবহার করে সংখ্যার তালিকা থেকে m বা n দ্বারা বিভাজ্য সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+div_of_nums(lst, n, n2)","""['assert div_of_nums([19, 65, 57, 39, 152, 639, 121, 44, 90, 190],19,13)==[19, 65, 57, 39, 152, 190]', 'assert div_of_nums([1, 2, 3, 5, 7, 8, 10],2,5)==[2, 5, 8, 10]', 'assert div_of_nums([10,15,14,13,18,12,20],10,5)==[10, 15, 20]']"""
+218,"একটি প্রদত্ত স্ট্রিংয়ে ছোট হাতের অক্ষর গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+lower_ctr(s)","""[\""assert lower_ctr('abc') == 3\"", \""assert lower_ctr('string') == 6\"", \""assert lower_ctr('Python') == 5\""]"""
+219,"একটি প্রদত্ত সংখ্যার তালিকায় পরপর ডুপ্লিকেট উপাদানগুলির ফ্রিকোয়েন্সি গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+count_duplic(lst)","""['assert count_duplic([1,2,2,2,4,4,4,5,5,5,5])==([1, 2, 4, 5], [1, 3, 3, 4])', 'assert count_duplic([2,2,3,1,2,6,7,9])==([2, 3, 1, 2, 6, 7, 9], [2, 1, 1, 1, 1, 1, 1])', 'assert count_duplic([2,1,5,6,8,3,4,9,10,11,8,12])==([2, 1, 5, 6, 8, 3, 4, 9, 10, 11, 8, 12], [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1])']"""
+220,"একটি ফাংশন লিখুন যা দিয়ে পরীক্ষা করা যায় যে, প্রদত্ত মাসের সংখ্যাটিতে ২৮ দিন আছে কি না।
+Exammple:
+check_monthnum_number(n)","""['assert check_monthnum_number(2)==True', 'assert check_monthnum_number(1)==False', 'assert check_monthnum_number(3)==False']"""
+221,"একটি ফাংশন লিখুন যাতে দুটি অভিধান একক অভিব্যক্তিতে একত্রিত হয়।
+Exammple:
+merge_dictionaries(dct, dct2)","""['assert merge_dictionaries({ \""R\"": \""Red\"", \""B\"": \""Black\"", \""P\"": \""Pink\"" }, { \""G\"": \""Green\"", \""W\"": \""White\"" })=={\\'B\\': \\'Black\\', \\'R\\': \\'Red\\', \\'P\\': \\'Pink\\', \\'G\\': \\'Green\\', \\'W\\': \\'White\\'}', 'assert merge_dictionaries({ \""R\"": \""Red\"", \""B\"": \""Black\"", \""P\"": \""Pink\"" },{ \""O\"": \""Orange\"", \""W\"": \""White\"", \""B\"": \""Black\"" })=={\\'O\\': \\'Orange\\', \\'P\\': \\'Pink\\', \\'B\\': \\'Black\\', \\'W\\': \\'White\\', \\'R\\': \\'Red\\'}', 'assert merge_dictionaries({ \""G\"": \""Green\"", \""W\"": \""White\"" },{ \""O\"": \""Orange\"", \""W\"": \""White\"", \""B\"": \""Black\"" })=={\\'W\\': \\'White\\', \\'O\\': \\'Orange\\', \\'G\\': \\'Green\\', \\'B\\': \\'Black\\'}']"""
+222,"পাসওয়ার্ডটি বৈধ হলে true রিটার্ন করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+pass_validity(s)","""['assert pass_validity(\""password\"")==False', 'assert pass_validity(\""Password@10\"")==True', 'assert pass_validity(\""password@10\"")==False']"""
+223,"একটি ফাংশন লিখুন যা রেজেক্স ব্যবহার করে প্রদত্ত স্ট্রিংটি একটি সাবস্ট্রিং দিয়ে শুরু হয় কিনা তা পরীক্ষা করে।
+Exammple:
+check_substring(s, s2)","""['assert check_substring(\""dreams for dreams makes life fun\"", \""makes\"") == \\'string doesnt start with the given substring\\'', 'assert check_substring(\""Hi there how are you Hi alex\"", \""Hi\"") == \\'string starts with the given substring\\'', 'assert check_substring(\""Its been a long day\"", \""been\"") == \\'string doesnt start with the given substring\\'']"""
+224,"একটি প্রদত্ত তালিকা থেকে সম সংখ্যা অপসারণের জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+remove_even(lst)","""['assert remove_even([1,3,5,2]) == [1,3,5]', 'assert remove_even([5,6,7]) == [5,7]', 'assert remove_even([1,2,3,4]) == [1,3]']"""
+225,"একটি নির্দিষ্ট তালিকা থেকে নির্দিষ্ট সূচকের একাধিক উপাদান অ্যাক্সেস করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+access_elements(lst, lst2)","""['assert access_elements([2,3,8,4,7,9],[0,3,5]) == [2, 4, 9]', 'assert access_elements([1, 2, 3, 4, 5],[1,2]) == [2,3]', 'assert access_elements([1,0,2,3],[0,1]) == [1,0]']"""
+226,"প্রদত্ত দিক থেকে ত্রিভুজের ধরন খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+check_Type_Of_Triangle(n, n2, n3)","""['assert check_Type_Of_Triangle(1,2,3) == \""Obtuse-angled Triangle\""', 'assert check_Type_Of_Triangle(2,2,2) == \""Acute-angled Triangle\""', 'assert check_Type_Of_Triangle(1,0,1) == \""Right-angled Triangle\""']"""
+227,"একটি নির্দিষ্ট তালিকার একটি নির্দিষ্ট কলামের যোগফলের জন্য একটি ফাংশন লিখুন।
+Exammple:
+sum_column(lst, n)","""['assert sum_column( [[1,2,3,2],[4,5,6,2],[7,8,9,5],],0)==12', 'assert sum_column( [[1,2,3,2],[4,5,6,2],[7,8,9,5],],1)==15', 'assert sum_column( [[1,2,3,2],[4,5,6,2],[7,8,9,5],],3)==9']"""
+228,"একটি প্রদত্ত স্ট্রিং-এ বর্ণমালা, সংখ্যা এবং বিশেষ অক্ষর গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+count_alpha_dig_spl(s)","""['assert count_alpha_dig_spl(\""abc!@#123\"")==(3,3,3)', 'assert count_alpha_dig_spl(\""dgsuy@#$%&1255\"")==(5,4,5)', 'assert count_alpha_dig_spl(\""fjdsif627348#%$^&\"")==(6,6,5)']"""
+229,"প্রদত্ত ক্রমের দ্বিতীয় সর্বাধিক পুনরাবৃত্ত (বা ঘন ঘন) স্ট্রিং খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+second_frequent(lst)","""[\""assert second_frequent(['aaa','bbb','ccc','bbb','aaa','aaa']) == 'bbb'\"", \""assert second_frequent(['abc','bcd','abc','bcd','bcd','bcd']) == 'abc'\"", \""assert second_frequent(['cdma','gsm','hspa','gsm','cdma','cdma']) == 'gsm'\""]"""
+230,"একটি সংখ্যাকে নির্দিষ্ট সংখ্যায় গোলাকার করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+round_up(n, n2)","""['assert round_up(123.01247,0)==124', 'assert round_up(123.01247,1)==123.1', 'assert round_up(123.01247,2)==123.02']"""
+231,"প্রদত্ত অ্যারে থেকে সমান উপাদান জোড়া গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+count_Pairs(lst, n)","""['assert count_Pairs([1,1,1,1],4) == 6', 'assert count_Pairs([1,5,1],3) == 1', 'assert count_Pairs([3,2,1,7,8,9],6) == 0']"""
+232,"রেজেক্স ব্যবহার করে একটি স্ট্রিং থেকে সর্বোচ্চ সংখ্যাসূচক মান বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+extract_max(s)","""[\""assert extract_max('100klh564abc365bg') == 564\"", \""assert extract_max('hello300how546mer231') == 546\"", \""assert extract_max('its233beenalong343journey234') == 343\""]"""
+233,"একটি তালিকা হিসাবে অভিধান কী পেতে একটি ফাংশন লিখুন।
+Exammple:
+get_key(dct)","""[\""assert get_key({1:'python',2:'java'})==[1,2]\"", \""assert get_key({10:'red',20:'blue',30:'black'})==[10,20,30]\"", \""assert get_key({27:'language',39:'java',44:'little'})==[27,39,44]\""]"""
+234,"একটি বর্গক্ষেত্রীয় ম্যাট্রিক্স তৈরি করতে একটি ফাংশন লিখুন যা 1 থেকে n পর্যন্ত উপাদান দিয়ে ভরা থাকে যা 2 এর শক্তিতে সর্পিল ক্রমে উত্থাপিত হয়।
+Exammple:
+generate_matrix(n)","""['assert generate_matrix(3)==[[1, 2, 3], [8, 9, 4], [7, 6, 5]] ', 'assert generate_matrix(2)==[[1,2],[4,3]]', 'assert generate_matrix(7)==[[1, 2, 3, 4, 5, 6, 7], [24, 25, 26, 27, 28, 29, 8], [23, 40, 41, 42, 43, 30, 9], [22, 39, 48, 49, 44, 31, 10], [21, 38, 47, 46, 45, 32, 11], [20, 37, 36, 35, 34, 33, 12], [19, 18, 17, 16, 15, 14, 13]]']"""
+235,"একটি লাইনের ঢাল খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+slope(n, n2, n3, n4)","""['assert slope(4,2,2,5) == -1.5', 'assert slope(2,4,4,6) == 1', 'assert slope(1,2,4,2) == 0']"""
+236,"একটি ফাংশন লিখুন যাতে সর্বোচ্চ যোগফলের সাথে সাব-অ্যারের দৈর্ঘ্য খুঁজে পাওয়া যায়।
+Exammple:
+max_sub_array_sum(lst, n)","""['assert max_sub_array_sum([-2, -3, 4, -1, -2, 1, 5, -3],8) == 5', 'assert max_sub_array_sum([1, -2, 1, 1, -2, 1],6) == 2', 'assert max_sub_array_sum([-1, -2, 3, 4, 5],5) == 3']"""
+237,"প্রথম n অদ্ভুত প্রাকৃতিক সংখ্যার ঘনক্ষেত্র সমষ্টি খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+cube_Sum(n)","""['assert cube_Sum(2) == 28', 'assert cube_Sum(3) == 153', 'assert cube_Sum(4) == 496']"""
+238,"একটি পাইথন ফাংশন লিখুন যাতে দুইটি বাইনারি স্ট্রিং সমান করতে ন্যূনতম সংখ্যক স্যুইপ প্রয়োজন হয়।
+Exammple:
+min_Swaps(s, s2)","""['assert min_Swaps(\""0011\"",\""1111\"") == 1', 'assert min_Swaps(\""00011\"",\""01001\"") == 2', 'assert min_Swaps(\""111\"",\""111\"") == 0']"""
+239,"একটি ফাংশন লিখুন যাতে প্রতিটি টুপলের প্রথম আইটেম দ্বারা টুপলগুলিকে বর্ণানুক্রমিকভাবে সাজানো যায়।
+Exammple:
+sort_tuple(lst)","""['assert sort_tuple([(\""Amana\"", 28), (\""Zenat\"", 30), (\""Abhishek\"", 29),(\""Nikhil\"", 21), (\""B\"", \""C\"")]) == [(\\'Abhishek\\', 29), (\\'Amana\\', 28), (\\'B\\', \\'C\\'), (\\'Nikhil\\', 21), (\\'Zenat\\', 30)]', 'assert sort_tuple([(\""aaaa\"", 28), (\""aa\"", 30), (\""bab\"", 29), (\""bb\"", 21), (\""csa\"", \""C\"")]) == [(\\'aa\\', 30), (\\'aaaa\\', 28), (\\'bab\\', 29), (\\'bb\\', 21), (\\'csa\\', \\'C\\')]', 'assert sort_tuple([(\""Sarala\"", 28), (\""Ayesha\"", 30), (\""Suman\"", 29),(\""Sai\"", 21), (\""G\"", \""H\"")]) == [(\\'Ayesha\\', 30), (\\'G\\', \\'H\\'), (\\'Sai\\', 21), (\\'Sarala\\', 28), (\\'Suman\\', 29)]']"""
+240,"একটি চতুর্ভুজ সমীকরণের মূল সংখ্যাগতভাবে সমান কিন্তু চিহ্নের ক্ষেত্রে বিপরীত কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Check_Solution(n, n2, n3)","""['assert Check_Solution(2,0,-1) == \""Yes\""', 'assert Check_Solution(1,-5,6) == \""No\""', 'assert Check_Solution(2,0,2) == \""Yes\""']"""
+241,"প্রদত্ত অ্যারেতে বিপরীত সংখ্যা গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+get_inv_count(lst, n)","""['assert get_inv_count([1, 20, 6, 4, 5], 5) == 5', 'assert get_inv_count([8, 4, 2, 1], 4) == 6', 'assert get_inv_count([3, 1, 2], 3) == 2']"""
+242,"প্রদত্ত অ্যারেতে অদ্ভুত সংখ্যক বার ঘটে এমন সংখ্যাটি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+get_odd_occurence(lst, n)","""['assert get_odd_occurence([2, 3, 5, 4, 5, 2, 4, 3, 5, 2, 4, 4, 2], 13) == 5', 'assert get_odd_occurence([1, 2, 3, 2, 3, 1, 3], 7) == 3', 'assert get_odd_occurence([5, 7, 2, 7, 5, 2, 5], 7) == 5']"""
+243,"একটি ফাংশন লিখুন যা হিপ ক্যু অ্যালগরিদম ব্যবহার করে k আকারের একটি প্রদত্ত প্রধান তালিকা থেকে n তম সুপার কুৎসিত সংখ্যাটি খুঁজে বের করে।
+Exammple:
+nth_super_ugly_number(n, lst)","""['assert nth_super_ugly_number(12,[2,7,13,19])==32', 'assert nth_super_ugly_number(10,[2,7,13,19])==26', 'assert nth_super_ugly_number(100,[2,7,13,19])==5408']"""
+244,"প্রথমে অদ্ভুত উপাদান এবং তারপর এমনকি উপাদান ধারণকারী একটি অ্যারেতে kth উপাদান খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+get_Number(n, n2)","""['assert get_Number(8,5) == 2', 'assert get_Number(7,2) == 3', 'assert get_Number(5,2) == 3']"""
+245,"একটি প্রদত্ত সংখ্যার ফ্যাক্টরিয়ালের সংখ্যা গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Digits(n)","""['assert find_Digits(7) == 4', 'assert find_Digits(5) == 3', 'assert find_Digits(4) == 2']"""
+246,"রেলওয়ে/বাস স্টেশনের জন্য প্রয়োজনীয় ন্যূনতম প্ল্যাটফর্মের সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+find_platform(lst, lst2, n)","""['assert find_platform([900, 940, 950, 1100, 1500, 1800],[910, 1200, 1120, 1130, 1900, 2000],6)==3', 'assert find_platform([100,200,300,400],[700,800,900,1000],4)==4', 'assert find_platform([5,6,7,8],[4,3,2,1],4)==1']"""
+247,"একটি সিঙ্গেলটন টিপল থেকে একটি তালিকা কপি করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+lcopy(lst)","""['assert lcopy([1, 2, 3]) == [1, 2, 3]', 'assert lcopy([4, 8, 2, 10, 15, 18]) == [4, 8, 2, 10, 15, 18]', 'assert lcopy([4, 5, 6]) == [4, 5, 6]\\n']"""
+248,"একটি ট্র্যাপিসিয়ামের ক্ষেত্রফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+area_trapezium(n, n2, n3)","""['assert area_trapezium(6,9,4)==30', 'assert area_trapezium(10,20,30)==450', 'assert area_trapezium(15,25,35)==700']"""
+249,"একটি প্রদত্ত সংখ্যার সকল অক্ষরের বিভাজককে সমষ্টি হিসেবে খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Sum(n)","""['assert Sum(60) == 10', 'assert Sum(39) == 16', 'assert Sum(40) == 7']"""
+250,"একটি ফাংশন লিখুন যা দিয়ে আমরা যাচাই করতে পারি যে, প্রদত্ত কোণগুলো দিয়ে ধনাত্মক ক্ষেত্রফলের ত্রিভুজ তৈরি করা সম্ভব কিনা।
+Exammple:
+is_triangleexists(n, n2, n3)","""['assert is_triangleexists(50,60,70)==True', 'assert is_triangleexists(90,45,45)==True', 'assert is_triangleexists(150,30,70)==False']"""
+251,"বিভাজকগুলির বিপরীতের যোগফল খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Sum_of_Inverse_Divisors(n, n2)","""['assert Sum_of_Inverse_Divisors(6,12) == 2', 'assert Sum_of_Inverse_Divisors(9,13) == 1.44', 'assert Sum_of_Inverse_Divisors(1,4) == 4']"""
+252,"একটি তালিকা থেকে নেতিবাচক সংখ্যা অপসারণের জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+remove_negs(lst)","""['assert remove_negs([1,-2,3,-4]) == [1,3]', 'assert remove_negs([1,2,3,-4]) == [1,2,3]', 'assert remove_negs([4,5,-6,7,-8]) == [4,5,7]']"""
+253,"একটি সংখ্যার অদ্ভুত গুণকের যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+sum_of_odd_Factors(n)","""['assert sum_of_odd_Factors(30) == 24', 'assert sum_of_odd_Factors(18) == 13', 'assert sum_of_odd_Factors(2) == 1']"""
+254,"একটি ফাংশন লিখুন যা একটি নির্বিচারে তালিকা গ্রহণ করে এবং এটিকে হিপ ক্যু অ্যালগরিদম ব্যবহার করে একটি হিপে রূপান্তর করে।
+Exammple:
+raw_heap(lst)","""['assert raw_heap([25, 44, 68, 21, 39, 23, 89])==[21, 25, 23, 44, 39, 68, 89]', 'assert raw_heap([25, 35, 22, 85, 14, 65, 75, 25, 58])== [14, 25, 22, 25, 35, 65, 75, 85, 58]', 'assert raw_heap([4, 5, 6, 2])==[2, 4, 6, 5]']"""
+255,"একটি প্রদত্ত সংখ্যার সমতা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+check_Even_Parity(n)","""['assert check_Even_Parity(10) == True', 'assert check_Even_Parity(11) == False', 'assert check_Even_Parity(18) == True']"""
+256,"বাইনারি অ্যারে বাছাই করার জন্য প্রয়োজনীয় ন্যূনতম সংলগ্ন সোয়াপগুলি খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Min_Swaps(lst, n)","""['assert find_Min_Swaps([1,0,1,0],4) == 3', 'assert find_Min_Swaps([0,1,0],3) == 1', 'assert find_Min_Swaps([0,0,1,1,0],5) == 2']"""
+257,"মানচিত্র ফাংশন ব্যবহার করে প্রদত্ত স্ট্রিংগুলির তালিকা পৃথকভাবে তালিকাভুক্ত করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+listify_list(lst)","""[\""assert listify_list(['Red', 'Blue', 'Black', 'White', 'Pink'])==[['R', 'e', 'd'], ['B', 'l', 'u', 'e'], ['B', 'l', 'a', 'c', 'k'], ['W', 'h', 'i', 't', 'e'], ['P', 'i', 'n', 'k']]\"", \""assert listify_list(['python'])==[['p', 'y', 't', 'h', 'o', 'n']]\"", \""assert listify_list([' red ', 'green',' black', 'blue ',' orange', 'brown'])==[[' ', 'r', 'e', 'd', ' '], ['g', 'r', 'e', 'e', 'n'], [' ', 'b', 'l', 'a', 'c', 'k'], ['b', 'l', 'u', 'e', ' '], [' ', 'o', 'r', 'a', 'n', 'g', 'e'], ['b', 'r', 'o', 'w', 'n']]\""]"""
+258,"একটি তালিকা লিখুন যা একটি তালিকা তালিকা এবং গণনা বর্গক্ষেত্রের তালিকা গণনা করে।
+Exammple:
+count_list(lst)","""['assert count_list([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]])==25', 'assert count_list([[1, 3], [5, 7], [9, 11], [13, 15, 17]] )==16', 'assert count_list([[2, 4], [[6,8], [4,5,8]], [10, 12, 14]])==9']"""
+259,"একটি প্রদত্ত তালিকার সব উপ-তালিকা তৈরি করতে একটি ফাংশন লিখুন।
+Exammple:
+sub_lists(lst)","""['assert sub_lists([10, 20, 30, 40])==[[], [10], [20], [30], [40], [10, 20], [10, 30], [10, 40], [20, 30], [20, 40], [30, 40], [10, 20, 30], [10, 20, 40], [10, 30, 40], [20, 30, 40], [10, 20, 30, 40]]', \""assert sub_lists(['X', 'Y', 'Z'])==[[], ['X'], ['Y'], ['Z'], ['X', 'Y'], ['X', 'Z'], ['Y', 'Z'], ['X', 'Y', 'Z']]\"", 'assert sub_lists([1,2,3])==[[],[1],[2],[3],[1,2],[1,3],[2,3],[1,2,3]]']"""
+260,"প্রদত্ত স্ট্রিংটি শুধুমাত্র আলফানিউমেরিক অক্ষর দিয়ে শেষ হচ্ছে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন অথবা রেজেক্স ব্যবহার করবেন না।
+Exammple:
+check_alphanumeric(s)","""['assert check_alphanumeric(\""dawood@\"") == \\'Discard\\'', 'assert check_alphanumeric(\""skdmsam326\"") == \\'Accept\\'', 'assert check_alphanumeric(\""cooltricks@\"") == \\'Discard\\'']"""
+261,"ল্যাম্বদা ফাংশন ব্যবহার করে স্ট্রিংগুলির একটি প্রদত্ত তালিকায় একটি স্ট্রিংয়ের সমস্ত অ্যানগ্রাম খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+anagram_lambda(lst, s)","""['assert anagram_lambda([\""bcda\"", \""abce\"", \""cbda\"", \""cbea\"", \""adcb\""],\""abcd\"")==[\\'bcda\\', \\'cbda\\', \\'adcb\\']', 'assert anagram_lambda([\""recitals\"",\"" python\""], \""articles\"" )==[\""recitals\""]', 'assert anagram_lambda([\"" keep\"",\"" abcdef\"",\"" xyz\""],\"" peek\"")==[\"" keep\""]']"""
+262,"একটি নির্দিষ্ট পাঠে n টি সর্বাধিক সাধারণ শব্দের উপস্থিতি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+n_common_words(s, n)","""['assert n_common_words(\""python is a programming language\"",1)==[(\\'python\\', 1)]', 'assert n_common_words(\""python is a programming language\"",1)==[(\\'python\\', 1)]', 'assert n_common_words(\""python is a programming language\"",5)==[(\\'python\\', 1),(\\'is\\', 1), (\\'a\\', 1), (\\'programming\\', 1), (\\'language\\', 1)]']"""
+263,"একটি ফাংশন লিখুন যাতে দীর্ঘতম উপ-অনুক্রমের দৈর্ঘ্য পাওয়া যায় যাতে উপ-অনুক্রমের উপাদানগুলি পরপর পূর্ণসংখ্যা হয়।
+Exammple:
+find_longest_conseq_subseq(lst, n)","""['assert find_longest_conseq_subseq([1, 2, 2, 3], 4) == 3', 'assert find_longest_conseq_subseq([1, 9, 3, 10, 4, 20, 2], 7) == 4', 'assert find_longest_conseq_subseq([36, 41, 56, 35, 44, 33, 34, 92, 43, 32, 42], 11) == 5']"""
+264,"ল্যাম্বদা ফাংশন ব্যবহার করে স্ট্রিংগুলির একটি প্রদত্ত তালিকায় প্যালিনড্রোমগুলি খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+palindrome_lambda(lst)","""['assert palindrome_lambda([\""php\"", \""res\"", \""Python\"", \""abcd\"", \""Java\"", \""aaa\""])==[\\'php\\', \\'aaa\\']', 'assert palindrome_lambda([\""abcd\"", \""Python\"", \""abba\"", \""aba\""])==[\\'abba\\', \\'aba\\']', 'assert palindrome_lambda([\""abcd\"", \""abbccbba\"", \""abba\"", \""aba\""])==[\\'abbccbba\\', \\'abba\\', \\'aba\\']']"""
+265,"মানচিত্র ফাংশন ব্যবহার করে একটি তালিকা n-বার প্রিন্ট করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+ntimes_list(lst, n)","""['assert ntimes_list([1, 2, 3, 4, 5, 6, 7],3)==[3, 6, 9, 12, 15, 18, 21]', 'assert ntimes_list([1, 2, 3, 4, 5, 6, 7],4)==[4, 8, 12, 16, 20, 24, 28]', 'assert ntimes_list([1, 2, 3, 4, 5, 6, 7],10)==[10, 20, 30, 40, 50, 60, 70]']"""
+266,"একটি ফাংশন লিখুন যা দিয়ে পরীক্ষা করা যায় যে প্রদত্ত মাসের নামটিতে ৩১ দিন আছে কি না।
+Exammple:
+check_monthnumb(s)","""['assert check_monthnumb(\""February\"")==False', 'assert check_monthnumb(\""January\"")==True', 'assert check_monthnumb(\""March\"")==True']"""
+267,"একটি পাইথন ফাংশন লিখুন যাতে একটি ন্যূনতম সংখ্যা যোগ করা যায় যাতে অ্যারের যোগফলটি এমনকি হয়।
+Exammple:
+min_Num(lst, n)","""['assert min_Num([1,2,3,4,5,6,7,8,9],9) == 1', 'assert min_Num([1,2,3,4,5,6,7,8],8) == 2', 'assert min_Num([1,2,3],3) == 2']"""
+268,"একটি প্রদত্ত স্ট্রিংয়ের শেষ শব্দের দৈর্ঘ্য খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+length_Of_Last_Word(s)","""['assert length_Of_Last_Word(\""python language\"") == 8', 'assert length_Of_Last_Word(\""PHP\"") == 3', 'assert length_Of_Last_Word(\""\"") == 0']"""
+269,"একটি প্রদত্ত তালিকা থেকে একটি ফাংশন লিখুন যা একটি প্রদত্ত পরিসরের বাইরে থাকা তালিকা থেকে উপ-তালিকা সরিয়ে ফেলবে।
+Exammple:
+remove_list_range(lst, n, n2)","""['assert remove_list_range([[2], [0], [1, 2, 3], [0, 1, 2, 3, 6, 7], [9, 11], [13, 14, 15, 17]],13,17)==[[13, 14, 15, 17]]', 'assert remove_list_range([[2], [0], [1, 2, 3], [0, 1, 2, 3, 6, 7], [9, 11], [13, 14, 15, 17]],1,3)==[[2], [1, 2, 3]]', 'assert remove_list_range([[2], [0], [1, 2, 3], [0, 1, 2, 3, 6, 7], [9, 11], [13, 14, 15, 17]],0,7)==[[2], [0], [1, 2, 3], [0, 1, 2, 3, 6, 7]]']"""
+270,"ল্যাম্বদা ফাংশন ব্যবহার করে একটি নির্দিষ্ট সংখ্যার তালিকার ধনাত্মক সংখ্যার যোগফল গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+sum_positivenum(lst)","""['assert sum_positivenum([2, 4, -6, -9, 11, -12, 14, -5, 17])==48', 'assert sum_positivenum([10,15,-14,13,-18,12,-20])==50', 'assert sum_positivenum([19, -65, 57, 39, 152,-639, 121, 44, 90, -190])==522']"""
+271,"প্রদত্ত স্ট্রিংগুলি একে অপরের ঘূর্ণন কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+are_Rotations(s, s2)","""['assert are_Rotations(\""abc\"",\""cba\"") == False', 'assert are_Rotations(\""abcd\"",\""cdba\"") == False', 'assert are_Rotations(\""abacd\"",\""cdaba\"") == True']"""
+272,"একটি নেস্টেড তালিকা অন্য নেস্টেড তালিকার একটি উপসেট কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_subset(lst, lst2)","""['assert check_subset([[1, 3], [5, 7], [9, 11], [13, 15, 17]] ,[[1, 3],[13,15,17]])==True', 'assert check_subset([[1, 2], [2, 3], [3, 4], [5, 6]],[[3, 4], [5, 6]])==True', 'assert check_subset([[[1, 2], [2, 3]], [[3, 4], [5, 7]]],[[[3, 4], [5, 6]]])==False']"""
+273,"পুনরাবৃত্তি ব্যবহার করে ফিবোনাক্সি ক্রম সমাধানের জন্য একটি ফাংশন লিখুন।
+Exammple:
+fibonacci(n)","""['assert fibonacci(7) == 13', 'assert fibonacci(8) == 21', 'assert fibonacci(9) == 34']"""
+274,"একটি স্ট্রিং অন্য স্ট্রিং এর সংযুক্তকরণ কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+check_Concat(s, s2)","""['assert check_Concat(\""abcabcabc\"",\""abc\"") == True', 'assert check_Concat(\""abcab\"",\""abc\"") == False', 'assert check_Concat(\""aba\"",\""ab\"") == False']"""
+275,"একটি ফাংশন লিখুন যা প্রদত্ত টুপলগুলির টুপল জোড়াগুলির মধ্যে সর্বনিম্ন পার্থক্য খুঁজে বের করে।
+Exammple:
+min_difference(lst)","""['assert min_difference([(3, 5), (1, 7), (10, 3), (1, 2)]) == 1', 'assert min_difference([(4, 6), (12, 8), (11, 4), (2, 13)]) == 2', 'assert min_difference([(5, 17), (3, 9), (12, 5), (3, 24)]) == 6']"""
+276,"দুইটি ধনাত্মক পূর্ণসংখ্যার lcm খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+lcm(n, n2)","""['assert lcm(4,6) == 12', 'assert lcm(15,17) == 255', 'assert lcm(2,6) == 6']"""
+277,"প্রদত্ত স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং বা স্ট্রিং।
+Exammple:
+sort_String(s)","""['assert sort_String(\""cba\"") == \""abc\""', 'assert sort_String(\""data\"") == \""aadt\""', 'assert sort_String(\""zxy\"") == \""xyz\""']"""
+278,"প্রদত্ত টিপলটিতে কেবলমাত্র k টি উপাদান রয়েছে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+check_tuples(tup, lst)","""['assert check_tuples((3, 5, 6, 5, 3, 6),[3, 6, 5]) == True', 'assert check_tuples((4, 5, 6, 4, 6, 5),[4, 5, 6]) == True', 'assert check_tuples((9, 8, 7, 6, 8, 9),[9, 8, 1]) == False']"""
+279,"একটি ফাংশন লিখুন যা একটি স্ট্রিংয়ের সাথে মিলবে যার 'a' এর পরে কিছু আছে, 'b' দিয়ে শেষ হবে রেজেক্স ব্যবহার করে।
+Exammple:
+text_match(s)","""['assert text_match(\""aabbbbd\"") == \\'Not matched!\\'', 'assert text_match(\""aabAbbbc\"") == \\'Not matched!\\'', 'assert text_match(\""accddbbjjjb\"") == \\'Found a match!\\'']"""
+280,"একটি পাইথন ফাংশন লিখুন যা বর্গক্ষেত্র সমীকরণের সমাধানের সংখ্যা খুঁজে বের করবে।
+Exammple:
+Check_Solution(n, n2, n3)","""['assert Check_Solution(2,5,2) == \""2 solutions\""', 'assert Check_Solution(1,1,1) == \""No solutions\""', 'assert Check_Solution(1,2,1) == \""1 solution\""']"""
+281,"একটি প্রদত্ত তালিকার প্রথম সম সংখ্যা এবং অদ্ভুত সংখ্যার যোগফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+sum_even_odd(lst)","""['assert sum_even_odd([1,3,5,7,4,1,6,8])==5', 'assert sum_even_odd([1,2,3,4,5,6,7,8,9,10])==3', 'assert sum_even_odd([1,5,7,9,10])==11']"""
+282,"একটি সমান্তরালের পরিধি গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+parallelogram_perimeter(n, n2)","""['assert parallelogram_perimeter(10,20)==400', 'assert parallelogram_perimeter(15,20)==600', 'assert parallelogram_perimeter(8,9)==144']"""
+283,"ল্যাম্বদা ফাংশন ব্যবহার করে সংখ্যার তালিকা থেকে m এবং n দ্বারা বিভাজ্য সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+div_of_nums(lst, n, n2)","""['assert div_of_nums([19, 65, 57, 39, 152, 639, 121, 44, 90, 190],2,4)==[ 152,44]', 'assert div_of_nums([1, 2, 3, 5, 7, 8, 10],2,5)==[10]', 'assert div_of_nums([10,15,14,13,18,12,20],10,5)==[10,20]']"""
+284,"একটি পাইথন ফাংশন লিখুন যাতে সব বিট একটি নির্দিষ্ট পরিসরের মধ্যে আছে কিনা তা পরীক্ষা করা যায়।
+Exammple:
+all_Bits_Set_In_The_Given_Range(n, n2, n3)","""['assert all_Bits_Set_In_The_Given_Range(10,2,1) == True ', 'assert all_Bits_Set_In_The_Given_Range(5,2,4) == False', 'assert all_Bits_Set_In_The_Given_Range(22,2,3) == True ']"""
+285,"একটি পাইথন ফাংশন লিখুন যাচাই করতে যে দুটি প্রদত্ত স্ট্রিং একে অপরের সাথে আইসোমর্ফিক কিনা।
+Exammple:
+is_Isomorphic(s, s2)","""['assert is_Isomorphic(\""paper\"",\""title\"") == True', 'assert is_Isomorphic(\""ab\"",\""ba\"") == True', 'assert is_Isomorphic(\""ab\"",\""aa\"") == False']"""
+286,"একটি ফাংশন লিখুন যাতে একটি তালিকার সব সংখ্যা যোগ করা যায় এবং তা তালিকার দৈর্ঘ্যের সাথে ভাগ করা যায়।
+Exammple:
+sum_num(tup)","""['assert sum_num((8, 2, 3, 0, 7))==4.0', 'assert sum_num((-10,-20,-30))==-20.0', 'assert sum_num((19,15,18))==17.333333333333332']"""
+287,"বিটওয়াইস অপারেটর ব্যবহার করে প্রদত্ত সংখ্যাটি অদ্ভুত কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+is_odd(n)","""['assert is_odd(5) == True', 'assert is_odd(6) == False', 'assert is_odd(7) == True']"""
+288,"প্রদত্ত নেস্টেড টুপলগুলির উপাদানগুলিকে বিয়োগ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+substract_elements(tup, tup2)","""['assert substract_elements(((1, 3), (4, 5), (2, 9), (1, 10)), ((6, 7), (3, 9), (1, 1), (7, 3))) == ((-5, -4), (1, -4), (1, 8), (-6, 7))', 'assert substract_elements(((13, 4), (14, 6), (13, 10), (12, 11)), ((19, 8), (14, 10), (12, 2), (18, 4))) == ((-6, -4), (0, -4), (1, 8), (-6, 7))', 'assert substract_elements(((19, 5), (18, 7), (19, 11), (17, 12)), ((12, 9), (17, 11), (13, 3), (19, 5))) == ((7, -4), (1, -4), (6, 8), (-2, 7))']"""
+289,"একটি তালিকা লিখুন যা প্রতিটি তালিকার তালিকাকে বিপরীত করে।
+Exammple:
+reverse_list_lists(lst)","""['assert reverse_list_lists([[1, 2, 3, 4], [5, 6, 7, 8], [9, 10, 11, 12], [13, 14, 15, 16]])==[[4, 3, 2, 1], [8, 7, 6, 5], [12, 11, 10, 9], [16, 15, 14, 13]]', 'assert reverse_list_lists([[1,2],[2,3],[3,4]])==[[2,1],[3,2],[4,3]]', 'assert reverse_list_lists([[10,20],[30,40]])==[[20,10],[40,30]]']"""
+290,"একটি সাজানো অ্যারেতে উপস্থিত অতিরিক্ত উপাদানগুলির সূচকটি খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Extra(lst, lst2, n)","""['assert find_Extra([1,2,3,4],[1,2,3],3) == 3', 'assert find_Extra([2,4,6,8,10],[2,4,6,8],4) == 4', 'assert find_Extra([1,3,5,7,9,11],[1,3,5,7,9],5) == 5']"""
+291,"একটি পাইথন ফাংশন লিখুন যাতে দুইটি সংখ্যার একই সংখ্যক অঙ্ক থাকে কিনা তা পরীক্ষা করা যায়।
+Exammple:
+same_Length(n, n2)","""['assert same_Length(12,1) == False', 'assert same_Length(2,2) == True', 'assert same_Length(10,20) == True']"""
+292,"একটি স্ট্রিংয়ে একাধিক স্পেস অপসারণ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_spaces(s)","""[\""assert remove_spaces('python  program')==('python program')\"", \""assert remove_spaces('python   programming    language')==('python programming language')\"", \""assert remove_spaces('python                     program')==('python program')\""]"""
+293,"প্রতিটি উপ-তালিকার শেষ উপাদান পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Extract(lst)","""['assert Extract([[1, 2, 3], [4, 5], [6, 7, 8, 9]]) == [3, 5, 9]', \""assert Extract([['x', 'y', 'z'], ['m'], ['a', 'b'], ['u', 'v']]) == ['z', 'm', 'b', 'v']\"", 'assert Extract([[1, 2, 3], [4, 5]]) == [3, 5]']"""
+294,"float টাইপের প্রদত্ত স্ট্রিংকে tuple তে রূপান্তর করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+float_to_tuple(s)","""['assert float_to_tuple(\""1.2, 1.3, 2.3, 2.4, 6.5\"") == (1.2, 1.3, 2.3, 2.4, 6.5)', 'assert float_to_tuple(\""2.3, 2.4, 5.6, 5.4, 8.9\"") == (2.3, 2.4, 5.6, 5.4, 8.9)', 'assert float_to_tuple(\""0.3, 0.5, 7.8, 9.4\"") == (0.3, 0.5, 7.8, 9.4)']"""
+295,"কোনো সংলগ্ন উপাদান ছাড়া প্রদত্ত অ্যারের উপসারণের সর্বাধিক যোগফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+max_sum_subseq(lst)","""['assert max_sum_subseq([1, 2, 9, 4, 5, 0, 4, 11, 6]) == 26', 'assert max_sum_subseq([1, 2, 9, 5, 6, 0, 5, 12, 7]) == 28', 'assert max_sum_subseq([1, 3, 10, 5, 6, 0, 6, 14, 21]) == 44']"""
+296,"একটি ফাংশন লিখুন যা একটি তালিকাকে বর্ধমান ক্রমে সাজায়।
+Exammple:
+sort_list_last(lst)","""['assert sort_list_last([(2, 5), (1, 2), (4, 4), (2, 3), (2, 1)])==[(2, 1), (1, 2), (2, 3), (4, 4), (2, 5)] ', 'assert sort_list_last([(9,8), (4, 7), (3,5), (7,9), (1,2)])==[(1,2), (3,5), (4,7), (9,8), (7,9)] ', 'assert sort_list_last([(20,50), (10,20), (40,40)])==[(10,20),(40,40),(20,50)] ']"""
+297,"একটি প্রদত্ত বাক্যে শব্দটি উপস্থিত আছে কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+is_Word_Present(s, s2)","""['assert is_Word_Present(\""machine learning\"",\""machine\"") == True', 'assert is_Word_Present(\""easy\"",\""fun\"") == False', 'assert is_Word_Present(\""python language\"",\""code\"") == False']"""
+298,"একটি নির্দিষ্ট তালিকা থেকে নির্দিষ্ট সংখ্যক উপাদান বের করার জন্য একটি ফাংশন লিখুন, যা একে অপরকে ক্রমাগত অনুসরণ করে।
+Exammple:
+extract_elements(lst, n)","""['assert extract_elements([1, 1, 3, 4, 4, 5, 6, 7],2)==[1, 4]', 'assert extract_elements([0, 1, 2, 3, 4, 4, 4, 4, 5, 7],4)==[4]', 'assert extract_elements([0,0,0,0,0],5)==[0]']"""
+299,"একটি অ্যারে শুধুমাত্র কোণার উপাদান বাছাই করে বাছাই করা যায় কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+check(lst, n)","""['assert check([3,2,1,2,3,4],6) == True', 'assert check([2,1,4,5,1],5) == True', 'assert check([1,2,2,1,2,3],6) == True']"""
+300,"একটি ফাংশন লিখুন যেখানে একটি স্ট্রিং একটি নির্দিষ্ট সংখ্যার সাথে শুরু হবে।
+Exammple:
+match_num(s)","""[\""assert match_num('5-2345861')==True\"", \""assert match_num('6-2345861')==False\"", \""assert match_num('78910')==False\""]"""
+301,"একটি নির্দিষ্ট জোড়ায় দুটি সংখ্যার মধ্যে সাধারণ বিভাজক খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+num_comm_div(n, n2)","""['assert num_comm_div(2,4) == 2', 'assert num_comm_div(2,8) == 2', 'assert num_comm_div(12,24) == 6']"""
+302,"দুটি সংখ্যার অবশিষ্ট খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find(n, n2)","""['assert find(3,3) == 0', 'assert find(10,3) == 1', 'assert find(16,5) == 1']"""
+303,"একটি প্রদত্ত তালিকার পরপর সংখ্যা যোগ করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+add_consecutive_nums(lst)","""['assert add_consecutive_nums([1, 1, 3, 4, 4, 5, 6, 7])==[2, 4, 7, 8, 9, 11, 13]', 'assert add_consecutive_nums([4, 5, 8, 9, 6, 10])==[9, 13, 17, 15, 16]', 'assert add_consecutive_nums([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[3, 5, 7, 9, 11, 13, 15, 17, 19]']"""
+304,"প্রথম n টি প্রাকৃতিক সংখ্যার ঘনক্ষেত্রের যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+sum_Of_Series(n)","""['assert sum_Of_Series(5) == 225', 'assert sum_Of_Series(2) == 9', 'assert sum_Of_Series(3) == 36']"""
+305,"একটি ফাংশন লিখুন যা সব শূন্যকে প্রদত্ত অ্যারের শেষে সরিয়ে দেয়।
+Exammple:
+re_order(lst)","""['assert re_order([6, 0, 8, 2, 3, 0, 4, 0, 1]) == [6, 8, 2, 3, 4, 1, 0, 0, 0]', 'assert re_order([4, 0, 2, 7, 0, 9, 0, 12, 0]) == [4, 2, 7, 9, 12, 0, 0, 0, 0]', 'assert re_order([3, 11, 0, 74, 14, 0, 1, 0, 2]) == [3, 11, 74, 14, 1, 2, 0, 0, 0]']"""
+306,"প্রদত্ত p (n, k) এর পার্মুটেশন কোয়েফিশিয়েন্ট গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+permutation_coefficient(n, n2)","""['assert permutation_coefficient(10, 2) == 90', 'assert permutation_coefficient(10, 3) == 720', 'assert permutation_coefficient(10, 1) == 10']"""
+307,"একটি নির্দিষ্ট তালিকা থেকে নির্দিষ্ট শব্দ অপসারণের জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_words(lst, lst2)","""[\""assert remove_words(['red', 'green', 'blue', 'white', 'black', 'orange'],['white', 'orange'])==['red', 'green', 'blue', 'black']\"", \""assert remove_words(['red', 'green', 'blue', 'white', 'black', 'orange'],['black', 'orange'])==['red', 'green', 'blue', 'white']\"", \""assert remove_words(['red', 'green', 'blue', 'white', 'black', 'orange'],['blue', 'white'])==['red', 'green', 'black', 'orange']\""]"""
+308,"একটি ফাংশন লিখুন যা দুইটি তালিকা থেকে সাধারণ উপাদানগুলো একই ক্রমে আছে কিনা তা পরীক্ষা করে।
+Exammple:
+same_order(lst, lst2)","""['assert same_order([\""red\"",\""green\"",\""black\"",\""orange\""],[\""red\"",\""pink\"",\""green\"",\""white\"",\""black\""])==True', 'assert same_order([\""red\"",\""pink\"",\""green\"",\""white\"",\""black\""],[\""white\"",\""orange\"",\""pink\"",\""black\""])==False', 'assert same_order([\""red\"",\""green\"",\""black\"",\""orange\""],[\""red\"",\""pink\"",\""green\"",\""white\"",\""black\""])==True']"""
+309,"একটি প্রদত্ত অদ্ভুত সংখ্যা পর্যন্ত অদ্ভুত সংখ্যা গড় খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+average_Odd(n)","""['assert average_Odd(9) == 5', 'assert average_Odd(5) == 3', 'assert average_Odd(11) == 6']"""
+310,"প্রদত্ত অ-নেতিবাচক অ্যারের জন্য k এর চেয়ে ছোট পণ্য সহ উপ-অনুক্রমের সংখ্যা খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+no_of_subsequences(lst, n)","""['assert no_of_subsequences([1,2,3,4], 10) == 11', 'assert no_of_subsequences([4,8,7,2], 50) == 9', 'assert no_of_subsequences([5,6,7,8], 15) == 4']"""
+311,"একটি প্রদত্ত সংখ্যার গুণকগুলির সর্বনিম্ন যোগফল খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Min_Sum(n)","""['assert find_Min_Sum(12) == 7', 'assert find_Min_Sum(105) == 15', 'assert find_Min_Sum(2) == 2']"""
+312,"মিশ্র নেস্টেড টিপলে উপাদানটির ফ্রিকোয়েন্সি গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+count_element_freq(tup)","""['assert count_element_freq((5, 6, (5, 6), 7, (8, 9), 9) ) == {5: 2, 6: 2, 7: 1, 8: 1, 9: 2}', 'assert count_element_freq((6, 7, (6, 7), 8, (9, 10), 10) ) == {6: 2, 7: 2, 8: 1, 9: 1, 10: 2}', 'assert count_element_freq((7, 8, (7, 8), 9, (10, 11), 11) ) == {7: 2, 8: 2, 9: 1, 10: 1, 11: 2}']"""
+313,"প্রতিটি উপাদানের পরে প্রদত্ত স্ট্রিং যোগ করে টিপলকে তালিকায় রূপান্তর করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+add_str(tup, s)","""['assert add_str((5, 6, 7, 4, 9) , \""FDF\"") == [5, \\'FDF\\', 6, \\'FDF\\', 7, \\'FDF\\', 4, \\'FDF\\', 9, \\'FDF\\']', 'assert add_str((7, 8, 9, 10) , \""PF\"") == [7, \\'PF\\', 8, \\'PF\\', 9, \\'PF\\', 10, \\'PF\\']', 'assert add_str((11, 14, 12, 1, 4) , \""JH\"") == [11, \\'JH\\', 14, \\'JH\\', 12, \\'JH\\', 1, \\'JH\\', 4, \\'JH\\']']"""
+314,"প্রদত্ত টিপল তালিকার টিপল উপাদানগুলির যোগফল খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+sum_elements(tup)","""['assert sum_elements((7, 8, 9, 1, 10, 7)) == 42', 'assert sum_elements((1, 2, 3, 4, 5, 6)) == 21', 'assert sum_elements((11, 12 ,13 ,45, 14)) == 95']"""
+315,"একটি ফাংশন লিখুন যা পরীক্ষা করে যে m দ্বারা বিভাজ্য সমষ্টি সহ একটি উপসেট আছে কিনা।
+Exammple:
+modular_sum(lst, n, n2)","""['assert modular_sum([3, 1, 7, 5], 4, 6) == True', 'assert modular_sum([1, 7], 2, 5) == False', 'assert modular_sum([1, 6], 2, 5) == False']"""
+316,"একটি ফাংশন লিখুন যা র্যাডিক্স বাছাই ব্যবহার করে উপাদানগুলির একটি তালিকা বাছাই করে।
+Exammple:
+radix_sort(lst)","""['assert radix_sort([15, 79, 25, 68, 37]) == [15, 25, 37, 68, 79]', 'assert radix_sort([9, 11, 8, 7, 3, 2]) == [2, 3, 7, 8, 9, 11]', 'assert radix_sort([36, 12, 24, 26, 29]) == [12, 24, 26, 29, 36]']"""
+317,"প্রদত্ত তালিকা থেকে বৃহত্তম ধনাত্মক সংখ্যা খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+largest_pos(lst)","""['assert largest_pos([1,2,3,4,-1]) == 4', 'assert largest_pos([0,1,2,-5,-1,6]) == 6', 'assert largest_pos([0,0,1,0]) == 1']"""
+318,"একটি পূর্ণসংখ্যার বর্গমূলের জন্য একটি ফাংশন লিখুন।
+Exammple:
+sqrt_root(n)","""['assert sqrt_root(4)==2', 'assert sqrt_root(16)==4', 'assert sqrt_root(400)==20']"""
+319,"একটি টেট্রাহেড্রনের আয়তন গণনা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+volume_tetrahedron(n)","""['assert volume_tetrahedron(10)==117.85', 'assert volume_tetrahedron(15)==397.75', 'assert volume_tetrahedron(20)==942.81']"""
+320,"প্রদত্ত অ্যারে উপাদানগুলির lcm খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+get_lcm(lst)","""['assert get_lcm([2, 7, 3, 9, 4]) == 252', 'assert get_lcm([1, 2, 8, 3]) == 24', 'assert get_lcm([3, 8, 4, 10, 5]) == 120']"""
+321,"একটি ফাংশন লিখুন যাতে ট্রায়াঙ্গেলটি স্কেলিন কিনা তা পরীক্ষা করে।
+Exammple:
+check_isosceles(n, n2, n3)","""['assert check_isosceles(6,8,12)==True', 'assert check_isosceles(6,6,12)==False', 'assert check_isosceles(6,15,20)==True']"""
+322,"প্রদত্ত অ্যারের জন্য দীর্ঘতম বিটোনিক উপসারণ খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+lbs(lst)","""['assert lbs([0 , 8 , 4, 12, 2, 10 , 6 , 14 , 1 , 9 , 5 , 13, 3, 11 , 7 , 15]) == 7', 'assert lbs([1, 11, 2, 10, 4, 5, 2, 1]) == 6', 'assert lbs([80, 60, 30, 40, 20, 10]) == 5']"""
+323,"একটি প্রদত্ত স্ট্রিংয়ে একটি বড় অক্ষর, একটি ছোট অক্ষর, একটি সংখ্যা এবং নির্দিষ্ট দৈর্ঘ্য রয়েছে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন ল্যাম্বদা ফাংশন ব্যবহার করে।
+Exammple:
+check_string(s)","""[\""assert check_string('python')==['String must have 1 upper case character.', 'String must have 1 number.', 'String length should be atleast 8.']\"", \""assert check_string('123python')==['String must have 1 upper case character.']\"", \""assert check_string('123Python')==['Valid string.']\""]"""
+324,"প্রদত্ত অ্যারের সর্বাধিক ক্রমবর্ধমান উপসারণের যোগফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+max_sum_increasing_subsequence(lst, n)","""['assert max_sum_increasing_subsequence([1, 101, 2, 3, 100, 4, 5], 7) == 106', 'assert max_sum_increasing_subsequence([3, 4, 5, 10], 4) == 22', 'assert max_sum_increasing_subsequence([10, 5, 4, 3], 4) == 10']"""
+325,"দুটি প্রদত্ত লাইন সমান্তরাল কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+parallel_lines(lst, lst2)","""['assert parallel_lines([2,3,4], [2,3,8]) == True', 'assert parallel_lines([2,3,4], [4,-3,8]) == False', 'assert parallel_lines([3,3],[5,5]) == True']"""
+326,"একটি প্রদত্ত স্ট্রিং এর প্রতিটি শব্দের প্রথম এবং শেষ অক্ষরকে বড় করে লিখতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+capitalize_first_last_letters(s)","""['assert capitalize_first_last_letters(\""python\"") == \""PythoN\""', 'assert capitalize_first_last_letters(\""bigdata\"") == \""BigdatA\""', 'assert capitalize_first_last_letters(\""Hadoop\"") == \""HadooP\""']"""
+327,"একটি পূর্ণসংখ্যা অ্যারেতে সমস্ত জোড়া খুঁজে বের করার জন্য একটি ফাংশন লিখুন যার যোগফল একটি প্রদত্ত সংখ্যার সমান।
+Exammple:
+get_pairs_count(lst, n, n2)","""['assert get_pairs_count([1, 5, 7, -1, 5], 5, 6) == 3', 'assert get_pairs_count([1, 5, 7, -1], 4, 6) == 2', 'assert get_pairs_count([1, 1, 1, 1], 4, 2) == 6']"""
+328,"সর্বনিম্ন দৈর্ঘ্যের তালিকা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+min_length(lst)","""['assert min_length([[0], [1, 3], [5, 7], [9, 11], [13, 15, 17]])==(1, [0])', 'assert min_length([[1], [5, 7], [10, 12, 14,15]])==(1, [1])', 'assert min_length([[5], [15,20,25]])==(1, [5])']"""
+329,"nth জ্যাকবস্টাল-লুকাস সংখ্যা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+jacobsthal_lucas(n)","""['assert jacobsthal_lucas(5) == 31', 'assert jacobsthal_lucas(2) == 5', 'assert jacobsthal_lucas(4) == 17']"""
+330,"পূর্ণসংখ্যার একটি অ্যারেতে নেতিবাচক সংখ্যার অনুপাত খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+negative_count(lst)","""['assert negative_count([0, 1, 2, -1, -5, 6, 0, -3, -2, 3, 4, 6, 8])==0.31', 'assert negative_count([2, 1, 2, -1, -5, 6, 4, -3, -2, 3, 4, 6, 8])==0.31', 'assert negative_count([2, 4, -6, -9, 11, -12, 14, -5, 17])==0.44']"""
+331,"একটি প্রদত্ত মান তৈরি করে এমন ন্যূনতম সংখ্যক মুদ্রা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+min_coins(lst, n, n2)","""['assert min_coins([9, 6, 5, 1] ,4,11)==2', 'assert min_coins([4,5,6,7,8,9],6,9)==1', 'assert min_coins([1, 2, 3],3,4)==2']"""
+332,"একটি ফাংশন লিখুন যা এই দুইটি স্ট্রিং একে অপরের পার্মুটেশন কিনা তা পরীক্ষা করে।
+Exammple:
+check_permutation(s, s2)","""['assert check_permutation(\""abc\"", \""cba\"") == True', 'assert check_permutation(\""test\"", \""ttew\"") == False', 'assert check_permutation(\""xxyz\"", \""yxzx\"") == True']"""
+333,"প্রদত্ত টিউপেল থেকে নির্দিষ্ট ডেটা টাইপ উপাদানগুলি সরিয়ে ফেলার জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_datatype(tup, param)","""['assert remove_datatype((4, 5, 4, 7.7, 1.2), int) == [7.7, 1.2]', 'assert remove_datatype((7, 8, 9, \""SR\""), str) == [7, 8, 9]', 'assert remove_datatype((7, 1.1, 2, 2.2), float) == [7, 2]']"""
+334,"একটি স্ট্রিংয়ের মধ্যে একটি আক্ষরিক স্ট্রিং অনুসন্ধান করার জন্য একটি ফাংশন লিখুন এবং মূল স্ট্রিংয়ের মধ্যে অবস্থানটি সন্ধান করুন যেখানে প্যাটার্নটি ঘটে।
+Exammple:
+search_literal(s, s2)","""[\""assert search_literal('python','python programming language')==(0,6)\"", \""assert search_literal('programming','python programming language')==(7,18)\"", \""assert search_literal('language','python programming language')==(19,27)\""]"""
+335,"একটি সিলিন্ডারের উপরের বা নীচের পৃষ্ঠের ক্ষেত্রফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+topbottom_surfacearea(n)","""['assert topbottom_surfacearea(10)==314.15000000000003', 'assert topbottom_surfacearea(5)==78.53750000000001', 'assert topbottom_surfacearea(4)==50.264']"""
+336,"একটি তালিকার n-তম আইটেম নির্বাচন করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+nth_items(lst, n)","""['assert nth_items([1, 2, 3, 4, 5, 6, 7, 8, 9],2)==[1, 3, 5, 7, 9] ', 'assert nth_items([10,15,19,17,16,18],3)==[10,17] ', 'assert nth_items([14,16,19,15,17],4)==[14,17]']"""
+337,"একটি প্রদত্ত স্ট্রিং-এ প্রথম পুনরাবৃত্ত শব্দটি খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+first_repeated_word(s)","""['assert first_repeated_word(\""ab ca bc ab\"") == \""ab\""', 'assert first_repeated_word(\""ab ca bc\"") == \\'None\\'', 'assert first_repeated_word(\""ab ca bc ca ab bc\"") == \""ca\""']"""
+338,"একটি প্রদত্ত স্ট্রিং তালিকাকে একটি টিপলে রূপান্তর করতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+string_list_to_tuple(tup)","""['assert string_list_to_tuple((\""python 3.0\"")) == (\\'p\\', \\'y\\', \\'t\\', \\'h\\', \\'o\\', \\'n\\', \\'3\\', \\'.\\', \\'0\\')', 'assert string_list_to_tuple((\""bigdata\"")) == (\\'b\\', \\'i\\', \\'g\\', \\'d\\', \\'a\\', \\'t\\', \\'a\\')', 'assert string_list_to_tuple((\""language\"")) == (\\'l\\', \\'a\\', \\'n\\', \\'g\\', \\'u\\', \\'a\\', \\'g\\',\\'e\\')']"""
+339,"মানচিত্র ফাংশন ব্যবহার করে সূচকের সংশ্লিষ্ট সংখ্যার উপর ভিত্তি করে এই সংখ্যার শক্তি ধারণকারী একটি তালিকা তৈরি করতে একটি ফাংশন লিখুন।
+Exammple:
+basesnum_coresspondingnum(lst, lst2)","""['assert basesnum_coresspondingnum([10, 20, 30, 40, 50, 60, 70, 80, 90, 100],[1, 2, 3, 4, 5, 6, 7, 8, 9, 10])==[10, 400, 27000, 2560000, 312500000, 46656000000, 8235430000000, 1677721600000000, 387420489000000000, 100000000000000000000]', 'assert basesnum_coresspondingnum([1, 2, 3, 4, 5, 6, 7],[10, 20, 30, 40, 50, 60, 70])==[1, 1048576, 205891132094649, 1208925819614629174706176, 88817841970012523233890533447265625, 48873677980689257489322752273774603865660850176, 143503601609868434285603076356671071740077383739246066639249]', 'assert basesnum_coresspondingnum([4, 8, 12, 16, 20, 24, 28],[3, 6, 9, 12, 15, 18, 21])==[64, 262144, 5159780352, 281474976710656, 32768000000000000000, 6979147079584381377970176, 2456510688823056210273111113728]']"""
+340,"একটি প্রদত্ত অ্যারেতে সর্বোচ্চ এবং সর্বনিম্ন ফ্রিকোয়েন্সিগুলির মধ্যে পার্থক্য খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Diff(lst, n)","""['assert find_Diff([1,1,2,2,7,8,4,5,1,4],10) == 2', 'assert find_Diff([1,7,9,2,3,3,1,3,3],9) == 3', 'assert find_Diff([1,2,1,2],4) == 0']"""
+341,"একটি ফাংশন লিখুন যেটা দিয়ে আপনি জানতে পারবেন যে, প্রদত্ত সংখ্যাটি প্রচুর পরিমাণে আছে কি না।
+Exammple:
+check_abundant(n)","""['assert check_abundant(12) == True', 'assert check_abundant(15) == False', 'assert check_abundant(18) == True']"""
+342,"একটি ফাংশন লিখুন যা রেজেক্স ব্যবহার করে প্রদত্ত স্ট্রিং-এ স্পেস, কমা বা বিন্দু-এর সবগুলো ঘটনার জায়গায় কলাম দিয়ে প্রতিস্থাপন করে।
+Exammple:
+fill_spaces(s)","""[\""assert fill_spaces('Boult Curve Wireless Neckband') == 'Boult:Curve:Wireless:Neckband'\"", \""assert fill_spaces('Stereo Sound Sweatproof') == 'Stereo:Sound:Sweatproof'\"", \""assert fill_spaces('Probass Curve Audio') == 'Probass:Curve:Audio'\""]"""
+343,"দুটি সংখ্যা যোগ করার জন্য একটি ফাংশন লিখুন এবং সমষ্টির সংখ্যা মুদ্রণ করুন।
+Exammple:
+count_digits(n, n2)","""['assert count_digits(9875,10)==(4)', 'assert count_digits(98759853034,100)==(11)', 'assert count_digits(1234567,500)==(7)']"""
+344,"একটি স্ট্রিং এ টিপল তালিকা সমতল করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+flatten_tuple(lst)","""[\""assert flatten_tuple([('1', '4', '6'), ('5', '8'), ('2', '9'), ('1', '10')]) == '1 4 6 5 8 2 9 1 10'\"", \""assert flatten_tuple([('2', '3', '4'), ('6', '9'), ('3', '2'), ('2', '11')]) == '2 3 4 6 9 3 2 2 11'\"", \""assert flatten_tuple([('14', '21', '9'), ('24', '19'), ('12', '29'), ('23', '17')]) == '14 21 9 24 19 12 29 23 17'\""]"""
+345,"একটি পাইথন ফাংশন লিখুন যা একটি প্রদত্ত সংখ্যার প্রথম এবং শেষ বিটকে টগল করে।
+Exammple:
+toggle_F_and_L_bits(n)","""['assert toggle_F_and_L_bits(10) == 3', 'assert toggle_F_and_L_bits(15) == 6', 'assert toggle_F_and_L_bits(20) == 5']"""
+346,"একটি স্ট্রিংয়ে অক্ষরের শেষ উপস্থিতি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+last_occurence_char(s, s2)","""['assert last_occurence_char(\""hello world\"",\\'l\\')==10', 'assert last_occurence_char(\""language\"",\\'g\\')==7', 'assert last_occurence_char(\""little\"",\\'y\\')==None']"""
+347,"একটি পাইথন ফাংশন লিখুন যাতে o থেকে n পর্যন্ত সমস্ত পরপর সংখ্যার হ্যামিং দূরত্বের যোগফল পাওয়া যায়।
+Exammple:
+Total_Hamming_Distance(n)","""['assert Total_Hamming_Distance(4) == 7', 'assert Total_Hamming_Distance(2) == 3', 'assert Total_Hamming_Distance(5) == 8']"""
+348,"প্রদত্ত ক্রমের দীর্ঘতম ক্রমবর্ধমান উপসারণের দৈর্ঘ্য খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+longest_increasing_subsequence(lst)","""['assert longest_increasing_subsequence([10, 22, 9, 33, 21, 50, 41, 60]) == 5', 'assert longest_increasing_subsequence([3, 10, 2, 1, 20]) == 3', 'assert longest_increasing_subsequence([50, 3, 10, 7, 40, 80]) == 4 ']"""
+349,"প্রথম n অদ্ভুত প্রাকৃতিক সংখ্যার পঞ্চম ক্ষমতার যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+odd_Num_Sum(n)","""['assert odd_Num_Sum(1) == 1', 'assert odd_Num_Sum(2) == 244', 'assert odd_Num_Sum(3) == 3369']"""
+350,"একটি সাজানো এবং ঘূর্ণিত অ্যারেতে সর্বাধিক উপাদান খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+find_Max(lst, n, n2)","""['assert find_Max([2,3,5,6,9],0,4) == 9', 'assert find_Max([3,4,5,2,1],0,4) == 5', 'assert find_Max([1,2,3],0,2) == 3']"""
+351,"একটি প্রদত্ত নেস্টেড তালিকা থেকে একটি নির্দিষ্ট কলাম বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+extract_column(lst, n)","""['assert extract_column([[1, 2, 3], [2, 4, 5], [1, 1, 1]],0)==[1, 2, 1]', 'assert extract_column([[1, 2, 3], [-2, 4, -5], [1, -1, 1]],2)==[3, -5, 1]', 'assert extract_column([[1, 3], [5, 7], [1, 3], [13, 15, 17], [5, 7], [9, 11]],0)==[1, 5, 1, 13, 5, 9]']"""
+352,"একটি প্রদত্ত ক্রমটি রৈখিক কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Seq_Linear(lst)","""['assert Seq_Linear([0,2,4,6,8,10]) == \""Linear Sequence\""', 'assert Seq_Linear([1,2,3]) == \""Linear Sequence\""', 'assert Seq_Linear([1,5,2]) == \""Non Linear Sequence\""']"""
+353,"একটি ফাংশন লিখুন যেটি প্রদত্ত টিউপলকে একটি ফ্লোটিং-পয়েন্ট সংখ্যায় রূপান্তর করবে।
+Exammple:
+tuple_to_float(tup)","""['assert tuple_to_float((4, 56)) == 4.56', 'assert tuple_to_float((7, 256)) == 7.256', 'assert tuple_to_float((8, 123)) == 8.123']"""
+354,"একটি মিশ্র তালিকা থেকে অদ্ভুত সংখ্যা খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Split(lst)","""['assert Split([1,2,3,4,5,6]) == [1,3,5]', 'assert Split([10,11,12,13]) == [11,13]', 'assert Split([7,8,9,1]) == [7,9,1]']"""
+355,"প্রথম n টি প্রাকৃতিক সংখ্যার ঘনক্ষেত্রের যোগফল এবং প্রথম n টি প্রাকৃতিক সংখ্যার যোগফলের মধ্যে পার্থক্য খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+difference(n)","""['assert difference(3) == 30', 'assert difference(5) == 210', 'assert difference(2) == 6']"""
+356,"একটি পাইথন ফাংশন লিখুন যা xor কে অদ্ভুত সংখ্যার সাথে জোড়া করে গণনা করে।
+Exammple:
+find_Odd_Pair(lst, n)","""['assert find_Odd_Pair([5,4,7,2,1],5) == 6', 'assert find_Odd_Pair([7,2,8,1,0,5,11],7) == 12', 'assert find_Odd_Pair([1,2,3],3) == 2']"""
+357,"একটি স্ট্রিংয়ে অক্ষর কেস টগল করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+toggle_string(s)","""['assert toggle_string(\""Python\"")==(\""pYTHON\"")', 'assert toggle_string(\""Pangram\"")==(\""pANGRAM\"")', 'assert toggle_string(\""LIttLE\"")==(\""liTTle\"")']"""
+358,"দুটি পূর্ণসংখ্যার মধ্যে অঙ্ক দূরত্ব খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+digit_distance_nums(n, n2)","""['assert digit_distance_nums(1,2) == 1', 'assert digit_distance_nums(23,56) == 6', 'assert digit_distance_nums(123,256) == 7']"""
+359,"প্রদত্ত অ্যারেতে সংলগ্ন সাবঅ্যারেগুলির বৃহত্তম যোগফল খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+max_sub_array_sum(lst, n)","""['assert max_sub_array_sum([-2, -3, 4, -1, -2, 1, 5, -3], 8) == 7', 'assert max_sub_array_sum([-3, -4, 5, -2, -3, 2, 6, -4], 8) == 8', 'assert max_sub_array_sum([-4, -5, 6, -3, -4, 3, 7, -5], 8) == 10']"""
+360,"প্রদত্ত টুপলগুলির উপাদানগুলির ইউনিয়ন খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+union_elements(tup, tup2)","""['assert union_elements((3, 4, 5, 6),(5, 7, 4, 10) ) == (3, 4, 5, 6, 7, 10)', 'assert union_elements((1, 2, 3, 4),(3, 4, 5, 6) ) == (1, 2, 3, 4, 5, 6)', 'assert union_elements((11, 12, 13, 14),(13, 15, 16, 17) ) == (11, 12, 13, 14, 15, 16, 17)']"""
+361,"একটি ফাংশন লিখুন যাতে প্রতিটি উপাদানকে, তার জোড়া উপাদানকে প্রদত্ত টিপলের অন্যান্য অনুরূপ জোড়া থেকে বরাদ্দ করা যায়।
+Exammple:
+assign_elements(lst)","""['assert assign_elements([(5, 3), (7, 5), (2, 7), (3, 8), (8, 4)] ) == {3: [8], 5: [3], 7: [5], 2: [7], 8: [4], 4: []}', 'assert assign_elements([(6, 4), (9, 4), (3, 8), (4, 9), (9, 5)] ) == {4: [9], 6: [4], 9: [4, 5], 8: [], 3: [8], 5: []}', 'assert assign_elements([(6, 2), (6, 8), (4, 9), (4, 9), (3, 7)] ) == {2: [], 6: [2, 8], 8: [], 9: [], 4: [9, 9], 7: [], 3: [7]}']"""
+362,"উপ-তালিকার সর্বোচ্চ দৈর্ঘ্য খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+Find_Max_Length(lst)","""['assert Find_Max_Length([[1],[1,4],[5,6,7,8]]) == 4', 'assert Find_Max_Length([[0,1],[2,2,],[3,2,1]]) == 3', 'assert Find_Max_Length([[7],[22,23],[13,14,15],[10,20,30,40,50]]) == 5']"""
+363,"একটি স্ট্রিং এর উদ্ধৃতি চিহ্নের মধ্যে থেকে মান বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+extract_values(s)","""['assert extract_values(\\'\""Python\"", \""PHP\"", \""Java\""\\')==[\\'Python\\', \\'PHP\\', \\'Java\\']', 'assert extract_values(\\'\""python\"",\""program\"",\""language\""\\')==[\\'python\\',\\'program\\',\\'language\\']', 'assert extract_values(\\'\""red\"",\""blue\"",\""green\"",\""yellow\""\\')==[\\'red\\',\\'blue\\',\\'green\\',\\'yellow\\']']"""
+364,"প্রদত্ত অ্যারে থেকে অসম উপাদান জোড়া গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+count_Pairs(lst, n)","""['assert count_Pairs([1,2,1],3) == 2', 'assert count_Pairs([1,1,1,1],4) == 0', 'assert count_Pairs([1,2,3,4,5],5) == 10']"""
+365,"একটি স্ট্রিংকে অক্ষরে বিভক্ত করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+split(s)","""[\""assert split('python') == ['p','y','t','h','o','n']\"", \""assert split('Name') == ['N','a','m','e']\"", \""assert split('program') == ['p','r','o','g','r','a','m']\""]"""
+366,"একটি অ-নতিবাচক পূর্ণসংখ্যার যোগফল পেতে একটি ফাংশন লিখুন।
+Exammple:
+sum_digits(n)","""['assert sum_digits(345)==12', 'assert sum_digits(12)==3', 'assert sum_digits(97)==16']"""
+367,"একটি নির্দিষ্ট তালিকা সাজানো আছে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+issort_list(lst)","""['assert issort_list([1,2,4,6,8,10,12,14,16,17])==True', 'assert issort_list([1, 2, 4, 6, 8, 10, 12, 14, 20, 17])==False', 'assert issort_list([1, 2, 4, 6, 8, 10,15,14,20])==False']"""
+368,"খালি অভিধানের একটি তালিকা তৈরি করতে একটি ফাংশন লিখুন।
+Exammple:
+empty_list(n)","""['assert empty_list(5)==[{},{},{},{},{}]', 'assert empty_list(6)==[{},{},{},{},{},{}]', 'assert empty_list(7)==[{},{},{},{},{},{},{}]']"""
+369,"একটি প্রদত্ত তালিকার প্রতিটি স্ট্রিংয়ের উপ-তালিকা বাছাই করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+sort_sublists(lst)","""[\""assert sort_sublists([['green', 'orange'], ['black', 'white'], ['white', 'black', 'orange']])==[['green', 'orange'], ['black', 'white'], ['black', 'orange', 'white']]\"", \""assert sort_sublists([['green', 'orange'], ['black'], ['green', 'orange'], ['white']])==[['green', 'orange'], ['black'], ['green', 'orange'], ['white']]\"", \""assert sort_sublists([['a','b'],['d','c'],['g','h'] , ['f','e']])==[['a', 'b'], ['c', 'd'], ['g', 'h'], ['e', 'f']]\""]"""
+370,"একটি অক্ষর বা স্ট্রিং ধারণকারী স্ট্রিংগুলির একটি প্রদত্ত তালিকা থেকে শব্দগুলি সরিয়ে ফেলার জন্য একটি ফাংশন লিখুন।
+Exammple:
+remove_words(lst, lst2)","""['assert remove_words([\\'Red color\\', \\'Orange#\\', \\'Green\\', \\'Orange @\\', \""White\""],[\\'#\\', \\'color\\', \\'@\\'])==[\\'Red\\', \\'\\', \\'Green\\', \\'Orange\\', \\'White\\']', \""assert remove_words(['Red &', 'Orange+', 'Green', 'Orange @', 'White'],['&', '+', '@'])==['Red', '', 'Green', 'Orange', 'White']\"", \""assert remove_words(['Red &', 'Orange+', 'Green', 'Orange @', 'White'],['@'])==['Red &', 'Orange+', 'Green', 'Orange', 'White']\""]"""
+371,"একটি পূর্ণসংখ্যা এবং k সংখ্যার প্রদত্ত অ্যারের জন্য বিচ্ছিন্ন জোড়ের সর্বাধিক সম্ভাব্য যোগফল খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+max_sum_pair_diff_lessthan_K(lst, n, n2)","""['assert max_sum_pair_diff_lessthan_K([3, 5, 10, 15, 17, 12, 9], 7, 4) == 62', 'assert max_sum_pair_diff_lessthan_K([5, 15, 10, 300], 4, 12) == 25', 'assert max_sum_pair_diff_lessthan_K([1, 2, 3, 4, 5, 6], 6, 6) == 21']"""
+372,"একটি নির্দিষ্ট সংখ্যক তালিকা থেকে দুটি ডুপ্লিকেট সংখ্যা অপসারণের জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+two_unique_nums(lst)","""['assert two_unique_nums([1,2,3,2,3,4,5]) == [1, 4, 5]', 'assert two_unique_nums([1,2,3,2,4,5]) == [1, 3, 4, 5]', 'assert two_unique_nums([1,2,3,4,5]) == [1, 2, 3, 4, 5]']"""
+373,"একটি নির্দিষ্ট তালিকার অনন্য সংখ্যার গুণফল গণনা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+unique_product(lst)","""['assert unique_product([10, 20, 30, 40, 20, 50, 60, 40]) ==  720000000', 'assert unique_product([1, 2, 3, 1,]) == 6', 'assert unique_product([7, 8, 9, 0, 1, 1]) == 0']"""
+374,"একটি সিলিন্ডারের পৃষ্ঠতল এলাকা খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+surfacearea_cylinder(n, n2)","""['assert surfacearea_cylinder(10,5)==942.45', 'assert surfacearea_cylinder(4,5)==226.18800000000002', 'assert surfacearea_cylinder(4,10)==351.848']"""
+375,"একটি অনুক্রমের মধ্যে n-তম সংখ্যা খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন যা প্রদত্ত সংখ্যার বহুবচন নয়।
+Exammple:
+count_no(n, n2, n3, n4)","""['assert count_no(2,3,1,10) == 5', 'assert count_no(3,6,4,20) == 11', 'assert count_no(5,10,4,20) == 16']"""
+376,"একটি অ্যারে অন্য একটি অ্যারের উপ-অ্যারে কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+is_Sub_Array(lst, lst2, n, n2)","""['assert is_Sub_Array([1,4,3,5],[1,2],4,2) == False', 'assert is_Sub_Array([1,2,1],[1,2,1],3,3) == True', 'assert is_Sub_Array([1,0,2,2],[2,2,0],4,3) ==False']"""
+377,"একটি প্রদত্ত সংখ্যার ফ্যাক্টরিয়ালের শেষ অঙ্কটি খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+last_Digit_Factorial(n)","""['assert last_Digit_Factorial(4) == 4', 'assert last_Digit_Factorial(21) == 0', 'assert last_Digit_Factorial(30) == 0']"""
+378,"একই দৈর্ঘ্যের তালিকাকে একত্রিত করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+interleave_lists(lst, lst2, lst3)","""['assert interleave_lists([1,2,3,4,5,6,7],[10,20,30,40,50,60,70],[100,200,300,400,500,600,700])==[1, 10, 100, 2, 20, 200, 3, 30, 300, 4, 40, 400, 5, 50, 500, 6, 60, 600, 7, 70, 700]', 'assert interleave_lists([10,20],[15,2],[5,10])==[10,15,5,20,2,10]', 'assert interleave_lists([11,44], [10,15], [20,5])==[11,10,20,44,15,5]']"""
+379,"প্রদত্ত দুটি টুপলে ভিন্ন উপাদান খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+find_dissimilar(tup, tup2)","""['assert find_dissimilar((3, 4, 5, 6), (5, 7, 4, 10)) == (3, 6, 7, 10)', 'assert find_dissimilar((1, 2, 3, 4), (7, 2, 3, 9)) == (1, 4, 7, 9)', 'assert find_dissimilar((21, 11, 25, 26), (26, 34, 21, 36)) == (34, 36, 11, 25)']"""
+380,"একটি ফাংশন লিখুন যাতে নেস্টেড মিশ্র টুপলে সম উপাদানগুলি বের করা যায়।
+Exammple:
+extract_even(tup)","""['assert extract_even((4, 5, (7, 6, (2, 4)), 6, 8)) == (4, (6, (2, 4)), 6, 8)', 'assert extract_even((5, 6, (8, 7, (4, 8)), 7, 9)) == (6, (8, (4, 8)))', 'assert extract_even((5, 6, (9, 8, (4, 6)), 8, 10)) == (6, (8, (4, 6)), 8, 10)']"""
+381,"বর্গক্ষেত্রের পিরামিডের পৃষ্ঠতল এলাকা খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+surface_Area(n, n2)","""['assert surface_Area(3,4) == 33', 'assert surface_Area(4,5) == 56', 'assert surface_Area(1,2) == 5']"""
+382,"একটি অভিধান খালি আছে কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+my_dict(dct)","""['assert my_dict({10})==False', 'assert my_dict({11})==False', 'assert my_dict({})==True']"""
+383,"nth কাতালান সংখ্যার জন্য একটি ফাংশন লিখুন।
+Exammple:
+catalan_number(n)","""['assert catalan_number(10)==16796', 'assert catalan_number(9)==4862', 'assert catalan_number(7)==429']"""
+384,"রেজেক্স ব্যবহার করে একটি নির্দিষ্ট বাক্যে সমস্ত বিশেষণ এবং তাদের অবস্থান খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+find_adverbs(s)","""['assert find_adverbs(\""Clearly, he has no excuse for such behavior.\"") == \\'0-7: Clearly\\'', 'assert find_adverbs(\""Please handle the situation carefuly\"") == \\'28-36: carefuly\\'', 'assert find_adverbs(\""Complete the task quickly\"") == \\'18-25: quickly\\'']"""
+385,"একটি ডেটাসেট থেকে n- ব্যয়বহুল মূল্যের আইটেমগুলি খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+expensive_items(lst, n)","""[\""assert expensive_items([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}],1)==[{'name': 'Item-2', 'price': 555.22}]\"", \""assert expensive_items([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}, {'name': 'Item-3', 'price': 45.09}],2)==[{'name': 'Item-2', 'price': 555.22},{'name': 'Item-1', 'price': 101.1}]\"", \""assert expensive_items([{'name': 'Item-1', 'price': 101.1},{'name': 'Item-2', 'price': 555.22}, {'name': 'Item-3', 'price': 45.09},{'name': 'Item-4', 'price': 22.75}],1)==[{'name': 'Item-2', 'price': 555.22}]\""]"""
+386,"একটি পাইথন ফাংশন লিখুন যাতে অ্যারেটি বিভক্ত হয় এবং প্রথম অংশটি শেষে যোগ করা হয়।
+Exammple:
+split_Arr(lst, n, n2)","""['assert split_Arr([12,10,5,6,52,36],6,2) == [5,6,52,36,12,10]', 'assert split_Arr([1,2,3,4],4,1) == [2,3,4,1]', 'assert split_Arr([0,1,2,3,4,5,6,7],8,3) == [3,4,5,6,7,0,1,2]']"""
+387,"একটি তালিকাকে একটি টিপলে রূপান্তর করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+list_tuple(lst)","""['assert list_tuple([5, 10, 7, 4, 15, 3])==(5, 10, 7, 4, 15, 3)', 'assert list_tuple([2, 4, 5, 6, 2, 3, 4, 4, 7])==(2, 4, 5, 6, 2, 3, 4, 4, 7)', 'assert list_tuple([58,44,56])==(58,44,56)']"""
+388,"একটি প্রদত্ত অ্যারেতে বৃহত্তম এবং ক্ষুদ্রতম মানের মধ্যে পার্থক্য খুঁজে পেতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+big_diff(lst)","""['assert big_diff([1,2,3,4]) == 3', 'assert big_diff([4,5,12]) == 8', 'assert big_diff([9,2,3]) == 7']"""
+389,"দুটি প্রদত্ত সংখ্যার মধ্যে পারফেক্ট স্কোয়ার খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+perfect_squares(n, n2)","""['assert perfect_squares(1,30)==[1, 4, 9, 16, 25]', 'assert perfect_squares(50,100)==[64, 81, 100]', 'assert perfect_squares(100,200)==[100, 121, 144, 169, 196]']"""
+390,"একটি ফাংশন লিখুন যা পোলার কোঅর্ডিনেটকে আয়তক্ষেত্রাকার কোঅর্ডিনেট রূপান্তর করে।
+Exammple:
+polar_rect(n, n2)","""['assert polar_rect(3,4)==((5.0, 0.9272952180016122), (-2+2.4492935982947064e-16j))', 'assert polar_rect(4,7)==((8.06225774829855, 1.0516502125483738), (-2+2.4492935982947064e-16j))', 'assert polar_rect(15,17)==((22.67156809750927, 0.8478169733934057), (-2+2.4492935982947064e-16j))']"""
+391,"একটি তালিকার প্রথম এবং শেষ উপাদান বিনিময় করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+swap_List(lst)","""['assert swap_List([12, 35, 9, 56, 24]) == [24, 35, 9, 56, 12]', 'assert swap_List([1, 2, 3]) == [3, 2, 1]', 'assert swap_List([4, 5, 6]) == [6, 5, 4]']"""
+392,"দ্বিপদী সহগগুলির উৎপাদনের যোগফল খুঁজে বের করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+sum_Of_product(n)","""['assert sum_Of_product(3) == 15', 'assert sum_Of_product(4) == 56', 'assert sum_Of_product(1) == 1']"""
+393,"একটি আইপি ঠিকানা থেকে শীর্ষস্থানীয় শূন্যগুলি সরিয়ে ফেলার জন্য একটি ফাংশন লিখুন।
+Exammple:
+removezero_ip(s)","""['assert removezero_ip(\""216.08.094.196\"")==(\\'216.8.94.196\\') ', 'assert removezero_ip(\""12.01.024\"")==(\\'12.1.24\\') ', 'assert removezero_ip(\""216.08.094.0196\"")==(\\'216.8.94.196\\') ']"""
+394,"একটি প্রদত্ত তালিকার প্রথম সম সংখ্যা এবং অদ্ভুত সংখ্যার পার্থক্য খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+diff_even_odd(lst)","""['assert diff_even_odd([1,3,5,7,4,1,6,8])==3', 'assert diff_even_odd([1,2,3,4,5,6,7,8,9,10])==1', 'assert diff_even_odd([1,5,7,9,10])==9']"""
+395,"একটি বাইনারি স্ট্রিংকে অন্য একটিতে রূপান্তর করতে প্রয়োজনীয় ন্যূনতম সংখ্যক সোয়্যাপ গণনা করতে একটি পাইথন ফাংশন লিখুন।
+Exammple:
+min_Swaps(s, s2)","""['assert min_Swaps(\""1101\"",\""1110\"") == 1', 'assert min_Swaps(\""111\"",\""000\"") == \""Not Possible\""', 'assert min_Swaps(\""111\"",\""110\"") == \""Not Possible\""']"""
+396,"প্রদত্ত টিপলের আকার খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+tuple_size(tup)","""['assert tuple_size((\""A\"", 1, \""B\"", 2, \""C\"", 3) ) == sys.getsizeof((\""A\"", 1, \""B\"", 2, \""C\"", 3))', 'assert tuple_size((1, \""Raju\"", 2, \""Nikhil\"", 3, \""Deepanshu\"") ) == sys.getsizeof((1, \""Raju\"", 2, \""Nikhil\"", 3, \""Deepanshu\""))', 'assert tuple_size(((1, \""Lion\""), ( 2, \""Tiger\""), (3, \""Fox\""), (4, \""Wolf\""))  ) == sys.getsizeof(((1, \""Lion\""), ( 2, \""Tiger\""), (3, \""Fox\""), (4, \""Wolf\"")))']"""
+397,"প্রদত্ত দুটি সাজানো অ্যারে থেকে k-তম উপাদান খুঁজে পেতে একটি ফাংশন লিখুন।
+Exammple:
+find_kth(lst, lst2, n, n2, n3)","""['assert find_kth([2, 3, 6, 7, 9], [1, 4, 8, 10], 5, 4, 5) == 6', 'assert find_kth([100, 112, 256, 349, 770], [72, 86, 113, 119, 265, 445, 892], 5, 7, 7) == 256', 'assert find_kth([3, 4, 7, 8, 10], [2, 5, 9, 11], 5, 4, 6) == 8']"""
+398,"প্রদত্ত সংখ্যাটি আর্মস্ট্রং কিনা তা পরীক্ষা করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+armstrong_number(n)","""['assert armstrong_number(153)==True', 'assert armstrong_number(259)==False', 'assert armstrong_number(4458)==False']"""
+399,"প্রথম n টি প্রাকৃতিক সংখ্যার যোগফল এবং গড় খুঁজে বের করার জন্য একটি ফাংশন লিখুন।
+Exammple:
+sum_average(n)","""['assert sum_average(10)==(55, 5.5)', 'assert sum_average(15)==(120, 8.0)', 'assert sum_average(20)==(210, 10.5)']"""
+400,"বিটওয়াইস অপারেটর ব্যবহার করে প্রদত্ত সংখ্যাটি জোড়া কিনা তা পরীক্ষা করার জন্য একটি পাইথন ফাংশন লিখুন।
+Exammple:
+is_Even(n)","""['assert is_Even(1) == False', 'assert is_Even(2) == True', 'assert is_Even(3) == False']"""
