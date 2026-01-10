@@ -22,6 +22,18 @@
 ## What this is
 PyBanglaCodeAct is a CodeAct/REACT-style agent for Bangla (Bengali) programming tasks. It accepts Bangla instructions, plans, generates Python code with multilingual LLMs (for example, Qwen3-8B), executes that code in a sandboxed REPL, and iteratively self-corrects through a Thought -> Code -> Observation loop. The agent reaches 94.0% pass@1 on the mHumanEval Bangla development set and demonstrates the effectiveness of execution-aware generation for low-resource languages.
 
+## Citation
+```bibtex
+@article{islam2025pybangla,
+  title={PyBangla at BLP-2025 Task 2: Enhancing Bangla-to-Python Code Generation with Iterative Self-Correction and Multilingual Agents},
+  author={Islam, Jahidul and Ataullha, Md and Azad, Saiful},
+  journal={arXiv preprint arXiv:2512.23713},
+  year={2025}
+}
+```
+
+
+
 ## Architecture
 <p align="center">
   <img src="docs/architecture.jpg" alt="Architecture diagram" width="220">
@@ -113,13 +125,3 @@ Set `reference_dir` and `prediction_dir` inside the script if your files are els
 
 ## Contributing
 PRs welcome. See `docs/CONTRIBUTING.md` for workflow and testing guidance.
-
-## Citation
-```bibtex
-@article{islam2025pybangla,
-  title={PyBangla at BLP-2025 Task 2: Enhancing Bangla-to-Python Code Generation with Iterative Self-Correction and Multilingual Agents},
-  author={Islam, Jahidul and Ataullha, Md and Azad, Saiful},
-  journal={arXiv preprint arXiv:2512.23713},
-  year={2025}
-}
-```
